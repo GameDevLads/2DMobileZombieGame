@@ -10,8 +10,7 @@ jobs:
       fail-fast: false
       matrix:
         targetPlatform:
-          - StandaloneLinux64 # Build a Linux 64-bit standalone.
-          - iOS # Build an iOS player.
+          - StandaloneWindows64 # Build a Windows 64-bit standalone.
           - Android # Build an Android .apk standalone app.
     steps:
       - uses: actions/checkout@v2
@@ -28,6 +27,7 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
+          versioning: Semantic
       - uses: actions/upload-artifact@v2
         with:
           name: Build-${{ matrix.targetPlatform }}
