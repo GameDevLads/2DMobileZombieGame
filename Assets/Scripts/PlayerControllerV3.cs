@@ -11,12 +11,12 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     private float moveSpeed = 10f;
   
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Collectable collectable;
-    [SerializeField] private TrailRenderer tr;
+    public Rigidbody2D rb;
+    public TrailRenderer tr;
+    public PlayerStatValues playerStatValues;
 
-    [SerializeField] private float dashSpeed = 60f;
-    [SerializeField] private float flashAmount = 10f;
+    public float dashSpeed = 60f;
+    public float flashAmount = 10f;
 
     private float trailVisibleTime = 0.2f;
 
@@ -60,22 +60,22 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     }
     public void OnFlash(InputAction.CallbackContext context)
     {
-        if (context.ReadValueAsButton() && collectable.collectableAmount > 0 && IsPlayerMoving() == true)
+        if (context.ReadValueAsButton() && playerStatValues.coinAmount > 0 && IsPlayerMoving() == true)
         {
-            collectable.DecrementCollectable();
+            playerStatValues.coinAmount --;
             rb.MovePosition(transform.position + currentDirection * flashAmount);
         }  
     }
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.ReadValueAsButton() && collectable.collectableAmount > 0 && IsPlayerMoving() == true)
+        if (context.ReadValueAsButton() && playerStatValues.coinAmount > 0 && IsPlayerMoving() == true)
         {
             StartCoroutine(DashingMechanic());
         }      
     }
     private IEnumerator DashingMechanic()
     {
-        collectable.DecrementCollectable();
+        playerStatValues.coinAmount --;
         rb.velocity = new Vector2(moveDirection.x * dashSpeed, moveDirection.y * dashSpeed);
         tr.emitting = true;
         yield return new WaitForSeconds(trailVisibleTime);

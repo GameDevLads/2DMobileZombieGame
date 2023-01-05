@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class CollectableController : MonoBehaviour
 {
-    [SerializeField] private Collectable collectable;
+    public Collectable collectable;
+    public PlayerStatValues playerStatValues;
 
     private void Start()
     {
@@ -28,7 +29,7 @@ public class CollectableController : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            collectable.IncrementCollectable();
+            playerStatValues.coinAmount++;
             Destroy(gameObject);
         }
     }
