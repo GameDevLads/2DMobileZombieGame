@@ -1,3 +1,4 @@
+using Assets.Scripts.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,32 +15,69 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     public Rigidbody2D rb;
     public TrailRenderer tr;
     public PlayerStatValues playerStatValues;
+    
+    [Tooltip("Player's default gun.")]
+    public GameObject DefaultGun;
+
+    [Tooltip("How far away the gun is from the player.")]
+    public float GunPlayerDistance = 1.5f;
 
     public float dashSpeed = 60f;
     public float flashAmount = 10f;
 
     private float trailVisibleTime = 0.2f;
+    private bool _fireGun = false;
 
     Vector2 moveDirection = Vector2.zero;
     Vector3 currentDirection;
 
-  
+    private GameObject _playerHandsGameObject;
+
+    // This is the player hand object that has a gun as a child object which rotates around the player
+    void InitPlayerHands()
+    {
+        _playerHandsGameObject = new GameObject("Player Hands");
+        _playerHandsGameObject.AddComponent<PlayerHandsController>();
+        var gun = Instantiate(DefaultGun, new Vector2(GunPlayerDistance, 0), Quaternion.identity);
+        gun.transform.parent = _playerHandsGameObject.gameObject.transform;
+        _playerHandsGameObject.transform.parent = gameObject.transform;
+    }
 
     void Start()
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        
+
+        InitPlayerHands();
+
         //setting the target of the camera to the player
         Camera.main.GetComponent<PlayerCamera>().setTarget(gameObject.transform);
     }
+
     void Update()
     {
         if(!IsPlayerMoving())
         {
             animator.SetBool("isMoving", false);
         } 
+
+        if (_fireGun)
+        {
+            FireGun();
+        }
     }
+
+    private void FireGun()
+    {
+        var gunScripts = FindObjectsOfType<MonoBehaviour>();
+
+        foreach (var gunScript in gunScripts)
+        {
+            if (gunScript is IPlayerGun gun)
+                gun.FireGun();
+        }
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         moveDirection = context.ReadValue<Vector2>();
@@ -58,6 +96,7 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
             spriteRenderer.flipX = false;
         }
     }
+
     public void OnFlash(InputAction.CallbackContext context)
     {
         if (context.ReadValueAsButton() && playerStatValues.coinAmount > 0 && IsPlayerMoving() == true)
@@ -66,6 +105,7 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
             rb.MovePosition(transform.position + currentDirection * flashAmount);
         }  
     }
+
     public void OnDash(InputAction.CallbackContext context)
     {
         if (context.ReadValueAsButton() && playerStatValues.coinAmount > 0 && IsPlayerMoving() == true)
@@ -73,6 +113,7 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
             StartCoroutine(DashingMechanic());
         }      
     }
+
     private IEnumerator DashingMechanic()
     {
         playerStatValues.coinAmount --;
@@ -95,5 +136,22 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
             result = false;
         }
         return result;
+    }
+
+    public void OnFireGun(InputAction.CallbackContext context)
+    {
+        // We need to check when the mouse click starts and ends as there is no other way of continuously firing when the mouse is held
+        if (context.started)
+            _fireGun = true;
+        else if (context.canceled)
+            _fireGun = false;
+    }
+
+    public void OnAimGun(InputAction.CallbackContext context)
+    {
+        // Update the rotation of the gun based on the pointer position
+        var pointerPosition = context.ReadValue<Vector2>();
+        var playerHandsGun = _playerHandsGameObject.GetComponent<PlayerHandsController>();
+        playerHandsGun.UpdatePosition(pointerPosition);
     }
 }

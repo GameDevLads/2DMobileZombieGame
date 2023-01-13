@@ -53,6 +53,24 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fire Gun"",
+                    ""type"": ""Button"",
+                    ""id"": ""b43d0f9a-1ee2-4f56-8f3c-55b1778e4e21"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim Gun"",
+                    ""type"": ""Value"",
+                    ""id"": ""d5849c56-49ef-482b-bbe1-22af92eeb6fc"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -220,6 +238,28 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Flash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dcd9b4f4-1ea2-4a3e-b2ea-65ec58df6023"",
+                    ""path"": ""<Mouse>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Fire Gun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""451f2b20-b9e2-4223-b451-f15750d00773"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Aim Gun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -259,6 +299,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Flash = m_Player.FindAction("Flash", throwIfNotFound: true);
+        m_Player_FireGun = m_Player.FindAction("Fire Gun", throwIfNotFound: true);
+        m_Player_AimGun = m_Player.FindAction("Aim Gun", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -321,6 +363,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Flash;
+    private readonly InputAction m_Player_FireGun;
+    private readonly InputAction m_Player_AimGun;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -328,6 +372,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Flash => m_Wrapper.m_Player_Flash;
+        public InputAction @FireGun => m_Wrapper.m_Player_FireGun;
+        public InputAction @AimGun => m_Wrapper.m_Player_AimGun;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -346,6 +392,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Flash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFlash;
                 @Flash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFlash;
                 @Flash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFlash;
+                @FireGun.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireGun;
+                @FireGun.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireGun;
+                @FireGun.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireGun;
+                @AimGun.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimGun;
+                @AimGun.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimGun;
+                @AimGun.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimGun;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -359,6 +411,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Flash.started += instance.OnFlash;
                 @Flash.performed += instance.OnFlash;
                 @Flash.canceled += instance.OnFlash;
+                @FireGun.started += instance.OnFireGun;
+                @FireGun.performed += instance.OnFireGun;
+                @FireGun.canceled += instance.OnFireGun;
+                @AimGun.started += instance.OnAimGun;
+                @AimGun.performed += instance.OnAimGun;
+                @AimGun.canceled += instance.OnAimGun;
             }
         }
     }
@@ -386,5 +444,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnFlash(InputAction.CallbackContext context);
+        void OnFireGun(InputAction.CallbackContext context);
+        void OnAimGun(InputAction.CallbackContext context);
     }
 }

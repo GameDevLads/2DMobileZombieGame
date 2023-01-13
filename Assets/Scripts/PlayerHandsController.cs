@@ -1,22 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class CharacterController : MonoBehaviour
+public class PlayerHandsController : MonoBehaviour
 {
     private bool _facingRight = true;
 
-    void Update()
+    public void UpdatePosition(Vector2 pointerPosition)
     {
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = 5.23f;
-
         Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
-        mousePos.x = mousePos.x - objectPos.x;
-        mousePos.y = mousePos.y - objectPos.y;
+        pointerPosition.x = pointerPosition.x - objectPos.x;
+        pointerPosition.y = pointerPosition.y - objectPos.y;
 
-        if (mousePos.x < 0 && transform.localScale.x > 0)
+        if (pointerPosition.x < 0 && transform.localScale.x > 0)
         {
             _facingRight = false;
             // flip if we are facing right but mouse is on the left
@@ -24,7 +18,7 @@ public class CharacterController : MonoBehaviour
             theScale.x *= -1;
             transform.localScale = theScale;
         }
-        else if (mousePos.x > 0 && transform.localScale.x < 0)
+        else if (pointerPosition.x > 0 && transform.localScale.x < 0)
         {
             _facingRight = true;
             // flip if mouse is on the right and we are facing left
@@ -33,12 +27,12 @@ public class CharacterController : MonoBehaviour
             transform.localScale = theScale;
         }
 
-        float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-        
+        float angle = Mathf.Atan2(pointerPosition.y, pointerPosition.x) * Mathf.Rad2Deg;
+
         if (_facingRight)
-            angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+            angle = Mathf.Atan2(pointerPosition.y, pointerPosition.x) * Mathf.Rad2Deg;
         else
-            angle = Mathf.Atan2(mousePos.y * -1, mousePos.x * -1) * Mathf.Rad2Deg;
+            angle = Mathf.Atan2(pointerPosition.y * -1, pointerPosition.x * -1) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }

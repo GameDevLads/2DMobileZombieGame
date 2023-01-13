@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts;
 using Assets.Scripts.Gun.Data;
+using Assets.Scripts.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -8,14 +9,16 @@ using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Diagnostics;
+using UnityEngine.InputSystem;
 using UnityEngine.SocialPlatforms;
+using UnityEngine.Timeline;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
 
 namespace Assets.Scripts.Gun
 {
-    public class GunBase : MonoBehaviour
+    public abstract class GunBase : MonoBehaviour, IPlayerGun
     {
         [Tooltip("The gun bullet trail.")]
         public TrailRenderer TrailRenderer;
@@ -55,14 +58,10 @@ namespace Assets.Scripts.Gun
         protected virtual void UpdateBase()
         {
             _isParentFacingRight = transform.parent.gameObject.transform.localScale.x > 0;
-            FireGun();
         }
 
         void Start() => StartBase();
         void Update() => UpdateBase();
-
-        private bool ShootInputPressed()
-            => Input.GetButtonDown("Fire1") || Input.GetMouseButton(0);
 
         private bool CanFire()
             => IsShootDelayFinished()
@@ -144,13 +143,10 @@ namespace Assets.Scripts.Gun
             TrailRenderer.colorGradient = gunData.BulletTrailGradient;
         }
 
-        protected virtual void FireGun()
+        public virtual void FireGun()
         {
             if (IsReloading())
                 return; // We need to reload even when there is no input from the user
-
-            if (!ShootInputPressed())
-                return; // Do not shoot when there's no input from the user
 
             if (!CanFire())
                 return; // We can't shoot if we don't meet all conditions
