@@ -69,7 +69,7 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     private void FireGun()
     {
-        var gunScripts = FindObjectsOfType<MonoBehaviour>();
+        var gunScripts = GetComponentsInChildren(typeof(IPlayerGun));
 
         foreach (var gunScript in gunScripts)
         {
