@@ -14,8 +14,8 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
   
     public Rigidbody2D rb;
     public TrailRenderer tr;
-    public PlayerStatValues playerStatValues;
-    
+    public IntVariableSO intVariableSO;
+
     [Tooltip("Player's default gun.")]
     public GameObject DefaultGun;
 
@@ -99,16 +99,16 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     public void OnFlash(InputAction.CallbackContext context)
     {
-        if (context.ReadValueAsButton() && playerStatValues.coinAmount > 0 && IsPlayerMoving() == true)
+        if (context.ReadValueAsButton() && intVariableSO.Value > 0 && IsPlayerMoving() == true)
         {
-            playerStatValues.coinAmount --;
+            intVariableSO.Value --;
             rb.MovePosition(transform.position + currentDirection * flashAmount);
         }  
     }
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.ReadValueAsButton() && playerStatValues.coinAmount > 0 && IsPlayerMoving() == true)
+        if (context.ReadValueAsButton() && intVariableSO.Value > 0 && IsPlayerMoving() == true)
         {
             StartCoroutine(DashingMechanic());
         }      
@@ -116,7 +116,7 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     private IEnumerator DashingMechanic()
     {
-        playerStatValues.coinAmount --;
+        intVariableSO.Value --;
         rb.velocity = new Vector2(moveDirection.x * dashSpeed, moveDirection.y * dashSpeed);
         tr.emitting = true;
         yield return new WaitForSeconds(trailVisibleTime);

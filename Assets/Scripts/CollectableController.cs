@@ -6,7 +6,8 @@ using UnityEngine;
 public class CollectableController : MonoBehaviour
 {
     public Collectable collectable;
-    public PlayerStatValues playerStatValues;
+    //public PlayerStatValues playerStatValues;
+    public IntVariableSO intVariableSO;
 
     private void Start()
     {
@@ -29,7 +30,7 @@ public class CollectableController : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            playerStatValues.coinAmount++;
+            intVariableSO.Value++;
             Destroy(gameObject);
         }
     }
