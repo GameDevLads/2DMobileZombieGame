@@ -5,32 +5,33 @@ using UnityEngine;
 
 public class CollectableController : MonoBehaviour
 {
-    public Collectable collectable;
-    //public PlayerStatValues playerStatValues;
-    public IntVariableSO intVariableSO;
+    public IntVariableSO coinAmountSO;
+    public FloatVariableSO collectableLifetimeSO;
+    public FloatVariableSO blinkingDelayedStartSO;
+    public FloatVariableSO blinkingIntervalSO;
 
     private void Start()
     {
         StartCoroutine(Blink());
-        Destroy(gameObject, collectable.collectableLifetime);
+        Destroy(gameObject, collectableLifetimeSO.Value);
     }
   
     private IEnumerator Blink()
     {
-        yield return new WaitForSeconds(collectable.blinkingDelayedStart);
+        yield return new WaitForSeconds(blinkingDelayedStartSO.Value);
         while (true)
         {
             GetComponent<Renderer>().material.color = Color.yellow;
-            yield return new WaitForSeconds(collectable.blinkingInterval);
+            yield return new WaitForSeconds(blinkingIntervalSO.Value);
             GetComponent<Renderer>().material.color = Color.red;
-            yield return new WaitForSeconds(collectable.blinkingInterval);
+            yield return new WaitForSeconds(blinkingIntervalSO.Value);
         }       
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            intVariableSO.Value++;
+            coinAmountSO.Value++;
             Destroy(gameObject);
         }
     }

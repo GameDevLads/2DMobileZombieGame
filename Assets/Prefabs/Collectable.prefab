@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8381783378422643426
+--- !u!1 &7101889703876589505
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8381783378422643430}
-  - component: {fileID: 8381783378422643425}
-  - component: {fileID: 8381783378422643424}
-  - component: {fileID: 8381783378422643427}
+  - component: {fileID: 7101889703876589517}
+  - component: {fileID: 7101889703876589516}
+  - component: {fileID: 7101889703876589519}
+  - component: {fileID: 7101889703876589518}
   m_Layer: 0
   m_Name: Collectable
   m_TagString: Untagged
@@ -19,13 +19,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8381783378422643430
+--- !u!4 &7101889703876589517
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8381783378422643426}
+  m_GameObject: {fileID: 7101889703876589505}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -15.319338, y: -4.8907304, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
@@ -34,13 +34,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8381783378422643425
+--- !u!212 &7101889703876589516
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8381783378422643426}
+  m_GameObject: {fileID: 7101889703876589505}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -86,13 +86,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &8381783378422643424
+--- !u!61 &7101889703876589519
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8381783378422643426}
+  m_GameObject: {fileID: 7101889703876589505}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -112,17 +112,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8381783378422643427
+--- !u!114 &7101889703876589518
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8381783378422643426}
+  m_GameObject: {fileID: 7101889703876589505}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4452437f38f61c148811faf6996dfd77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectable: {fileID: 11400000, guid: e9db2aa8626bb9042bd1537754e16906, type: 2}
-  playerStatValues: {fileID: 11400000, guid: 68ac8d1f2efb8654eaba2b80da0a0e77, type: 2}
+  coinAmountSO: {fileID: 11400000, guid: 30d6de202fef39c4b8deb38ef0d256fb, type: 2}
+  collectableLifetimeSO: {fileID: 11400000, guid: d5d41319b54faa9418e9f940dfb560e6, type: 2}
+  blinkingDelayedStartSO: {fileID: 11400000, guid: 071dc1192254dd4478e7f8c23a1debd2, type: 2}
+  blinkingIntervalSO: {fileID: 11400000, guid: 5700073e6f5fa8c459aa8d716e2c3a84, type: 2}

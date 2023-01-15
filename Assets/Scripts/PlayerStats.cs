@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public IntVariableSO intVariableSO;
+    public IntVariableSO coinAmountSO;
 
     public int coinAmount;
     private void Update()
     {
-        coinAmount = intVariableSO.Value;
+        coinAmount = coinAmountSO.Value;
     }
 }
