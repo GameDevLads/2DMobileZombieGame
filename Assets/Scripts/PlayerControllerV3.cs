@@ -10,7 +10,7 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     Animator animator;
     SpriteRenderer spriteRenderer;
 
-    private float moveSpeed = 10f;
+    public float moveSpeed = 0f;
   
     public Rigidbody2D rb;
     public TrailRenderer tr;
@@ -27,9 +27,10 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     private float trailVisibleTime = 0.2f;
     private bool _fireGun = false;
+    public Vector2 moveDirection = Vector2.zero;
+    public Vector3 moveDirectionVector3;
 
-    Vector2 moveDirection = Vector2.zero;
-    Vector3 currentDirection;
+
 
     private GameObject _playerHandsGameObject;
 
@@ -80,18 +81,17 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        moveDirection = context.ReadValue<Vector2>();
-        currentDirection = new Vector3(moveDirection.x, moveDirection.y).normalized;
+        moveDirection = context.ReadValue<Vector2>().normalized;
+        //creating a normalised vector will force the magnitude (length) of the vector to 1 (full speed). Meaning regardels how much the joystick is pushed the player will always move at the top speed. 
+        moveDirectionVector3 = new Vector3(moveDirection.x, moveDirection.y);
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
-        currentDirection = new Vector3(moveDirection.x, moveDirection.y).normalized;
-
         animator.SetBool("isMoving", true);
 
-        if(currentDirection.x > 0)
+        if(moveDirection.x > 0)
         {
             spriteRenderer.flipX = true;
         }
-        if(currentDirection.x < 0)
+        if(moveDirection.x < 0)
         {
             spriteRenderer.flipX = false;
         }
@@ -102,7 +102,7 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
         if (context.ReadValueAsButton() && coinAmountSO.Value > 0 && IsPlayerMoving() == true)
         {
             coinAmountSO.Value --;
-            rb.MovePosition(transform.position + currentDirection * flashAmount);
+            rb.MovePosition(transform.position + moveDirectionVector3 * flashAmount);
         }  
     }
 
