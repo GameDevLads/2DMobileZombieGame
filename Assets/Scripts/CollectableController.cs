@@ -10,6 +10,10 @@ public class CollectableController : MonoBehaviour
     public FloatVariableSO blinkingDelayedStartSO;
     public FloatVariableSO blinkingIntervalSO;
 
+    
+    
+
+
     private void Start()
     {
         StartCoroutine(Blink());

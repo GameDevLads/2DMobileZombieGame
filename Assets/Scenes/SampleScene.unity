@@ -732,6 +732,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 1}
+--- !u!1 &1357708011 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6416479116957316660, guid: 14cd9baaf05b1564cbaba086d853f415, type: 3}
+  m_PrefabInstance: {fileID: 6416479117485551818}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1357708022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357708011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4452437f38f61c148811faf6996dfd77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinAmountSO: {fileID: 11400000, guid: 30d6de202fef39c4b8deb38ef0d256fb, type: 2}
+  collectableLifetimeSO: {fileID: 11400000, guid: d5d41319b54faa9418e9f940dfb560e6, type: 2}
+  blinkingDelayedStartSO: {fileID: 11400000, guid: 071dc1192254dd4478e7f8c23a1debd2, type: 2}
+  blinkingIntervalSO: {fileID: 11400000, guid: 5700073e6f5fa8c459aa8d716e2c3a84, type: 2}
 --- !u!1 &1430619768
 GameObject:
   m_ObjectHideFlags: 0
