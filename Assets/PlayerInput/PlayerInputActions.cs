@@ -56,7 +56,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Fire Gun"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""b43d0f9a-1ee2-4f56-8f3c-55b1778e4e21"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -243,7 +243,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""dcd9b4f4-1ea2-4a3e-b2ea-65ec58df6023"",
                     ""path"": ""<Mouse>/press"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold(duration=20)"",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Fire Gun"",

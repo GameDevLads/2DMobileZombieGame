@@ -60,12 +60,12 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
         if(!IsPlayerMoving())
         {
             animator.SetBool("isMoving", false);
-        } 
-
-        if (_fireGun)
-        {
-            FireGun();
         }
+
+        //if (_fireGun)
+        //{
+        //    FireGun();
+        //}
     }
 
     private void FireGun()
@@ -140,11 +140,12 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     public void OnFireGun(InputAction.CallbackContext context)
     {
-        // We need to check when the mouse click starts and ends as there is no other way of continuously firing when the mouse is held
-        if (context.started)
-            _fireGun = true;
-        else if (context.canceled)
-            _fireGun = false;
+        FireGun();
+        //// We need to check when the mouse click starts and ends as there is no other way of continuously firing when the mouse is held
+        //if (context.started)
+        //    _fireGun = true;
+        //else if (context.canceled)
+        //    _fireGun = false
     }
 
     public void OnAimGun(InputAction.CallbackContext context)
