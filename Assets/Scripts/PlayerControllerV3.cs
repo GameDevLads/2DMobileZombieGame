@@ -3,15 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActions
 {
 
+    //Vector2 lastInput;
     Animator animator;
     SpriteRenderer spriteRenderer;
 
     public float moveSpeed = 0f;
-  
+
     public Rigidbody2D rb;
     public TrailRenderer tr;
     public IntVariableSO coinAmountSO;
@@ -57,15 +59,15 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     void Update()
     {
-        if(!IsPlayerMoving())
+        if (!IsPlayerMoving())
         {
             animator.SetBool("isMoving", false);
         }
 
-        //if (_fireGun)
-        //{
-        //    FireGun();
-        //}
+        if (_fireGun)
+        {
+            FireGun();
+        }
     }
 
     private void FireGun()
@@ -87,11 +89,11 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
         animator.SetBool("isMoving", true);
 
-        if(moveDirection.x > 0)
+        if (moveDirection.x > 0)
         {
             spriteRenderer.flipX = true;
         }
-        if(moveDirection.x < 0)
+        if (moveDirection.x < 0)
         {
             spriteRenderer.flipX = false;
         }
@@ -101,9 +103,9 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     {
         if (context.ReadValueAsButton() && coinAmountSO.Value > 0 && IsPlayerMoving() == true)
         {
-            coinAmountSO.Value --;
+            coinAmountSO.Value--;
             rb.MovePosition(transform.position + moveDirectionVector3 * flashAmount);
-        }  
+        }
     }
 
     public void OnDash(InputAction.CallbackContext context)
@@ -111,12 +113,12 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
         if (context.ReadValueAsButton() && coinAmountSO.Value > 0 && IsPlayerMoving() == true)
         {
             StartCoroutine(DashingMechanic());
-        }      
+        }
     }
 
     private IEnumerator DashingMechanic()
     {
-        coinAmountSO.Value --;
+        coinAmountSO.Value--;
         rb.velocity = new Vector2(moveDirection.x * dashSpeed, moveDirection.y * dashSpeed);
         tr.emitting = true;
         yield return new WaitForSeconds(trailVisibleTime);
@@ -127,7 +129,7 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     private bool IsPlayerMoving()
     {
         bool result = false;
-        if(rb.velocity.magnitude > 0)
+        if (rb.velocity.magnitude > 0)
         {
             result = true;
         }
@@ -140,12 +142,11 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     public void OnFireGun(InputAction.CallbackContext context)
     {
-        FireGun();
-        //// We need to check when the mouse click starts and ends as there is no other way of continuously firing when the mouse is held
-        //if (context.started)
-        //    _fireGun = true;
-        //else if (context.canceled)
-        //    _fireGun = false
+        // We need to check when the mouse click starts and ends as there is no other way of continuously firing when the mouse is held
+        if (context.started)
+            _fireGun = true;
+        else if (context.canceled)
+            _fireGun = false;
     }
 
     public void OnAimGun(InputAction.CallbackContext context)
