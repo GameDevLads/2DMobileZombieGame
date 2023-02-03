@@ -100,6 +100,7 @@ public class Grid2D: MonoBehaviour {
 		return neighboringNodes;
 	}
 	public Node GetNodeByCoords(Vector3 worldPos) {
+		
 		// Find the position relative to the grid's center
 		Vector3 centered = worldPos - transform.position;
 
@@ -115,6 +116,10 @@ public class Grid2D: MonoBehaviour {
 		int x = Mathf.RoundToInt(percentX * (gridX - 1));
 		int y = Mathf.RoundToInt(percentY * (gridY - 1));
 
+		if (nodes.Length == 0)
+		{
+			return null;
+		}
 		// Return the node at the calculated position
 		return nodes[x, y];
 	}
