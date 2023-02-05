@@ -4,7 +4,7 @@ using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private float speed = 3f;
+    public float speed = 3f;
     private int currentWaypoint = 0;
     private List<Node> path = new List<Node>();
     public Transform target;
@@ -20,6 +20,8 @@ public class EnemyMovement : MonoBehaviour
         lastTargetPos = target.position;
         lastEnemyPos = transform.position;
         aStar = GetComponent<Astar>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     void Update()
     {
@@ -35,8 +37,10 @@ public class EnemyMovement : MonoBehaviour
         }
         
         // Move the enemy
-        if (path.Count > 0)
+        if (path.Count > 2)
         {
+            Debug.Log("path count: " + path.Count + ", waypoint: " + currentWaypoint);
+            
             if (currentWaypoint < path.Count)
             {
                 animator.SetBool("isMoving", true);
@@ -62,9 +66,14 @@ public class EnemyMovement : MonoBehaviour
             }
             if(currentWaypoint > path.Count)
             {
+                animator.SetBool("isMoving", false);
                 currentWaypoint = 0;
             }
 
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
         }
     }
 

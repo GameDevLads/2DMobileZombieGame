@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Aim Gun",
+                    "name": "Aim Weapon",
                     "type": "Value",
                     "id": "d5849c56-49ef-482b-bbe1-22af92eeb6fc",
                     "expectedControlType": "Vector2",
@@ -42,7 +42,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "FireGun",
+                    "name": "Use Weapon",
                     "type": "PassThrough",
                     "id": "b43d0f9a-1ee2-4f56-8f3c-55b1778e4e21",
                     "expectedControlType": "Button",
@@ -224,7 +224,7 @@
                     "interactions": "Hold(duration=20)",
                     "processors": "",
                     "groups": "",
-                    "action": "FireGun",
+                    "action": "Use Weapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -235,7 +235,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "FireGun",
+                    "action": "Use Weapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -246,7 +246,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Aim Gun",
+                    "action": "Aim Weapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -257,7 +257,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Aim Gun",
+                    "action": "Aim Weapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

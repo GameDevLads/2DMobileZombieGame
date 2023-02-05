@@ -55,7 +55,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Aim Gun"",
+                    ""name"": ""Aim Weapon"",
                     ""type"": ""Value"",
                     ""id"": ""d5849c56-49ef-482b-bbe1-22af92eeb6fc"",
                     ""expectedControlType"": ""Vector2"",
@@ -64,7 +64,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""FireGun"",
+                    ""name"": ""Use Weapon"",
                     ""type"": ""PassThrough"",
                     ""id"": ""b43d0f9a-1ee2-4f56-8f3c-55b1778e4e21"",
                     ""expectedControlType"": ""Button"",
@@ -246,7 +246,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": ""Hold(duration=20)"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""FireGun"",
+                    ""action"": ""Use Weapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -257,7 +257,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""FireGun"",
+                    ""action"": ""Use Weapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -268,7 +268,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Aim Gun"",
+                    ""action"": ""Aim Weapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -279,7 +279,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Aim Gun"",
+                    ""action"": ""Aim Weapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -293,8 +293,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Flash = m_Player.FindAction("Flash", throwIfNotFound: true);
-        m_Player_AimGun = m_Player.FindAction("Aim Gun", throwIfNotFound: true);
-        m_Player_FireGun = m_Player.FindAction("FireGun", throwIfNotFound: true);
+        m_Player_AimWeapon = m_Player.FindAction("Aim Weapon", throwIfNotFound: true);
+        m_Player_UseWeapon = m_Player.FindAction("Use Weapon", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -357,8 +357,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Flash;
-    private readonly InputAction m_Player_AimGun;
-    private readonly InputAction m_Player_FireGun;
+    private readonly InputAction m_Player_AimWeapon;
+    private readonly InputAction m_Player_UseWeapon;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -366,8 +366,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Flash => m_Wrapper.m_Player_Flash;
-        public InputAction @AimGun => m_Wrapper.m_Player_AimGun;
-        public InputAction @FireGun => m_Wrapper.m_Player_FireGun;
+        public InputAction @AimWeapon => m_Wrapper.m_Player_AimWeapon;
+        public InputAction @UseWeapon => m_Wrapper.m_Player_UseWeapon;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -386,12 +386,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Flash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFlash;
                 @Flash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFlash;
                 @Flash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFlash;
-                @AimGun.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimGun;
-                @AimGun.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimGun;
-                @AimGun.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimGun;
-                @FireGun.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireGun;
-                @FireGun.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireGun;
-                @FireGun.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireGun;
+                @AimWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimWeapon;
+                @AimWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimWeapon;
+                @AimWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimWeapon;
+                @UseWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseWeapon;
+                @UseWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseWeapon;
+                @UseWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseWeapon;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -405,12 +405,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Flash.started += instance.OnFlash;
                 @Flash.performed += instance.OnFlash;
                 @Flash.canceled += instance.OnFlash;
-                @AimGun.started += instance.OnAimGun;
-                @AimGun.performed += instance.OnAimGun;
-                @AimGun.canceled += instance.OnAimGun;
-                @FireGun.started += instance.OnFireGun;
-                @FireGun.performed += instance.OnFireGun;
-                @FireGun.canceled += instance.OnFireGun;
+                @AimWeapon.started += instance.OnAimWeapon;
+                @AimWeapon.performed += instance.OnAimWeapon;
+                @AimWeapon.canceled += instance.OnAimWeapon;
+                @UseWeapon.started += instance.OnUseWeapon;
+                @UseWeapon.performed += instance.OnUseWeapon;
+                @UseWeapon.canceled += instance.OnUseWeapon;
             }
         }
     }
@@ -420,7 +420,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnFlash(InputAction.CallbackContext context);
-        void OnAimGun(InputAction.CallbackContext context);
-        void OnFireGun(InputAction.CallbackContext context);
+        void OnAimWeapon(InputAction.CallbackContext context);
+        void OnUseWeapon(InputAction.CallbackContext context);
     }
 }

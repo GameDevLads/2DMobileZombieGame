@@ -18,31 +18,30 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     public TrailRenderer tr;
     public IntVariableSO coinAmountSO;
 
-    [Tooltip("Player's default gun.")]
-    public GameObject DefaultGun;
+    [Tooltip("Player's default weapon.")]
+    public GameObject DefaultWeapon;
 
-    [Tooltip("How far away the gun is from the player.")]
-    public float GunPlayerDistance = 1.5f;
+    [Tooltip("How far away the weapon is from the player.")]
+    public float WeaponPlayerDistance = 1.5f;
 
     public float dashSpeed = 60f;
     public float flashAmount = 10f;
 
     private float trailVisibleTime = 0.2f;
-    private bool _fireGun = false;
+    private bool _useWeapon = false;
     public Vector2 moveDirection = Vector2.zero;
     public Vector3 moveDirectionVector3;
-
-
+    private Vector2 _pointerPosition;
 
     private GameObject _playerHandsGameObject;
 
-    // This is the player hand object that has a gun as a child object which rotates around the player
+    // This is the player hand object that has a weapon as a child object which rotates around the player
     void InitPlayerHands()
     {
         _playerHandsGameObject = new GameObject("Player Hands");
         _playerHandsGameObject.AddComponent<PlayerHandsController>();
-        var gun = Instantiate(DefaultGun, new Vector2(GunPlayerDistance, 0), Quaternion.identity);
-        gun.transform.parent = _playerHandsGameObject.gameObject.transform;
+        var weapon = Instantiate(DefaultWeapon, new Vector2(WeaponPlayerDistance, 0), Quaternion.identity);
+        weapon.transform.parent = _playerHandsGameObject.gameObject.transform;
         _playerHandsGameObject.transform.parent = gameObject.transform;
     }
 
@@ -64,20 +63,22 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
             animator.SetBool("isMoving", false);
         }
 
-        if (_fireGun)
+        if (_useWeapon)
         {
-            FireGun();
+            UseWeapon();
         }
     }
 
-    private void FireGun()
+    private void UseWeapon()
     {
-        var gunScripts = GetComponentsInChildren(typeof(IPlayerGun));
+        var weaponScripts = GetComponentsInChildren(typeof(IPlayerWeapon));
 
-        foreach (var gunScript in gunScripts)
+        foreach (var weaponScript in weaponScripts)
         {
-            if (gunScript is IPlayerGun gun)
-                gun.FireGun();
+            if (weaponScript is IPlayerWeapon weapon)
+            {
+                weapon.UseWeapon(_pointerPosition);
+            }   
         }
     }
 
@@ -140,20 +141,23 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
         return result;
     }
 
-    public void OnFireGun(InputAction.CallbackContext context)
+    public void OnUseWeapon(InputAction.CallbackContext context)
     {
         // We need to check when the mouse click starts and ends as there is no other way of continuously firing when the mouse is held
         if (context.started)
-            _fireGun = true;
+            _useWeapon = true;
         else if (context.canceled)
-            _fireGun = false;
+            _useWeapon = false;
     }
 
-    public void OnAimGun(InputAction.CallbackContext context)
+    public void OnAimWeapon(InputAction.CallbackContext context)
     {
-        // Update the rotation of the gun based on the pointer position
+        // Update the rotation of the weapon based on the pointer position
         var pointerPosition = context.ReadValue<Vector2>();
-        var playerHandsGun = _playerHandsGameObject.GetComponent<PlayerHandsController>();
-        playerHandsGun.UpdatePosition(pointerPosition);
+        var playerHandsWeapon = _playerHandsGameObject.GetComponent<PlayerHandsController>();
+        playerHandsWeapon.UpdatePosition(pointerPosition);
+
+        var mouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(pointerPosition.x, pointerPosition.y, Camera.main.nearClipPlane));
+        _pointerPosition = mouseWorldPosition;
     }
 }
