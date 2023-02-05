@@ -18,7 +18,7 @@ using static UnityEngine.GraphicsBuffer;
 
 namespace Assets.Scripts.Gun
 {
-    public abstract class GunBase : MonoBehaviour, IPlayerGun
+    public abstract class GunBase : MonoBehaviour, IPlayerWeapon
     {
         [Tooltip("The gun bullet trail.")]
         public TrailRenderer TrailRenderer;
@@ -282,6 +282,11 @@ namespace Assets.Scripts.Gun
                 onCollide();
 
             // TODO: We have collided with our point so play an animation
+        }
+
+        public void UseWeapon(Vector2 direction)
+        {
+            FireGun();
         }
     }
 }

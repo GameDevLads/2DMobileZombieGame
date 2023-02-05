@@ -16,8 +16,8 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     public TrailRenderer tr;
     public IntVariableSO coinAmountSO;
 
-    [Tooltip("Player's default gun.")]
-    public GameObject DefaultGun;
+    [Tooltip("Player's default weapon.")]
+    public GameObject DefaultWeapon;
 
     [Tooltip("How far away the gun is from the player.")]
     public float GunPlayerDistance = 1.5f;
@@ -28,6 +28,7 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     private float trailVisibleTime = 0.2f;
     private bool _fireGun = false;
 
+    private Vector2 _pointerPosition;
     Vector2 moveDirection = Vector2.zero;
     Vector3 currentDirection;
 
@@ -38,8 +39,8 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     {
         _playerHandsGameObject = new GameObject("Player Hands");
         _playerHandsGameObject.AddComponent<PlayerHandsController>();
-        var gun = Instantiate(DefaultGun, new Vector2(GunPlayerDistance, 0), Quaternion.identity);
-        gun.transform.parent = _playerHandsGameObject.gameObject.transform;
+        var weapon = Instantiate(DefaultWeapon, new Vector2(GunPlayerDistance, 0), Quaternion.identity);
+        weapon.transform.parent = _playerHandsGameObject.gameObject.transform;
         _playerHandsGameObject.transform.parent = gameObject.transform;
     }
 
@@ -69,12 +70,14 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     private void FireGun()
     {
-        var gunScripts = GetComponentsInChildren(typeof(IPlayerGun));
+        var weaponScripts = GetComponentsInChildren(typeof(IPlayerWeapon));
 
-        foreach (var gunScript in gunScripts)
+        foreach (var weaponScript in weaponScripts)
         {
-            if (gunScript is IPlayerGun gun)
-                gun.FireGun();
+            if (weaponScript is IPlayerWeapon weapon)
+            {
+                weapon.UseWeapon(_pointerPosition);
+            }   
         }
     }
 
@@ -153,5 +156,8 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
         var pointerPosition = context.ReadValue<Vector2>();
         var playerHandsGun = _playerHandsGameObject.GetComponent<PlayerHandsController>();
         playerHandsGun.UpdatePosition(pointerPosition);
+
+        var mouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(pointerPosition.x, pointerPosition.y, Camera.main.nearClipPlane));
+        _pointerPosition = mouseWorldPosition;
     }
 }

@@ -1329,6 +1329,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6416479115842018389, guid: 14cd9baaf05b1564cbaba086d853f415, type: 3}
+      propertyPath: DefaultGun
+      value: 
+      objectReference: {fileID: 8145432674702620676, guid: d393129131d5ba3428ba2b1c01c6f4da, type: 3}
+    - target: {fileID: 6416479115842018389, guid: 14cd9baaf05b1564cbaba086d853f415, type: 3}
+      propertyPath: DefaultWeapon
+      value: 
+      objectReference: {fileID: 8145432674702620676, guid: d393129131d5ba3428ba2b1c01c6f4da, type: 3}
     - target: {fileID: 6416479115842018413, guid: 14cd9baaf05b1564cbaba086d853f415, type: 3}
       propertyPath: m_RootOrder
       value: 0
