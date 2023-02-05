@@ -10,11 +10,34 @@ namespace Assets.Scripts.Throwable
     public class Throwable : MonoBehaviour, IPlayerWeapon
     {
         public ThrowableData ThrowableData;
-        private bool _canThrow = true;
+        private bool _isThrown = false;
+        private float _damageDealtStartTime = Mathf.NegativeInfinity; 
 
         public void UseWeapon(Vector2 direction)
         {
             Throw(direction);
+        }
+
+        private void Update()
+        {
+            if (!_isThrown)
+                return;
+
+            if (_damageDealtStartTime + ThrowableData.DamageTime > Time.time)
+                return;
+
+            _damageDealtStartTime = Time.time;
+            var damageArea = Physics2D.OverlapCircleAll(gameObject.transform.position, ThrowableData.DamageRadius);
+
+            foreach (var collider in damageArea)
+            {
+                if (string.Equals(collider.tag, "Enemy"))
+                {
+                    var enemyComponent = collider.GetComponent<Enemy>();
+                    if (enemyComponent != null)
+                        enemyComponent.ApplyDamage(ThrowableData.Damage);
+                }
+            }
         }
 
         /// <summary>
@@ -23,10 +46,11 @@ namespace Assets.Scripts.Throwable
         /// <param name="pointerPosition"></param>
         public void Throw(Vector2 pointerPosition)
         {
-            if (!_canThrow)
+            if (_isThrown)
                 return;
 
-            _canThrow = false;
+            _damageDealtStartTime = Mathf.NegativeInfinity;
+            _isThrown = true;
             var mouseWorldDirection = (pointerPosition.ConvertTo<Vector3>() - Camera.main.transform.position).normalized;
             var mouseRay = new Ray(Camera.main.transform.position, mouseWorldDirection);
             var raycastHit = Physics2D.Raycast(gameObject.transform.position, mouseRay.direction, ThrowableData.ThrowDistance);
@@ -147,7 +171,7 @@ namespace Assets.Scripts.Throwable
                 yield return null;
             }
             transform.localPosition = endPoint;
-            _canThrow = true;
+            _isThrown = false;
         }
 
         private void AddTrailRenderer()

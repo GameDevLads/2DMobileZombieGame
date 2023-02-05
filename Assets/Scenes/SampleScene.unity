@@ -7389,6 +7389,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7056076110292853768, guid: 14cd9baaf05b1564cbaba086d853f415, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnUseWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056076110292853768, guid: 14cd9baaf05b1564cbaba086d853f415, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnAimWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056076110292853769, guid: 14cd9baaf05b1564cbaba086d853f415, type: 3}
+      propertyPath: DefaultWeapon
+      value: 
+      objectReference: {fileID: 8145432674702620676, guid: d393129131d5ba3428ba2b1c01c6f4da, type: 3}
     - target: {fileID: 7056076110292853772, guid: 14cd9baaf05b1564cbaba086d853f415, type: 3}
       propertyPath: m_Name
       value: Player

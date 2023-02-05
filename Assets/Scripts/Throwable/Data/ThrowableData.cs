@@ -22,5 +22,14 @@ namespace Assets.Scripts.Throwable.Data
 
         [Tooltip("Should the throwable weapon explode on impact or where it is thrown.")]
         public bool Explode = false;
+
+        [Tooltip("This is the damage radius of the throwable object.")]
+        public float DamageRadius = 2.5f;
+
+        [Tooltip("This is the amount of damage that is dealt to enemies.")]
+        public float Damage = 10f;
+
+        [Tooltip("How much much damage do we apply in a certain amount of time.")]
+        public float DamageTime = 0.5f;
     }
 }
