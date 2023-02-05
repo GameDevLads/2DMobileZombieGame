@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public IntVariableSO coinAmountSO;
+    public FloatVariableSO coinAmountSO;
 
-    public int coinAmount;
+    public float coinAmount;
     private void Update()
     {
         coinAmount = coinAmountSO.Value;
