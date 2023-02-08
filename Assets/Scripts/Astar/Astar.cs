@@ -24,7 +24,7 @@ public class Astar: MonoBehaviour
         }
         if (endNode.isSolid)
         {
-            endNode = grid.GetNearestWalkableNode(endNode);
+            endNode = grid.GetNearestWalkableNode(endNode, end);
             if(endNode == null)
             {
                 return new List<Node>();
