@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: revolver
   m_EditorClassIdentifier: 
   WeaponType: {fileID: 11400000, guid: 744e38771ddc2b34a8db4041bd7af2f4, type: 2}
-  Level: {fileID: 11400000, guid: 523598d25251b664599456773e31717d, type: 2}
+  Level: {fileID: 11400000, guid: e11e9292b12b769459713b9fc0b6a899, type: 2}
   ZombieSpecialty: {fileID: 11400000, guid: 5587dcd2a8d104c4b8bb867722b3b09c, type: 2}

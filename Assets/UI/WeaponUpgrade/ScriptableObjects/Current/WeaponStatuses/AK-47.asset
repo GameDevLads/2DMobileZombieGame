@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: AK-47
   m_EditorClassIdentifier: 
   WeaponType: {fileID: 11400000, guid: 63201f8729ae4e94ca1686ed37578080, type: 2}
-  Level: {fileID: 11400000, guid: a7f55c392b9d5b9489ed9fa81a34784a, type: 2}
+  Level: {fileID: 11400000, guid: 1d0d170cb07ac79458fc0cf7a1f98064, type: 2}
   ZombieSpecialty: {fileID: 11400000, guid: 89ab8316affe425468395e43d257e505, type: 2}

@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 446db7f198bc4c641a3ea31b50dfd2ea, type: 3}
-  m_Name: M16Lvl
+  m_Script: {fileID: 11500000, guid: 75e1feb8680233e41931585317ab99a4, type: 3}
+  m_Name: Bazooka
   m_EditorClassIdentifier: 
   Value: 1
   IsNull: 0

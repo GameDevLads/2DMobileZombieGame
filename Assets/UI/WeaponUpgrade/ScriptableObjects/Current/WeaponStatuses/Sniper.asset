@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Sniper
   m_EditorClassIdentifier: 
   WeaponType: {fileID: 11400000, guid: 6e8bea1449a4546498d306913dd5722f, type: 2}
-  Level: {fileID: 11400000, guid: 82b94344976faba4db128a7186eb48d3, type: 2}
+  Level: {fileID: 11400000, guid: e5f868f3692e3fd4caf799a3ed258315, type: 2}
   ZombieSpecialty: {fileID: 11400000, guid: 89ab8316affe425468395e43d257e505, type: 2}

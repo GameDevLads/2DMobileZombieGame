@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Umbrella
   m_EditorClassIdentifier: 
   WeaponType: {fileID: 11400000, guid: 1a3547b6e8c1f5649b55d6c21aeb1d06, type: 2}
-  Level: {fileID: 11400000, guid: fe6130723926efb4988a44265359c8a4, type: 2}
+  Level: {fileID: 11400000, guid: 24247ff360a1fd245bb402031a3d2acd, type: 2}
   ZombieSpecialty: {fileID: 11400000, guid: 44425d6b9e1f17f4d9480b0a01eeb019, type: 2}

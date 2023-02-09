@@ -5764,24 +5764,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1813749135}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88873c9749e219a4d9999c119dd36277, type: 3}
+  m_Script: {fileID: 11500000, guid: efc22ca780a6c3847876a4be67b8752a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Coins: {fileID: 11400000, guid: 19e46f17b3749c5428a96b8228e1c37d, type: 2}
   WeaponTypeStatusSOs:
+  - {fileID: 11400000, guid: 2ab61d4a6ec6031429870850680619e4, type: 2}
+  - {fileID: 11400000, guid: 9e6a7bfb05b48ad42919bdc19d01d4fa, type: 2}
+  - {fileID: 11400000, guid: 446b90050c1c8bd44ba74eb1d5862572, type: 2}
+  - {fileID: 11400000, guid: fdd6dea98b0956249b7a1201e446490e, type: 2}
   - {fileID: 11400000, guid: 6a63ae347e82d8b40a318cd06e790ff9, type: 2}
   - {fileID: 11400000, guid: 39fa34e0c6252394cafe617a26de753e, type: 2}
   - {fileID: 11400000, guid: 8bc441f83e0e9574a80f72b3f26990d9, type: 2}
-  - {fileID: 11400000, guid: 2ab61d4a6ec6031429870850680619e4, type: 2}
-  - {fileID: 11400000, guid: fdd6dea98b0956249b7a1201e446490e, type: 2}
-  - {fileID: 11400000, guid: 9e6a7bfb05b48ad42919bdc19d01d4fa, type: 2}
-  - {fileID: 11400000, guid: 446b90050c1c8bd44ba74eb1d5862572, type: 2}
   - {fileID: 11400000, guid: d1fb86758cc6b224195c9c214d002024, type: 2}
   - {fileID: 11400000, guid: fbaefe2b1a5aa2f449a7db9697624446, type: 2}
   ZombieSpecialties:
-  - {fileID: 11400000, guid: 44425d6b9e1f17f4d9480b0a01eeb019, type: 2}
-  - {fileID: 11400000, guid: 5587dcd2a8d104c4b8bb867722b3b09c, type: 2}
   - {fileID: 11400000, guid: 89ab8316affe425468395e43d257e505, type: 2}
+  - {fileID: 11400000, guid: 5587dcd2a8d104c4b8bb867722b3b09c, type: 2}
+  - {fileID: 11400000, guid: 44425d6b9e1f17f4d9480b0a01eeb019, type: 2}
   EventWeaponTypeChanged: {fileID: 11400000, guid: a1dfbafb6f985f942954699c8993311b, type: 2}
   WeaponTypeTemplate:
     StringVariable: {fileID: 11400000, guid: aeef0a85e949eb241872c74571489596, type: 2}

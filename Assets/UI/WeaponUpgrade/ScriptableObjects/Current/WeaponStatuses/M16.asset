@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: M16
   m_EditorClassIdentifier: 
   WeaponType: {fileID: 11400000, guid: bea971bb8d19fd647ba7a00c97c89072, type: 2}
-  Level: {fileID: 11400000, guid: ba7058248fc8d584aa9f2578490b3c13, type: 2}
-  ZombieSpecialty: {fileID: 11400000, guid: 44425d6b9e1f17f4d9480b0a01eeb019, type: 2}
+  Level: {fileID: 11400000, guid: 6b7e899765ed0294fa70a7af1a388fa9, type: 2}
+  ZombieSpecialty: {fileID: 11400000, guid: 5587dcd2a8d104c4b8bb867722b3b09c, type: 2}

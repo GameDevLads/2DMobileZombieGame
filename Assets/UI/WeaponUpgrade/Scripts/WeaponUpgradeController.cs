@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WeaponUpgradeControllerv2 : MonoBehaviour
+public class WeaponUpgradeController : MonoBehaviour
 {
   public FloatVariableSO Coins;
   public WeaponTypeStatusSO[] WeaponTypeStatusSOs;

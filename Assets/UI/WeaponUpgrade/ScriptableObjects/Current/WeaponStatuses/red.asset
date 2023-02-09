@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: red
   m_EditorClassIdentifier: 
   WeaponType: {fileID: 11400000, guid: 36ea8c818c1feed488ae17272f3d48cf, type: 2}
-  Level: {fileID: 11400000, guid: 4acebc2e443aa6447a60acbbbe29f376, type: 2}
+  Level: {fileID: 11400000, guid: df5f6187eb9b3804aa3fcad5fec39175, type: 2}
   ZombieSpecialty: {fileID: 11400000, guid: 89ab8316affe425468395e43d257e505, type: 2}
