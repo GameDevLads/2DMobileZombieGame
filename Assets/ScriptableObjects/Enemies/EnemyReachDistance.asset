@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e1feb8680233e41931585317ab99a4, type: 3}
   m_Name: EnemyReachDistance
   m_EditorClassIdentifier: 
-  Value: 2
+  Value: 7

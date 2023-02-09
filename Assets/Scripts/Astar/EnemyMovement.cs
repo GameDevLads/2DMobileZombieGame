@@ -17,6 +17,8 @@ public class EnemyMovement : MonoBehaviour
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
+    public bool targetInRange = false;
+    public bool isMoving = false;
 
     void Start()
     {
@@ -30,6 +32,8 @@ public class EnemyMovement : MonoBehaviour
     {
         if(target == null)
             return;
+        
+        targetInRange = Vector3.Distance(transform.position, target.position) < reachDistance.Value;
 
         if(target.position != lastTargetPos)
         {
@@ -71,6 +75,7 @@ public class EnemyMovement : MonoBehaviour
                 currentWaypoint = 0;
             }
         }
+        isMoving = animator.GetBool("isMoving");
     }
 
     public void findPath(Vector3 start, Vector3 end)
