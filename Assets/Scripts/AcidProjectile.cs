@@ -9,11 +9,11 @@ public class AcidProjectile : MonoBehaviour
     public float magnitude;
     private Rigidbody2D rb;
     private Animator animator;
-    private float timeToLive = 3f;
+    private float timeToLive = 1.5f;
     [SerializeField]
     private float timeAlive = 0f;
     private float damage = 1f;
-    private float animationDuration = 1f;
+    private float animationDuration = 0.5f;
     private bool isExploding = false;
     public GameObject Puddle;
     public Transform target;
@@ -48,12 +48,11 @@ public class AcidProjectile : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Collided with " + other.gameObject.name);
         if (other.gameObject.name == "Player")
         {
+            DamagePlayer();
             rb.velocity = Vector2.zero;
             rb.gravityScale = 0;
-            DamagePlayer();
         }
     }
     void Explode()
@@ -72,19 +71,6 @@ public class AcidProjectile : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         Destroy(gameObject);
-    }
-    IEnumerator FadeOut()
-    {
-        yield return new WaitForSeconds(animationDuration);
-        StartCoroutine(DestroyAfterTime(timeToLive));
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        Color color = spriteRenderer.color;
-        while (color.a > 0)
-        {
-            color.a -= Time.deltaTime * 0.5f;
-            spriteRenderer.color = color;
-            yield return null;
-        }
     }
 
 }
