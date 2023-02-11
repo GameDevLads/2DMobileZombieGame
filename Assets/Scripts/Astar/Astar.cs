@@ -6,6 +6,10 @@ using Priority_Queue;
 public class Astar: MonoBehaviour
 {
     public Grid2D grid;
+    void Start()
+    {
+        grid = Grid2D.instance;
+    }
     public List<Node> FindPath(Vector3 start, Vector3 end)
     {
         Node startNode = grid.GetNodeByCoords(start);
