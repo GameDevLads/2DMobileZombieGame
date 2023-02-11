@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac89f20d0732d064aadc0f6484eddfa5, type: 3}
+  m_Name: BazookaType
+  m_EditorClassIdentifier: 
+  Title: Bazooka
+  Image: {fileID: 21300000, guid: 6a674806486ee854884a598a309d0f46, type: 3}
+  ImageSize: 1
+  WeaponUpgrades:
+  - Level: 1
+    Price: 70
+    Damage: 25
+    Accuracy: 50
+    Rate: 7
+    Ammo: 4
+  - Level: 2
+    Price: 100
+    Damage: 30
+    Accuracy: 60
+    Rate: 8
+    Ammo: 5
+  - Level: 3
+    Price: 150
+    Damage: 40
+    Accuracy: 60
+    Rate: 8
+    Ammo: 6

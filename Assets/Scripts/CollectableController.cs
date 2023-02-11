@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CollectableController : MonoBehaviour
 {
-    public IntVariableSO coinAmountSO;
+    public FloatVariableSO coinAmountSO;
     public FloatVariableSO collectableLifetimeSO;
     public FloatVariableSO blinkingDelayedStartSO;
     public FloatVariableSO blinkingIntervalSO;

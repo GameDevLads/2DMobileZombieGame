@@ -16,7 +16,7 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     public Rigidbody2D rb;
     public TrailRenderer tr;
-    public IntVariableSO coinAmountSO;
+    public FloatVariableSO coinAmountSO;
 
     [Tooltip("Player's default weapon.")]
     public GameObject DefaultWeapon;
