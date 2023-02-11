@@ -135,7 +135,7 @@ public class Grid2D: MonoBehaviour {
 
 		return pos;
 	}
-	public Node GetNearestWalkableNode(Node node)
+	public Node GetNearestWalkableNode(Node node, Vector3? exactPos = null)
 	{
 		if (!node.isSolid)
 		{
@@ -144,15 +144,26 @@ public class Grid2D: MonoBehaviour {
 		else
 		{
 			List<Node> neighbors = GetNeighbouringNodes(node);
+			Node closestNode = null;
+			float closestDist = float.MaxValue;
 			foreach (Node n in neighbors)
 			{
 				if (!n.isSolid)
 				{
-					return n;
+					if (exactPos == null)
+					{
+						return n;
+					}
+					float dist = Vector3.Distance(exactPos.Value, WorldPointFromNode(n));
+					if (dist < closestDist)
+					{
+						closestDist = dist;
+						closestNode = n;
+					}
 				}
 			}
+			return closestNode;
 		}
-		return null;
 	}
 
 	private void OnDrawGizmos() {

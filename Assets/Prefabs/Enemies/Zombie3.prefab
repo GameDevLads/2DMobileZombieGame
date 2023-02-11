@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8565416094436821000}
   - component: {fileID: 8565416094436821006}
   - component: {fileID: 8565416094436821007}
+  - component: {fileID: -6016515470377485071}
   m_Layer: 0
   m_Name: Zombie3
   m_TagString: Enemy
@@ -101,6 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a831207d95adec9e8c98e1c0c7e1d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: {fileID: 11400000, guid: 3c7eb01ee935133959070d8dcc2e75e1, type: 2}
+  reachDistance: {fileID: 11400000, guid: 362d2b1de091cdbc6b08dc6432542b84, type: 2}
   target: {fileID: 7056076110292853779, guid: 14cd9baaf05b1564cbaba086d853f415, type: 3}
   animator: {fileID: 8565416094436821000}
   spriteRenderer: {fileID: 8565416094436821005}
@@ -176,3 +179,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 200
+--- !u!50 &-6016515470377485071
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8565416094436821001}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

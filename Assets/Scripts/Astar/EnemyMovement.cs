@@ -4,76 +4,72 @@ using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float speed = 3f;
+    public FloatVariableSO speed;
+    public IntVariableSO reachDistance;
+    [SerializeField]
     private int currentWaypoint = 0;
     private List<Node> path = new List<Node>();
+    [SerializeField]
+    private int pathCount = 0;
     public Transform target;
     private Vector3 lastTargetPos;
-    private Vector3 lastEnemyPos;
     private Astar aStar;
-
     public Animator animator;
     public SpriteRenderer spriteRenderer;
+    private Rigidbody2D rb;
 
     void Start()
     {
         lastTargetPos = target.position;
-        lastEnemyPos = transform.position;
         aStar = GetComponent<Astar>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
     }
-    void Update()
+    void FixedUpdate()
     {
         if(target == null)
-        {
-            animator.SetBool("isMoving", false);
             return;
-        }
-        if(target.position != lastTargetPos ){
+
+        if(target.position != lastTargetPos)
+        {
+            currentWaypoint = 0;
             lastTargetPos = target.position;
-            lastEnemyPos = transform.position;
             findPath(transform.position, target.position);
         }
         
-        // Move the enemy
-        if (path.Count > 2)
+        animator.SetBool("isMoving", false);
+        rb.velocity = Vector2.zero;
+
+        if (path.Count > 0)
         {
-            Debug.Log("path count: " + path.Count + ", waypoint: " + currentWaypoint);
-            
-            if (currentWaypoint < path.Count)
+            // For debugging
+            pathCount = path.Count;
+
+            if (currentWaypoint <= path.Count - reachDistance.Value)
             {
                 animator.SetBool("isMoving", true);
-                Vector3 dir = (path[currentWaypoint].worldPosition - transform.position).normalized;
-                if(dir.x > 0)
-                {
+
+                Vector3 dir = (path[currentWaypoint].worldPosition - transform.position);
+                dir = Vector3.ClampMagnitude(dir.normalized, 0.5f); 
+
+                if (rb.velocity.normalized != (Vector2)dir)
+                    rb.velocity = new Vector2(dir.x * speed.Value, dir.y * speed.Value);
+
+                if (dir.x > 0)
                     spriteRenderer.flipX = true;
-                }
-                if (dir.x < 0)
-                {
+                else
                     spriteRenderer.flipX = false;
-                }
-                // Allow the enemy to move diagonally
-                if (dir.x != 0 && dir.y != 0)
-                {
-                    dir *= 0.8f;
-                }
-                transform.Translate(dir * speed * Time.deltaTime);//needs changing, do not use transform to move things around
-                if (Vector3.Distance(transform.position, path[currentWaypoint].worldPosition) < 0.1f)
-                {
+
+                if (Vector3.Distance(transform.position, path[currentWaypoint].worldPosition) < 0.1f) 
                     currentWaypoint++;
-                }
             }
             if(currentWaypoint > path.Count)
             {
                 animator.SetBool("isMoving", false);
+                rb.velocity = Vector2.zero;
                 currentWaypoint = 0;
             }
-
-        }
-        else
-        {
-            animator.SetBool("isMoving", false);
         }
     }
 
