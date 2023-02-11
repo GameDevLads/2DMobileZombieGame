@@ -9,7 +9,6 @@ public class Grid2D: MonoBehaviour {
 	//gridWorldSize is the size of the grid in world units centered in the middle of the grid
 	//allowDiagonals determines whether diagonal nodes are returned as neighbor
 	public Tilemap collidableMap;
-	public Grid gridBase;
 	public Vector2 gridWorldSize;
 	public bool allowDiagonals;
 
@@ -21,7 +20,17 @@ public class Grid2D: MonoBehaviour {
 
 	private int gridX, gridY;
 	private float offset = 0.5f;
+	public static Grid2D instance;
 
+	void Awake()
+	{
+		if (instance == null)
+		{
+			instance = this;
+		}
+		else
+			Destroy(gameObject);
+	}
 	void Start () {
 		//set gridX, gridY, offset
 		gridX = Mathf.RoundToInt(gridWorldSize.x);
