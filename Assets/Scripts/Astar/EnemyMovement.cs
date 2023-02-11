@@ -29,8 +29,6 @@ public class EnemyMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        // if (gameObject.name == "Zombie3")
-            // Debug.Log($"target: {target.position}, lastTargetPos: {lastTargetPos}");
         if(target == null)
             return;
 
