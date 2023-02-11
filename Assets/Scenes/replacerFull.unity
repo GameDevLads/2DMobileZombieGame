@@ -5767,7 +5767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc22ca780a6c3847876a4be67b8752a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Coins: {fileID: 11400000, guid: 19e46f17b3749c5428a96b8228e1c37d, type: 2}
+  Coins: {fileID: 11400000, guid: 634297763070f894ea1153d77f083a58, type: 2}
   WeaponTypeStatusSOs:
   - {fileID: 11400000, guid: 2ab61d4a6ec6031429870850680619e4, type: 2}
   - {fileID: 11400000, guid: 9e6a7bfb05b48ad42919bdc19d01d4fa, type: 2}
@@ -6801,7 +6801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: {fileID: 1916102613}
-  FloatVariable: {fileID: 11400000, guid: 19e46f17b3749c5428a96b8228e1c37d, type: 2}
+  FloatVariable: {fileID: 11400000, guid: 634297763070f894ea1153d77f083a58, type: 2}
   IfNull: {fileID: 0}
 --- !u!114 &1916102616
 MonoBehaviour:
