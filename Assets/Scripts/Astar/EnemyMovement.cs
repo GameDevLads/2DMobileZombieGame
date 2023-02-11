@@ -25,9 +25,12 @@ public class EnemyMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        target = GameObject.FindWithTag("Player").transform;
     }
     void FixedUpdate()
     {
+        // if (gameObject.name == "Zombie3")
+            // Debug.Log($"target: {target.position}, lastTargetPos: {lastTargetPos}");
         if(target == null)
             return;
 
