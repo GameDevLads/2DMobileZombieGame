@@ -18,6 +18,8 @@ MonoBehaviour:
   ThrowablePlayerTransitionSpeed: 0.2
   ShouldReturn: 1
   Explode: 0
-  DamageRadius: 2
+  DamageRadius: 1
   Damage: 10
-  DamageTime: 0.5
+  DamageTime: 1.5
+  ExplosionRadiusStart: 1
+  ExplosionRadiusEnd: 3
