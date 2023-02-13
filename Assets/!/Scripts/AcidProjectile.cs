@@ -12,19 +12,24 @@ public class AcidProjectile : MonoBehaviour
     private float timeToLive = 1.5f;
     [SerializeField]
     private float timeAlive = 0f;
-    private float damage = 1f;
+    private Spitter spitter;
+    private Assets.Scripts.Enemy enemy;
+    private int damage => enemy.EnemyStats.attackDamage;
     private float animationDuration = 0.5f;
     private bool isExploding = false;
     public GameObject Puddle;
-    public Transform target;
+    GameObject player;
+    Transform target;
     private Vector3 initialScale;
     
 
     void Start()
     {
+        enemy = GetComponentInParent<Assets.Scripts.Enemy>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        target = GameObject.Find("Player").transform;
+        player = GameObject.FindWithTag("Player");
+        target = player.transform;
         dir = target.position - transform.position;
         initialScale = transform.localScale;
     }
@@ -34,7 +39,7 @@ public class AcidProjectile : MonoBehaviour
         if (isExploding)
             return;
         // Modify the velocity of the projectile over time
-        dir.y = Mathf.Lerp(dir.y, -1, Time.deltaTime);
+        // dir.y = Mathf.Lerp(dir.y, -1, Time.deltaTime);
         rb.velocity = ( dir * magnitude ) * 0.3f;
         timeAlive += Time.deltaTime;
         if (timeAlive > timeToLive)
@@ -65,6 +70,7 @@ public class AcidProjectile : MonoBehaviour
     void DamagePlayer()
     {
         Explode();
+        Debug.Log($"Player took {damage} damage");
         //TODO: Damage player
     }
     IEnumerator DestroyAfterTime(float time)

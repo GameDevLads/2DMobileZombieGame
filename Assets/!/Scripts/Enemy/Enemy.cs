@@ -11,7 +11,8 @@ namespace Assets.Scripts
     public class Enemy : MonoBehaviour
     {
         [Tooltip("The maximum health the enemy has.")]
-        public float Health = 100f;
+        public EnemyStats EnemyStats;
+        public float Health;
 
         private GameObject _healthText;
         private float _totalHealth;
@@ -20,6 +21,7 @@ namespace Assets.Scripts
         private void Start()
         {
             var position = transform.position;
+            Health = EnemyStats.health;
             _healthText = new GameObject();
             _healthText.transform.position = position;
             _healthText.transform.rotation = Quaternion.identity;

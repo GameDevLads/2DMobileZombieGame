@@ -4,14 +4,18 @@ using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public FloatVariableSO speed;
-    public IntVariableSO reachDistance;
+    private EnemyStats enemyStats;
+    [SerializeField]
+    private float speed => enemyStats.speed;
+    [SerializeField]
+    private float reachDistance => enemyStats.attackRange;
     [SerializeField]
     private int currentWaypoint = 0;
     private List<Node> path = new List<Node>();
     [SerializeField]
     private int pathCount = 0;
-    public Transform target;
+    Transform target;
+    GameObject player;
     private Vector3 lastTargetPos;
     private Astar aStar;
     public Animator animator;
@@ -22,19 +26,21 @@ public class EnemyMovement : MonoBehaviour
 
     void Start()
     {
+        enemyStats = GetComponent<Assets.Scripts.Enemy>().EnemyStats;
+        player = GameObject.FindWithTag("Player");
+        target = player.transform;
         lastTargetPos = target.position;
         aStar = GetComponent<Astar>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        target = GameObject.FindWithTag("Player").transform;
     }
     void FixedUpdate()
     {
         if(target == null)
             return;
         
-        targetInRange = Vector3.Distance(transform.position, target.position) < reachDistance.Value;
+        targetInRange = Vector3.Distance(transform.position, target.position) < reachDistance;
 
         if(target.position != lastTargetPos)
         {
@@ -51,7 +57,7 @@ public class EnemyMovement : MonoBehaviour
             // For debugging
             pathCount = path.Count;
 
-            if (currentWaypoint <= path.Count - reachDistance.Value)
+            if (currentWaypoint <= path.Count - reachDistance)
             {
                 animator.SetBool("isMoving", true);
 
@@ -59,7 +65,7 @@ public class EnemyMovement : MonoBehaviour
                 dir = Vector3.ClampMagnitude(dir.normalized, 0.5f); 
 
                 if (rb.velocity.normalized != (Vector2)dir)
-                    rb.velocity = new Vector2(dir.x * speed.Value, dir.y * speed.Value);
+                    rb.velocity = new Vector2(dir.x * speed, dir.y * speed);
 
                 if (dir.x > 0)
                     spriteRenderer.flipX = true;

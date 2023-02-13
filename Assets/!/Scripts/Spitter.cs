@@ -19,7 +19,7 @@ public class Spitter : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
             if (enemyMovement.targetInRange && !enemyMovement.isMoving)
-                Instantiate(acid, transform.position, Quaternion.identity);
+                Instantiate(acid, transform.position, Quaternion.identity, transform);
         }
     }
 }

@@ -102,11 +102,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a831207d95adec9e8c98e1c0c7e1d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {fileID: 11400000, guid: 3c7eb01ee935133959070d8dcc2e75e1, type: 2}
-  reachDistance: {fileID: 11400000, guid: 362d2b1de091cdbc6b08dc6432542b84, type: 2}
-  target: {fileID: 7056076110292853779, guid: 14cd9baaf05b1564cbaba086d853f415, type: 3}
+  currentWaypoint: 0
+  pathCount: 0
   animator: {fileID: 7375728346704147028}
   spriteRenderer: {fileID: 7375728346704147024}
+  targetInRange: 0
+  isMoving: 0
 --- !u!114 &7375728346704147029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d24898922b8a89048ae038617d5ea055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyStats: {fileID: 11400000, guid: e1041565fe89e72f792a932aaa3ca8f3, type: 2}
   Health: 200
 --- !u!50 &1631889372180872059
 Rigidbody2D:
