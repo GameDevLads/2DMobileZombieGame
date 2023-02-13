@@ -10,14 +10,16 @@ public class Spitter : MonoBehaviour
     void Start()
     {
         enemyMovement = GetComponent<EnemyMovement>();
-        StartCoroutine(Spit());
+        float attackSpeed = GetComponent<Assets.Scripts.Enemy>().EnemyStats.attackSpeed;
+        StartCoroutine(Spit(attackSpeed));
     }
 
-    IEnumerator Spit()
+    IEnumerator Spit(float attackSpeed)
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f);
+            var waitTime = 1 / attackSpeed;
+            yield return new WaitForSeconds(waitTime);
             if (enemyMovement.targetInRange && !enemyMovement.isMoving)
                 Instantiate(acid, transform.position, Quaternion.identity, transform);
         }

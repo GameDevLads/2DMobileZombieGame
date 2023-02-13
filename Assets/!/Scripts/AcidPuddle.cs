@@ -40,7 +40,6 @@ public class AcidPuddle : MonoBehaviour
         {
             if (isColiding)
             {
-                Debug.Log("Damage");
                 // PlayerHealth playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
                 // playerHealth.TakeDamage(damage);
             }

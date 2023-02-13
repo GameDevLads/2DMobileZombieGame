@@ -48,7 +48,10 @@ public class AcidProjectile : MonoBehaviour
             rb.gravityScale = 0;
             Explode();
             // instantiate puddle prefab
-            GameObject puddle = (GameObject)Instantiate(Puddle, transform.position, Quaternion.Euler(0,0,30 * Random.Range(0, 12)));
+            for (int i = 0; i < 3; i++)
+            {
+                GameObject puddle = (GameObject)Instantiate(Puddle, transform.position, Quaternion.Euler(0,0,30 * Random.Range(0, 12)));
+            }
         }
     }
     void OnTriggerEnter2D(Collider2D other)
@@ -70,7 +73,6 @@ public class AcidProjectile : MonoBehaviour
     void DamagePlayer()
     {
         Explode();
-        Debug.Log($"Player took {damage} damage");
         //TODO: Damage player
     }
     IEnumerator DestroyAfterTime(float time)
