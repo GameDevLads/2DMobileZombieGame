@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c4a4fa72663e944faeb0927a412d0b9, type: 3}
-  m_Name: 1_Grenade
+  m_Name: 1_Shuriken
   m_EditorClassIdentifier: 
-  ThrowDistance: 15
-  RotateSpeed: 500
-  DistanceTravelSpeed: 0.5
-  ThrowablePlayerTransitionSpeed: 0.2
-  ShouldReturn: 0
-  Explode: 1
-  DamageRadius: 0
-  Damage: 10
-  DamageTime: 0.5
+  ThrowDistance: 10
+  RotateSpeed: 1500
+  DistanceTravelSpeed: 0.4
+  ThrowablePlayerTransitionSpeed: 0.1
+  ShouldReturn: 1
+  Explode: 0
+  DamageRadius: 1
+  Damage: 35
+  DamageTime: 1.5
+  ExplosionDamage: 50
   ExplosionRadiusStart: 1
-  ExplosionRadiusEnd: 2
+  ExplosionRadiusEnd: 3
   ExplosionCountDown: 2
