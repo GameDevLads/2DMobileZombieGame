@@ -15,7 +15,7 @@ public class AcidProjectile : MonoBehaviour
     private Spitter spitter;
     private Assets.Scripts.Enemy enemy;
     private int damage => enemy.EnemyStats.attackDamage;
-    private float animationDuration = 0.5f;
+    private float animationDuration = 0.3f;
     private bool isExploding = false;
     public GameObject Puddle;
     GameObject player;
@@ -59,8 +59,6 @@ public class AcidProjectile : MonoBehaviour
         if (other.gameObject.name == "Player")
         {
             DamagePlayer();
-            rb.velocity = Vector2.zero;
-            rb.gravityScale = 0;
         }
     }
     void Explode()
@@ -77,6 +75,9 @@ public class AcidProjectile : MonoBehaviour
     }
     IEnumerator DestroyAfterTime(float time)
     {
+        yield return new WaitForSeconds(0.1f);
+        rb.velocity = Vector2.zero;
+        rb.gravityScale = 0;
         yield return new WaitForSeconds(time);
         Destroy(gameObject);
     }

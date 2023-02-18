@@ -20,8 +20,9 @@ public class Spitter : MonoBehaviour
         {
             var waitTime = 1 / attackSpeed;
             yield return new WaitForSeconds(waitTime);
+            Vector3 pos = new Vector3(transform.position.x, transform.position.y + 0.7f, transform.position.z);
             if (enemyMovement.targetInRange && !enemyMovement.isMoving)
-                Instantiate(acid, transform.position, Quaternion.identity, transform);
+                Instantiate(acid, pos, Quaternion.identity, transform);
         }
     }
 }
