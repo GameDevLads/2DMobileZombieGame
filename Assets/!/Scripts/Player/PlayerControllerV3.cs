@@ -165,14 +165,8 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.started)
-        {
             keyPressedESO.Value = true;
-            //Debug.Log("True");
-        }
         else if (context.canceled)
-        {
             keyPressedESO.Value = false;
-            //Debug.Log("False");
-        }
     }
 }
