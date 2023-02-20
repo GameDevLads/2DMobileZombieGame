@@ -13,7 +13,6 @@ public class DoorMenu : MonoBehaviour
 
     // Use ispaused variable to check if pause menu is active
     public BoolVariableSO isPaused;
-    public BoolVariableSO keyPressedESO;
     public FloatVariableSO coinAmountSO;
 
     private void Start()
