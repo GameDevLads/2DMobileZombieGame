@@ -17,6 +17,7 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     public Rigidbody2D rb;
     public TrailRenderer tr;
     public FloatVariableSO coinAmountSO;
+    public BoolVariableSO keyPressedESO;
 
     [Tooltip("Player's default weapon.")]
     public GameObject DefaultWeapon;
@@ -159,5 +160,19 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
         var mouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(pointerPosition.x, pointerPosition.y, Camera.main.nearClipPlane));
         _pointerPosition = mouseWorldPosition;
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            keyPressedESO.Value = true;
+            //Debug.Log("True");
+        }
+        else if (context.canceled)
+        {
+            keyPressedESO.Value = false;
+            //Debug.Log("False");
+        }
     }
 }
