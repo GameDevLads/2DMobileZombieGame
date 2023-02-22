@@ -8,7 +8,6 @@ namespace Assets.Scripts.Projectiles
     {
         [SerializeField]
         private Vector2 dir;
-        public float magnitude;
         private Rigidbody2D rb;
         private Animator animator;
         private float timeToLive = 1.5f;
@@ -41,7 +40,7 @@ namespace Assets.Scripts.Projectiles
                 return;
             // Modify the velocity of the projectile over time
             // dir.y = Mathf.Lerp(dir.y, -1, Time.deltaTime);
-            rb.velocity = (dir * dir.magnitude) * 0.5f;
+            rb.velocity = dir.normalized * 5;
             timeAlive += Time.deltaTime;
             if (timeAlive > timeToLive)
             {
