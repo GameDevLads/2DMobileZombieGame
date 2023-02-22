@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e604bad51785393f7bbedbd86cb235db, type: 3}
-  m_Name: SpitterStats
+  m_Name: TankStats
   m_EditorClassIdentifier: 
-  enemyName: Spitter
-  health: 200
-  armor: 50
-  speed: 5
-  attackSpeed: 1.2
-  attackRange: 6
-  attackDamage: 10
+  enemyName: Tank
+  health: 500
+  armor: 100
+  speed: 3
+  attackSpeed: 1
+  attackRange: 2
+  attackDamage: 5

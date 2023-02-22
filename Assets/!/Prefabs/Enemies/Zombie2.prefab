@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 6066341481304386791}
   - component: {fileID: 6066341481304386788}
   - component: {fileID: 4599625978148104503}
+  - component: {fileID: 5610947458590596212}
+  - component: {fileID: 793556589542428165}
   m_Layer: 0
   m_Name: Zombie2
   m_TagString: Enemy
@@ -32,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 6066341481304386814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.12, y: -2.54, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -102,12 +104,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a831207d95adec9e8c98e1c0c7e1d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWaypoint: 0
-  pathCount: 0
+  _speed: 0
+  _reachDistance: 0
+  _currentWaypoint: 0
+  _pathCount: 0
   animator: {fileID: 6066341481304386785}
   spriteRenderer: {fileID: 6066341481304386786}
-  targetInRange: 0
-  isMoving: 0
+  TargetInRange: 0
+  IsMoving: 0
 --- !u!114 &6066341481304386787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +155,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.119630456, y: -0.41410565}
@@ -179,8 +183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d24898922b8a89048ae038617d5ea055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyStats: {fileID: 11400000, guid: e1041565fe89e72f792a932aaa3ca8f3, type: 2}
-  Health: 200
 --- !u!50 &4599625978148104503
 Rigidbody2D:
   serializedVersion: 4
@@ -202,3 +204,47 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5610947458590596212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6066341481304386814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edec1a99d637117cf9c893821e61a7b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyStats: {fileID: 11400000, guid: b83956787e44febcb9a7df2fff09b395, type: 2}
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnArmorChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSpeedChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttackSpeedChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttackRangeChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttackDamageChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &793556589542428165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6066341481304386814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7402ca6e274857eb90267d20bdf05a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0

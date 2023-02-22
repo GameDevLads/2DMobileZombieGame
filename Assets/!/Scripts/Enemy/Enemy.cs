@@ -8,20 +8,21 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 namespace Assets.Scripts
 {
+    [RequireComponent(typeof(EnemyMovement))]
+    [RequireComponent(typeof(EnemyStats))]
     public class Enemy : MonoBehaviour
     {
-        [Tooltip("The maximum health the enemy has.")]
-        public EnemyStats EnemyStats;
-        public float Health;
-
+        private EnemyStats _enemyStats;
+        private float _health;
         private GameObject _healthText;
         private float _totalHealth;
         private const string _healthTextFormat = "Health: {0}/{1}";
 
         private void Start()
         {
+            _enemyStats = GetComponent<EnemyStats>();
+            _health = _enemyStats.Health;
             var position = transform.position;
-            Health = EnemyStats.health;
             _healthText = new GameObject();
             _healthText.transform.position = position;
             _healthText.transform.rotation = Quaternion.identity;
@@ -29,17 +30,17 @@ namespace Assets.Scripts
             _healthText.transform.localPosition = new Vector2(-2f, 1.5f);
 
             var healthText = _healthText.AddComponent<TextMesh>();
-            healthText.text = string.Format(_healthTextFormat, Health, Health);
+            healthText.text = string.Format(_healthTextFormat, _health, _health);
             healthText.fontSize = 55;
             healthText.color = Color.yellow;
             _healthText.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-            _totalHealth = Health;
+            _totalHealth = _health;
         }
 
         private void SetHealthText()
         {
             var healthText = _healthText.GetComponent<TextMesh>();
-            healthText.text = string.Format(_healthTextFormat, Health, _totalHealth);
+            healthText.text = string.Format(_healthTextFormat, _health, _totalHealth);
         }
 
         public void ApplyDamage(float damage)
@@ -54,10 +55,11 @@ namespace Assets.Scripts
             damageText.fontSize = 65;
             damageObj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
 
-            Health = Health - damage;
+            _health -= damage;
+            _enemyStats.Health = _health;
             SetHealthText();
 
-            if (Health <= 0)
+            if (_health <= 0)
             {
                 Destroy(_healthText);
                 Destroy(gameObject);
