@@ -252,6 +252,17 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""a3ea47f8-f11f-43c5-894e-4f44a694a9e0"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": ""Hold(duration=20)"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Use Weapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""451f2b20-b9e2-4223-b451-f15750d00773"",
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
