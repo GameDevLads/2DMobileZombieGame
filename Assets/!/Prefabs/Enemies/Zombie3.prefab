@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8565416094436821007}
   - component: {fileID: -6016515470377485071}
   - component: {fileID: 7656982250831473143}
+  - component: {fileID: 6236922590095330920}
   m_Layer: 0
   m_Name: Zombie3
   m_TagString: Enemy
@@ -103,12 +104,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a831207d95adec9e8c98e1c0c7e1d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWaypoint: 0
-  pathCount: 0
-  animator: {fileID: 8565416094436821000}
-  spriteRenderer: {fileID: 8565416094436821005}
-  targetInRange: 0
-  isMoving: 0
+  _speed: 0
+  _reachDistance: 0
+  _currentWaypoint: 0
+  _pathCount: 0
+  TargetInRange: 0
+  IsMoving: 0
 --- !u!114 &8565416094436821002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,8 +181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d24898922b8a89048ae038617d5ea055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyStats: {fileID: 11400000, guid: 7c38e969cf429390391c861bfcb5ef25, type: 2}
-  Health: 0
 --- !u!50 &-6016515470377485071
 Rigidbody2D:
   serializedVersion: 4
@@ -215,4 +214,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0599a228f79aff0038e38bb06290bef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acid: {fileID: 2509589686545734948, guid: aa40d576a11a1219196a541388fea456, type: 3}
+  Acid: {fileID: 2509589686545734948, guid: aa40d576a11a1219196a541388fea456, type: 3}
+--- !u!114 &6236922590095330920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8565416094436821001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edec1a99d637117cf9c893821e61a7b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyStats: {fileID: 11400000, guid: 7c38e969cf429390391c861bfcb5ef25, type: 2}
+  _health: 0
+  _armor: 0
+  _speed: 0
+  _attackSpeed: 0
+  _attackRange: 0
+  _attackDamage: 0
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnArmorChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSpeedChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttackSpeedChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttackRangeChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttackDamageChanged:
+    m_PersistentCalls:
+      m_Calls: []
