@@ -172,6 +172,7 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
             var pointerPosition = context.ReadValue<Vector2>();
             var playerHandsWeapon = _playerHandsGameObject.GetComponent<PlayerHandsController>();
             playerHandsWeapon.UpdatePositionGamepad(pointerPosition);
+
         }
     }
 

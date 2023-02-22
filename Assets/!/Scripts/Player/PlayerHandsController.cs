@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerHandsController : MonoBehaviour
 {
-    private bool _facingRight = true;
     private float angle;
     public void UpdatePositionMouse(Vector2 pointerPosition)
     {
@@ -11,22 +10,16 @@ public class PlayerHandsController : MonoBehaviour
         pointerPosition.y = pointerPosition.y - objectPos.y;
 
         transform.localScale = pointerPosition.x > 0 ? Vector3.one : new Vector3(1, -1, -1);
-
         angle = Mathf.Atan2(pointerPosition.y, pointerPosition.x) * Mathf.Rad2Deg;
-
-        if (_facingRight)
-            angle = Mathf.Atan2(pointerPosition.y, pointerPosition.x) * Mathf.Rad2Deg;
-        else
-            angle = Mathf.Atan2(pointerPosition.y * -1, pointerPosition.x * -1) * Mathf.Rad2Deg;
-
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }
 
     public void UpdatePositionGamepad(Vector2 pointerPosition)
     {
-        angle = Mathf.Atan2(pointerPosition.y, pointerPosition.x) * Mathf.Rad2Deg;
-        var lookRotation = Quaternion.Euler(angle * Vector3.forward);
-        transform.rotation = lookRotation;
+        //this keeps the position of the weapon at the last point before rotation stopped instead of resetting to the default position
+        if (pointerPosition == Vector2.zero) return;
         transform.localScale = pointerPosition.x > 0 ? Vector3.one : new Vector3(1, -1, -1);
+        angle = Mathf.Atan2(pointerPosition.y, pointerPosition.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(angle * Vector3.forward); ;
     }
 }
