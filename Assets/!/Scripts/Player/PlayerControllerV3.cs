@@ -7,8 +7,13 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActions
 {
+    public bool isGamepad;
+    
+    public Vector2 moveDirection = Vector2.zero;
+    private Vector2 _pointerPosition;
 
-    //Vector2 lastInput;
+    public Vector3 moveDirectionVector3;
+
     Animator animator;
     SpriteRenderer spriteRenderer;
 
@@ -29,9 +34,8 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     private float trailVisibleTime = 0.2f;
     private bool _useWeapon = false;
-    public Vector2 moveDirection = Vector2.zero;
-    public Vector3 moveDirectionVector3;
-    private Vector2 _pointerPosition;
+    
+  
 
     private GameObject _playerHandsGameObject;
 
@@ -152,12 +156,27 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     public void OnAimWeapon(InputAction.CallbackContext context)
     {
-        // Update the rotation of the weapon based on the pointer position
-        var pointerPosition = context.ReadValue<Vector2>();
-        var playerHandsWeapon = _playerHandsGameObject.GetComponent<PlayerHandsController>();
-        playerHandsWeapon.UpdatePosition(pointerPosition);
+        if(isGamepad == false)
+        {
+            // Update the rotation of the weapon based on the pointer position
+            var pointerPosition = context.ReadValue<Vector2>();
+            var playerHandsWeapon = _playerHandsGameObject.GetComponent<PlayerHandsController>();
+            playerHandsWeapon.UpdatePositionMouse(pointerPosition);
 
-        var mouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(pointerPosition.x, pointerPosition.y, Camera.main.nearClipPlane));
-        _pointerPosition = mouseWorldPosition;
+            var mouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(pointerPosition.x, pointerPosition.y, Camera.main.nearClipPlane));
+            _pointerPosition = mouseWorldPosition;
+        }
+
+        else if(isGamepad == true)
+        {
+            var pointerPosition = context.ReadValue<Vector2>();
+            var playerHandsWeapon = _playerHandsGameObject.GetComponent<PlayerHandsController>();
+            playerHandsWeapon.UpdatePositionGamepad(pointerPosition);
+        }
+    }
+
+    public void OnDeviceChange (PlayerInput playerInput)
+    {
+        isGamepad = playerInput.currentControlScheme.Equals("Gamepad") ? true : false;
     }
 }

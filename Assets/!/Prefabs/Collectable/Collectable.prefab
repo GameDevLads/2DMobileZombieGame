@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4452437f38f61c148811faf6996dfd77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinAmountSO: {fileID: 11400000, guid: 30d6de202fef39c4b8deb38ef0d256fb, type: 2}
+  coinAmountSO: {fileID: 11400000, guid: 634297763070f894ea1153d77f083a58, type: 2}
   collectableLifetimeSO: {fileID: 11400000, guid: d5d41319b54faa9418e9f940dfb560e6, type: 2}
   blinkingDelayedStartSO: {fileID: 11400000, guid: 071dc1192254dd4478e7f8c23a1debd2, type: 2}
   blinkingIntervalSO: {fileID: 11400000, guid: 5700073e6f5fa8c459aa8d716e2c3a84, type: 2}
