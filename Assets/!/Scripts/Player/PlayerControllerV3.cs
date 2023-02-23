@@ -7,17 +7,13 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActions
 {
-    public bool isGamepad;
     
-    public Vector2 moveDirection = Vector2.zero;
+    private Vector2 _moveDirection = Vector2.zero;
     private Vector2 _pointerPosition;
-
-    public Vector3 moveDirectionVector3;
+    private Vector3 _moveDirectionVector3;
 
     Animator animator;
     SpriteRenderer spriteRenderer;
-
-    public float moveSpeed = 0f;
 
     public Rigidbody2D rb;
     public TrailRenderer tr;
@@ -28,14 +24,19 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     [Tooltip("How far away the weapon is from the player.")]
     public float WeaponPlayerDistance = 1.5f;
-
-    public float dashSpeed = 60f;
-    public float flashAmount = 10f;
-
-    private float trailVisibleTime = 0.2f;
-    private bool _useWeapon = false;
     
-  
+    [SerializeField]
+    private float _dashSpeed = 60f;
+
+    [SerializeField]
+    private float _flashAmount = 10f;
+
+    [SerializeField]
+    private float _moveSpeed = 10f;
+
+    private float _trailVisibleTime = 0.2f;
+    private bool _useWeapon = false;
+    private bool _isGamepad;
 
     private GameObject _playerHandsGameObject;
 
@@ -88,17 +89,17 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        moveDirection = context.ReadValue<Vector2>().normalized;
+        _moveDirection = context.ReadValue<Vector2>().normalized;
         //creating a normalised vector will force the magnitude (length) of the vector to 1 (full speed). Meaning regardels how much the joystick is pushed the player will always move at the top speed. 
-        moveDirectionVector3 = new Vector3(moveDirection.x, moveDirection.y);
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        _moveDirectionVector3 = new Vector3(_moveDirection.x, _moveDirection.y);
+        rb.velocity = new Vector2(_moveDirection.x * _moveSpeed, _moveDirection.y * _moveSpeed);
         animator.SetBool("isMoving", true);
 
-        if (moveDirection.x > 0)
+        if (_moveDirection.x > 0)
         {
             spriteRenderer.flipX = true;
         }
-        if (moveDirection.x < 0)
+        if (_moveDirection.x < 0)
         {
             spriteRenderer.flipX = false;
         }
@@ -109,7 +110,7 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
         if (context.ReadValueAsButton() && coinAmountSO.Value > 0 && IsPlayerMoving() == true)
         {
             coinAmountSO.Value--;
-            rb.MovePosition(transform.position + moveDirectionVector3 * flashAmount);
+            rb.MovePosition(transform.position + _moveDirectionVector3 * _flashAmount);
         }
     }
 
@@ -124,10 +125,10 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     private IEnumerator DashingMechanic()
     {
         coinAmountSO.Value--;
-        rb.velocity = new Vector2(moveDirection.x * dashSpeed, moveDirection.y * dashSpeed);
+        rb.velocity = new Vector2(_moveDirection.x * _dashSpeed, _moveDirection.y * _dashSpeed);
         tr.emitting = true;
-        yield return new WaitForSeconds(trailVisibleTime);
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        yield return new WaitForSeconds(_trailVisibleTime);
+        rb.velocity = new Vector2(_moveDirection.x * _moveSpeed, _moveDirection.y * _moveSpeed);
         tr.emitting = false;
     }
 
@@ -156,7 +157,7 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     public void OnAimWeapon(InputAction.CallbackContext context)
     {
-        if(isGamepad == false)
+        if(_isGamepad == false)
         {
             // Update the rotation of the weapon based on the pointer position
             var pointerPosition = context.ReadValue<Vector2>();
@@ -167,17 +168,16 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
             _pointerPosition = mouseWorldPosition;
         }
 
-        else if(isGamepad == true)
+        else if(_isGamepad == true)
         {
             var pointerPosition = context.ReadValue<Vector2>();
             var playerHandsWeapon = _playerHandsGameObject.GetComponent<PlayerHandsController>();
             playerHandsWeapon.UpdatePositionGamepad(pointerPosition);
-
         }
     }
 
     public void OnDeviceChange (PlayerInput playerInput)
     {
-        isGamepad = playerInput.currentControlScheme.Equals("Gamepad") ? true : false;
+        _isGamepad = playerInput.currentControlScheme.Equals("Gamepad") ? true : false;
     }
 }
