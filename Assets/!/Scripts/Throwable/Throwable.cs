@@ -1,14 +1,17 @@
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Throwable.Data;
 using System.Collections;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Assets.Scripts.Throwable
 {
     public class Throwable : MonoBehaviour, IPlayerWeapon
     {
+        [Tooltip("The area explosion game object.")]
+        public GameObject AreaExplosion;
+
         public ThrowableData ThrowableData;
         private bool _isThrown = false;
         private float _damageDealtStartTime = Mathf.NegativeInfinity; 
@@ -20,14 +23,18 @@ namespace Assets.Scripts.Throwable
 
         private void Update()
         {
-            if (!_isThrown)
+            if (!_isThrown || ThrowableData.Explode) // Don't deal damage for explosive throwables as they deal damage on impact
                 return;
+
+            var damageArea = Physics2D.OverlapCircleAll(gameObject.transform.position, ThrowableData.DamageRadius);
+
+            if (!damageArea.Any(x => string.Equals(x.tag, "Enemy")))
+                return; // No enemies to deal damage to
 
             if (_damageDealtStartTime + ThrowableData.DamageTime > Time.time)
-                return;
+                return; // Start dealing damage to enemies and set damage dealt time
 
             _damageDealtStartTime = Time.time;
-            var damageArea = Physics2D.OverlapCircleAll(gameObject.transform.position, ThrowableData.DamageRadius);
 
             foreach (var collider in damageArea)
             {
@@ -73,7 +80,7 @@ namespace Assets.Scripts.Throwable
                     ThrowableReturn(parentObj);
                 else if (ThrowableData.Explode)
                 {
-                    // TODO: Explode and deal damage.
+                    StartCoroutine(StartExplosion(ThrowableData.ExplosionCountDown));
                 }
                 else
                     Destroy(gameObject, 3f);
@@ -172,6 +179,71 @@ namespace Assets.Scripts.Throwable
             }
             transform.localPosition = endPoint;
             _isThrown = false;
+        }
+
+        /// <summary>
+        /// Starts the explosion if the object should explode and deal damage
+        /// </summary>
+        private IEnumerator StartExplosion(float time)
+        {
+            yield return new WaitForSeconds(time);
+
+            var explosionPosition = gameObject.transform.position;
+            var areaExplosion = Instantiate(AreaExplosion, explosionPosition, Quaternion.identity);
+            var diameter = ThrowableData.ExplosionRadiusStart * 2;
+            areaExplosion.transform.localScale = new Vector2(diameter, diameter);
+            var animationLength = areaExplosion.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
+            gameObject.GetComponent<Renderer>().enabled = false;
+            DealAreaDamage(explosionPosition, ThrowableData.ExplosionRadiusEnd);
+            StartCoroutine(SpawnExplosion(animationLength, areaExplosion, () =>
+            {
+                Destroy(gameObject);
+                Destroy(areaExplosion);
+            }));
+        }
+
+        /// <summary>
+        /// Spawns the explosion with the start radius and ends with end radius
+        /// </summary>
+        /// <param name="explosionTime"></param>
+        /// <param name="explosionObject"></param>
+        /// <param name="onCollide"></param>
+        /// <returns></returns>
+        private IEnumerator SpawnExplosion(float explosionTime, GameObject explosionObject, System.Action onCollide = null)
+        {
+            float time = 0;
+            var startRadius = new Vector2(ThrowableData.ExplosionRadiusStart * 2, ThrowableData.ExplosionRadiusStart * 2);
+            var endRadius = new Vector2(ThrowableData.ExplosionRadiusEnd * 2, ThrowableData.ExplosionRadiusEnd * 2);
+
+            while (time < 1)
+            {
+                explosionObject.transform.localScale = Vector2.Lerp(startRadius, endRadius, time);
+                time += Time.deltaTime / explosionTime;
+                yield return null;
+            }
+
+            if (onCollide != null)
+                onCollide();
+        }
+
+        /// <summary>
+        /// Deals area damage to enemies for a configured explosion damage and end radius.
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="radius"></param>
+        private void DealAreaDamage(Vector2 point, float radius)
+        {
+            var damageArea = Physics2D.OverlapCircleAll(point, radius);
+
+            foreach (var collider in damageArea)
+            {
+                if (string.Equals(collider.tag, "Enemy"))
+                {
+                    var enemyComponent = collider.GetComponent<Enemy>();
+                    if (enemyComponent != null)
+                        enemyComponent.ApplyDamage(ThrowableData.ExplosionDamage);
+                }
+            }
         }
 
         private void AddTrailRenderer()

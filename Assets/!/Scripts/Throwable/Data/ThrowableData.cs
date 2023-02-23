@@ -24,12 +24,24 @@ namespace Assets.Scripts.Throwable.Data
         public bool Explode = false;
 
         [Tooltip("This is the damage radius of the throwable object.")]
-        public float DamageRadius = 2.5f;
+        public float DamageRadius = 1f;
 
         [Tooltip("This is the amount of damage that is dealt to enemies.")]
         public float Damage = 10f;
 
         [Tooltip("How much much damage do we apply in a certain amount of time.")]
-        public float DamageTime = 0.5f;
+        public float DamageTime = 1.5f;
+
+        [Tooltip("The explosion damage.")]
+        public float ExplosionDamage = 50f;
+
+        [Tooltip("The explosion radius start.")]
+        public float ExplosionRadiusStart = 1f;
+
+        [Tooltip("The explosion radius end.")]
+        public float ExplosionRadiusEnd = 3f;
+
+        [Tooltip("The amount of time that we wait before the explosion occurs after the object stops moving.")]
+        public float ExplosionCountDown = 2f;
     }
 }
