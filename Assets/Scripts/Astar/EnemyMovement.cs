@@ -7,7 +7,7 @@ public class EnemyMovement : MonoBehaviour
     public float speed = 3f;
     private int currentWaypoint = 0;
     private List<Node> path = new List<Node>();
-    public Transform target;
+    private Transform target;
     private Vector3 lastTargetPos;
     private Vector3 lastEnemyPos;
     private Astar aStar;
@@ -17,6 +17,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Start()
     {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
         lastTargetPos = target.position;
         lastEnemyPos = transform.position;
         aStar = GetComponent<Astar>();

@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 1b984e4bb00aa36429d91c0dd9b1dcb0, type: 3}
+  m_Sprite: {fileID: -1928470767, guid: bf1f1466eca3d294d92af612ade84035, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -237,7 +237,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
+    oldSize: {x: 4.1010013, y: 4.1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -372,8 +372,8 @@ MonoBehaviour:
   rb: {fileID: 7056076110292853781}
   tr: {fileID: 7056076110292853782}
   coinAmountSO: {fileID: 11400000, guid: 30d6de202fef39c4b8deb38ef0d256fb, type: 2}
-  DefaultGun: {fileID: 6820678582435311943, guid: c54473dbcd67c5e4e8aaae0b42bc3e16, type: 3}
-  GunPlayerDistance: 1.5
+  DefaultWeapon: {fileID: 0}
+  WeaponPlayerDistance: 1.5
   dashSpeed: 60
   flashAmount: 10
   moveDirection: {x: 0, y: 0}
