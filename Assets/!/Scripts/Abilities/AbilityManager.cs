@@ -2,116 +2,92 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Abilities
 {
 
     public class AbilityManager : MonoBehaviour
     {
-        public static AbilityManager instance;
+        public static AbilityManager Instance;
 
-        public StatsSO _playerStats;
-        public StatsSO _enemyStats;
+        public StatsSO PlayerStats;
+        public List<StatsSO> EnemyStats = new List<StatsSO>();
 
         [Tooltip("List of all abilities in the game")]
-        public List<Ability> Abilities = new List<Ability>();
-        private List<Abilities.AbilityTypeSO> _activeAbilities = new List<Abilities.AbilityTypeSO>();
-        public List<Abilities.AbilityTypeSO> ActiveAbilities => _activeAbilities;
+        public List<Abilities.Ability> Abilities;
+        [SerializeField]
+        private List<Abilities.Ability> _activeAbilities = new List<Abilities.Ability>();
+        public List<Abilities.Ability> ActiveAbilities => _activeAbilities;
 
         private void Awake()
         {
-            instance = this;
+            if (Instance == null)
+                Instance = this;
+            else
+                Destroy(gameObject);
         }
 
         private void Start()
         {
+            Init();
         }
 
-
-        public void AddOrLevelUpAbility(Abilities.AbilityTypeSO type)
+        private void OnGUI()
         {
-            var ability = Abilities.Find(x => x.Type.Value == type.Value);
-            if (ability == null)
+            if (GUI.Button(new Rect(10, 10, 100, 30), "Add Ability"))
             {
-                _activeAbilities.Add(ability.Type);
+                var ability = GetRandomAbilities(1)[0];
+                var player = GameObject.Find("Player");
+                AddOrLevelUpAbility(ability, player);
             }
-            ability.Level++;
+            if (GUI.Button(new Rect(10, 50, 100, 30), "Reset"))
+            {
+                Init();
+            }
         }
 
-        public List<Ability> GetRandomAbilities(int count, bool excludeMaxLevel = false)
+        private void Init()
         {
-            var abilities = new List<Ability>();
+            Abilities.ForEach(ability => ability.Reset());
+            _activeAbilities.Clear();
+            EnemyStats.ForEach(enemy => enemy.Reset());
+            PlayerStats.Reset();
+        }
+
+
+        /// <summary>
+        /// Adds an ability to the list of active abilities or levels up an existing ability
+        /// </summary>
+        public void AddOrLevelUpAbility(Abilities.Ability ability, GameObject gameObject = null)
+        {
+            if (ability.CurrentLevel == 0)
+            {
+                _activeAbilities.Add(ability);
+                ability.Init(gameObject);
+            }
+            ability.Upgrade();
+        }
+
+        /// <summary>
+        /// Returns a list of random abilities from the list of all abilities
+        /// </summary>
+        public List<Abilities.Ability> GetRandomAbilities(int count, bool excludeMaxLevel = false)
+        {
+            var abilities = new List<Abilities.Ability>();
             for (int i = 0; i < count; i++)
             {
                 var ability = Abilities[Random.Range(0, Abilities.Count)];
                 if (excludeMaxLevel)
                 {
-                    if (ability.Level < 5)
-                    {
+                    if (ability.CurrentLevel < 5)
                         abilities.Add(ability);
-                    }
                 }
                 else
-                {
                     abilities.Add(ability);
-                }
             }
             return abilities;
         }
 
-        public void ApplyEffects(List<Abilities.AbilityEffectSO> effects)
-        {
-            // foreach (var effect in effects)
-            // {
-            //     switch (effect.Target)
-            //     {
-            //         case Target.Player:
-            //             _playerStats.ApplyEffect(effect);
-            //             break;
-            //         case Target.Enemy:
-            //             _enemyStats.ApplyEffect(effect);
-            //             break;
-            //         default:
-            //             break;
-            //     }
-            // }
-        }
-
-
-    //     public void RemoveEffect(Effect effect)
-    //     {
-    //         _activeEffects.Remove(effect);
-    //         // _playerStats.RemoveEffect(effect);
-    //     }
-
-        public int GetAbilityLevel(Abilities.AbilitySO ability)
-        {
-            int level = 0;
-    //         foreach (var item in _activeAbilities)
-    //         {
-    //             if (item == ability)
-    //             {
-    //                 level++;
-    //             }
-    //         }
-            return level;
-        }
 
     }
-
-    [System.Serializable]
-    public class Ability
-    {
-        public Abilities.AbilityTypeSO Type;
-        public int Level;
-        public Abilities.AbilitySO AbilitySO;
-        public List<Abilities.AbilityEffectSO> Effects {
-            get
-            {
-                return AbilitySO.GetAbilityEffects(Level);
-            }
-        }
-
-    }
-
 
 }

@@ -9,10 +9,3 @@ public enum Operation
     Multiply,
     Divide
 }
-
-public enum Target
-{
-    Player,
-    Enemy,
-    Both
-}

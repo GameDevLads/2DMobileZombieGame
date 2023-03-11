@@ -17,13 +17,25 @@ namespace Assets.Scripts
         private void Start()
         {
             StatsSO.Reset();
-            _health = StatsSO.Stats.Health;
-            _attackSpeed = StatsSO.Stats.AttackSpeed;
-            _attackRange = StatsSO.Stats.AttackRange;
-            _movementSpeed = StatsSO.Stats.MovementSpeed;
-            Debug.Log($"AttackSpeed: {_attackSpeed} AttackRange: {_attackRange} MovementSpeed: {_movementSpeed}");
-            Debug.Log(StatsSO.Stats);
+            _health = StatsSO.CurrentStats.Health;
+            _attackSpeed = StatsSO.CurrentStats.AttackSpeed;
+            _attackRange = StatsSO.CurrentStats.AttackRange;
+            _movementSpeed = StatsSO.CurrentStats.MovementSpeed;
 
+        }
+
+        public void TakeDamage(float damage)
+        {
+            _health -= damage;
+            if (_health <= 0)
+            {
+                Die();
+            }
+        }
+
+        private void Die()
+        {
+            Destroy(gameObject);
         }
 
         public float Health

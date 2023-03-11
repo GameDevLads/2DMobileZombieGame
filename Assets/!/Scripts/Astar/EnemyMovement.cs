@@ -4,8 +4,8 @@ using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public FloatVariableSO speed;
-    public IntVariableSO reachDistance;
+    public float speed;
+    public int reachDistance;
     [SerializeField]
     private int currentWaypoint = 0;
     private List<Node> path = new List<Node>();
@@ -17,6 +17,7 @@ public class EnemyMovement : MonoBehaviour
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
+    private Assets.Scripts.EnemyStats enemyStats;
 
     void Start()
     {
@@ -26,6 +27,9 @@ public class EnemyMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         target = GameObject.FindWithTag("Player").transform;
+        enemyStats = GetComponent<Assets.Scripts.EnemyStats>();
+        speed = enemyStats.MovementSpeed;
+        reachDistance = (int)enemyStats.AttackRange;
     }
     void FixedUpdate()
     {
@@ -47,7 +51,7 @@ public class EnemyMovement : MonoBehaviour
             // For debugging
             pathCount = path.Count;
 
-            if (currentWaypoint <= path.Count - reachDistance.Value)
+            if (currentWaypoint <= path.Count - reachDistance)
             {
                 animator.SetBool("isMoving", true);
 
@@ -55,7 +59,7 @@ public class EnemyMovement : MonoBehaviour
                 dir = Vector3.ClampMagnitude(dir.normalized, 0.5f); 
 
                 if (rb.velocity.normalized != (Vector2)dir)
-                    rb.velocity = new Vector2(dir.x * speed.Value, dir.y * speed.Value);
+                    rb.velocity = new Vector2(dir.x * speed, dir.y * speed);
 
                 if (dir.x > 0)
                     spriteRenderer.flipX = true;

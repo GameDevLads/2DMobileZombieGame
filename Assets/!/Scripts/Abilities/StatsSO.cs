@@ -8,35 +8,47 @@ namespace Assets.Scripts
     [CreateAssetMenu(fileName = "New Stats Object", menuName = "ScriptableObjects/Stats/Stats")]
     public class StatsSO : ScriptableObject
     {
-        public Stats BaseStats;
-        public Stats Stats;
+        [Tooltip("Tags must be TitleCase")]
+        public List<string> Tags;
+        public Stats CurrentStats = new Stats();
+        public Stats BaseStats = new Stats();
 
         public void Reset()
         {
-            Stats = BaseStats;
+            CurrentStats = new Stats{
+                Health = BaseStats.Health,
+                Stamina = BaseStats.Stamina,
+                Strength = BaseStats.Strength,
+                Armor = BaseStats.Armor,
+                MagicResist = BaseStats.MagicResist,
+                AttackSpeed = BaseStats.AttackSpeed,
+                AttackRange = BaseStats.AttackRange,
+                MovementSpeed = BaseStats.MovementSpeed,
+                CriticalChance = BaseStats.CriticalChance,
+                CriticalDamage = BaseStats.CriticalDamage,
+                LifeSteal = BaseStats.LifeSteal
+                };
         }
-
-        public void ApplyEffect(Abilities.AbilityEffectSO effect)
+        public void ApplyModifier(Abilities.ModifierSO modifier)
         {
-            // switch (effect.Operation)
-            // {
-            //     case Operation.Add:
-            //         Stats.SetValue(effect.StatType.Value, Stats.GetValue(effect.StatType.Value) + effect.Value);
-            //         break;
-            //     case Operation.Multiply:
-            //         Stats.SetValue(effect.StatType.Value, Stats.GetValue(effect.StatType.Value) * effect.Value);
-            //         break;
-            //     case Operation.Divide:
-            //         Stats.SetValue(effect.StatType.Value, Stats.GetValue(effect.StatType.Value) / effect.Value);
-            //         break;
-            //     case Operation.Subtract:
-            //         Stats.SetValue(effect.StatType.Value, Stats.GetValue(effect.StatType.Value) - effect.Value);
-            //         break;
-            //     default:
-            //         break;
-            // }
+            switch (modifier.Operation)
+            {
+                case Operation.Add:
+                    CurrentStats.SetValue(modifier.StatType.Value, CurrentStats.GetValue(modifier.StatType.Value) + modifier.Value);
+                    break;
+                case Operation.Subtract:
+                    CurrentStats.SetValue(modifier.StatType.Value, CurrentStats.GetValue(modifier.StatType.Value) - modifier.Value);
+                    break;
+                case Operation.Multiply:
+                    CurrentStats.SetValue(modifier.StatType.Value, CurrentStats.GetValue(modifier.StatType.Value) * modifier.Value);
+                    break;
+                case Operation.Divide:
+                    CurrentStats.SetValue(modifier.StatType.Value, CurrentStats.GetValue(modifier.StatType.Value) / modifier.Value);
+                    break;
+                default:
+                    break;
+            }   
         }
-
     }
 
     [System.Serializable]
