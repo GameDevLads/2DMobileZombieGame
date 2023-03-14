@@ -6,9 +6,10 @@ public class PlayerStats : MonoBehaviour
 {
     public FloatVariableSO coinAmountSO;
 
-    public float coinAmount;
+    [SerializeField]
+    private float _coinAmount;
     private void Update()
     {
-        coinAmount = coinAmountSO.Value;
+        _coinAmount = coinAmountSO.Value;
     }
 }
