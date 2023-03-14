@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
+using Assets.Scripts.Stats;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public FloatVariableSO speed;
-    public IntVariableSO reachDistance;
+    public float speed;
+    public int reachDistance;
     [SerializeField]
     private int currentWaypoint = 0;
-    private List<Node> path = new List<Node>();
+    private List<Node> path = new();
     [SerializeField]
     private int pathCount = 0;
     public Transform target;
@@ -17,6 +17,7 @@ public class EnemyMovement : MonoBehaviour
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
+    private EnemyStats enemyStats;
 
     void Start()
     {
@@ -26,6 +27,9 @@ public class EnemyMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         target = GameObject.FindWithTag("Player").transform;
+        enemyStats = GetComponent<EnemyStats>();
+        speed = enemyStats.MovementSpeed;
+        reachDistance = (int)enemyStats.AttackRange;
     }
     void FixedUpdate()
     {
@@ -36,7 +40,7 @@ public class EnemyMovement : MonoBehaviour
         {
             currentWaypoint = 0;
             lastTargetPos = target.position;
-            findPath(transform.position, target.position);
+            FindPath(transform.position, target.position);
         }
         
         animator.SetBool("isMoving", false);
@@ -47,15 +51,15 @@ public class EnemyMovement : MonoBehaviour
             // For debugging
             pathCount = path.Count;
 
-            if (currentWaypoint <= path.Count - reachDistance.Value)
+            if (currentWaypoint <= path.Count - reachDistance)
             {
                 animator.SetBool("isMoving", true);
 
-                Vector3 dir = (path[currentWaypoint].worldPosition - transform.position);
+                Vector3 dir = path[currentWaypoint].worldPosition - transform.position;
                 dir = Vector3.ClampMagnitude(dir.normalized, 0.5f); 
 
                 if (rb.velocity.normalized != (Vector2)dir)
-                    rb.velocity = new Vector2(dir.x * speed.Value, dir.y * speed.Value);
+                    rb.velocity = new Vector2(dir.x * speed, dir.y * speed);
 
                 if (dir.x > 0)
                     spriteRenderer.flipX = true;
@@ -74,7 +78,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    public void findPath(Vector3 start, Vector3 end)
+    public void FindPath(Vector3 start, Vector3 end)
     {
         path = aStar.FindPath(start,end);
     }
