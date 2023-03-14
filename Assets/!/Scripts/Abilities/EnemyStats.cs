@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Stats
 {
     public class EnemyStats : MonoBehaviour
     {

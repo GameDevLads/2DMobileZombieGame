@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Stats;
 using UnityEngine;
 
 namespace Assets.Scripts.Abilities
@@ -15,21 +15,15 @@ namespace Assets.Scripts.Abilities
 
         private List<ModifierSO> GetModifiers(int level)
         {
-            switch (level)
+            return level switch
             {
-                case 1:
-                    return Level1.Modifiers;
-                case 2:
-                    return Level2.Modifiers;
-                case 3:
-                    return Level3.Modifiers;
-                case 4:
-                    return Level4.Modifiers;
-                case 5:
-                    return Level5.Modifiers;
-                default:
-                    return null;
-            }
+                1 => Level1.Modifiers,
+                2 => Level2.Modifiers,
+                3 => Level3.Modifiers,
+                4 => Level4.Modifiers,
+                5 => Level5.Modifiers,
+                _ => null,
+            };
         }
         public override void Init(GameObject gameObject = null)
         {

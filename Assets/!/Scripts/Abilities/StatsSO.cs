@@ -1,8 +1,7 @@
 
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Assets.Scripts
+namespace Assets.Scripts.Stats
 {
 
     [CreateAssetMenu(fileName = "New Stats Object", menuName = "ScriptableObjects/Stats/Stats")]
@@ -10,12 +9,13 @@ namespace Assets.Scripts
     {
         [Tooltip("Tags must be TitleCase")]
         public List<string> Tags;
-        public Stats CurrentStats = new Stats();
-        public Stats BaseStats = new Stats();
+        public Stats CurrentStats = new();
+        public Stats BaseStats = new();
 
         public void Reset()
         {
-            CurrentStats = new Stats{
+            CurrentStats = new Stats
+            {
                 Health = BaseStats.Health,
                 Stamina = BaseStats.Stamina,
                 Strength = BaseStats.Strength,
@@ -27,7 +27,7 @@ namespace Assets.Scripts
                 CriticalChance = BaseStats.CriticalChance,
                 CriticalDamage = BaseStats.CriticalDamage,
                 LifeSteal = BaseStats.LifeSteal
-                };
+            };
         }
         public void ApplyModifier(Abilities.ModifierSO modifier)
         {
@@ -47,7 +47,7 @@ namespace Assets.Scripts
                     break;
                 default:
                     break;
-            }   
+            }
         }
     }
 
@@ -110,33 +110,21 @@ namespace Assets.Scripts
 
         public float GetValue(string propertyName)
         {
-            switch (propertyName)
+            return propertyName switch
             {
-                case "Health":
-                    return Health;
-                case "Stamina":
-                    return Stamina;
-                case "Strength":
-                    return Strength;
-                case "Armor":
-                    return Armor;
-                case "MagicResist":
-                    return MagicResist;
-                case "AttackSpeed":
-                    return AttackSpeed;
-                case "AttackRange":
-                    return AttackRange;
-                case "MovementSpeed":
-                    return MovementSpeed;
-                case "CriticalChance":
-                    return CriticalChance;
-                case "CriticalDamage":
-                    return CriticalDamage;
-                case "LifeSteal":
-                    return LifeSteal;
-                default:
-                    throw new System.Exception($"Property {propertyName} does not exist");
-            }
+                "Health" => Health,
+                "Stamina" => Stamina,
+                "Strength" => Strength,
+                "Armor" => Armor,
+                "MagicResist" => MagicResist,
+                "AttackSpeed" => AttackSpeed,
+                "AttackRange" => AttackRange,
+                "MovementSpeed" => MovementSpeed,
+                "CriticalChance" => CriticalChance,
+                "CriticalDamage" => CriticalDamage,
+                "LifeSteal" => LifeSteal,
+                _ => throw new System.Exception($"Property {propertyName} does not exist"),
+            };
         }
     }
 

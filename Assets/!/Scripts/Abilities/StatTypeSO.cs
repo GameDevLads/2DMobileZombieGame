@@ -1,8 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName ="New Stat Type", menuName ="ScriptableObjects/Stats/Stat Type")]
-public class StatTypeSO : ScriptableObject
+namespace Assets.Scripts.Stats
 {
-    public string Value;
+    [CreateAssetMenu(fileName = "New Stat Type", menuName = "ScriptableObjects/Stats/Stat Type")]
+    public class StatTypeSO : ScriptableObject
+    {
+        [Tooltip("The name of the stat in TitleCase")]
+        public string Value;
+    }
 }

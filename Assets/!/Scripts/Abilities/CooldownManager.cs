@@ -1,13 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Abilities
 {
     public class CooldownManager : MonoBehaviour
     {
-        public List<Ability> abilities = new List<Ability>();
         public static CooldownManager Instance;
 
         private void Awake()
@@ -34,7 +31,7 @@ namespace Assets.Scripts.Abilities
 
         private IEnumerator Cooldown(Ability ability)
         {
-            WaitForSeconds wait = new WaitForSeconds(ability.BaseCooldown);
+            WaitForSeconds wait = new(ability.BaseCooldown);
             while (true)
             {
                 ability.TriggerAbility();

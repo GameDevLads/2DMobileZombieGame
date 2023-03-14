@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,14 +8,14 @@ namespace Assets.Scripts.Abilities
     {
         public static AbilityManager Instance;
 
-        public StatsSO PlayerStats;
-        public List<StatsSO> EnemyStats = new List<StatsSO>();
+        public Stats.StatsSO PlayerStats;
+        public List<Stats.StatsSO> EnemyStats = new();
 
         [Tooltip("List of all abilities in the game")]
-        public List<Abilities.Ability> Abilities;
+        public List<Ability> Abilities;
         [SerializeField]
-        private List<Abilities.Ability> _activeAbilities = new List<Abilities.Ability>();
-        public List<Abilities.Ability> ActiveAbilities => _activeAbilities;
+        private readonly List<Ability> _activeAbilities = new();
+        public List<Ability> ActiveAbilities => _activeAbilities;
 
         private void Awake()
         {
@@ -57,7 +56,7 @@ namespace Assets.Scripts.Abilities
         /// <summary>
         /// Adds an ability to the list of active abilities or levels up an existing ability
         /// </summary>
-        public void AddOrLevelUpAbility(Abilities.Ability ability, GameObject gameObject = null)
+        public void AddOrLevelUpAbility(Ability ability, GameObject gameObject = null)
         {
             if (ability.CurrentLevel == 0)
             {
@@ -70,9 +69,9 @@ namespace Assets.Scripts.Abilities
         /// <summary>
         /// Returns a list of random abilities from the list of all abilities
         /// </summary>
-        public List<Abilities.Ability> GetRandomAbilities(int count, bool excludeMaxLevel = false)
+        public List<Ability> GetRandomAbilities(int count, bool excludeMaxLevel = false)
         {
-            var abilities = new List<Abilities.Ability>();
+            var abilities = new List<Ability>();
             for (int i = 0; i < count; i++)
             {
                 var ability = Abilities[Random.Range(0, Abilities.Count)];

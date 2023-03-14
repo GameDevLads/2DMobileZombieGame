@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
-
 namespace Assets.Scripts.Abilities
 {
     public abstract class Ability : ScriptableObject

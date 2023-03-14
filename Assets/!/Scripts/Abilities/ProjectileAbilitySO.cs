@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Abilities
@@ -9,12 +6,12 @@ namespace Assets.Scripts.Abilities
     public class ProjectileAbilitySO : Ability
     {
         public GameObject WeaponPrefab;
-        private Scripts.Interfaces.IPlayerWeapon playerWeapon;
+        private Interfaces.IPlayerWeapon playerWeapon;
 
         public override void Init(GameObject obj)
         {
             var playerHands = obj.transform.GetChild(0);
-            playerWeapon = Instantiate(WeaponPrefab, playerHands).GetComponent<Scripts.Interfaces.IPlayerWeapon>();
+            playerWeapon = Instantiate(WeaponPrefab, playerHands).GetComponent<Interfaces.IPlayerWeapon>();
             CooldownManager.Instance.StartCooldown(this);
         }
 
@@ -31,8 +28,7 @@ namespace Assets.Scripts.Abilities
 
         public override void TriggerAbility()
         {
-            if(playerWeapon != null)
-                playerWeapon.UseWeapon(AutoAim.Instance.GetAimDirection() * 10);
+            playerWeapon?.UseWeapon(AutoAim.Instance.GetAimDirection() * 10);
         }
 
     }

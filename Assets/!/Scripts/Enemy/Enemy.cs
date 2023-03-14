@@ -10,7 +10,7 @@ namespace Assets.Scripts
 {
     public class Enemy : MonoBehaviour
     {
-        public StatsSO StatsSO;
+        public Stats.StatsSO StatsSO;
         [Tooltip("The maximum health the enemy has.")]
         public float Health;
 
