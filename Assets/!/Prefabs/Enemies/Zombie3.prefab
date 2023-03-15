@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8565416094436821006}
   - component: {fileID: 8565416094436821007}
   - component: {fileID: -6016515470377485071}
+  - component: {fileID: 3520229653515950545}
   m_Layer: 0
   m_Name: Zombie3
   m_TagString: Enemy
@@ -102,8 +103,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a831207d95adec9e8c98e1c0c7e1d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {fileID: 11400000, guid: 3c7eb01ee935133959070d8dcc2e75e1, type: 2}
-  reachDistance: {fileID: 11400000, guid: 362d2b1de091cdbc6b08dc6432542b84, type: 2}
+  speed: 0
+  reachDistance: 0
+  currentWaypoint: 0
+  pathCount: 0
   target: {fileID: 7056076110292853779, guid: 14cd9baaf05b1564cbaba086d853f415, type: 3}
   animator: {fileID: 8565416094436821000}
   spriteRenderer: {fileID: 8565416094436821005}
@@ -178,6 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d24898922b8a89048ae038617d5ea055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StatsSO: {fileID: 11400000, guid: 8e36868878a360f7ab070f747718fced, type: 2}
   Health: 200
 --- !u!50 &-6016515470377485071
 Rigidbody2D:
@@ -200,3 +204,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3520229653515950545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8565416094436821001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 992db146fbe61122f84fa7b55ff01289, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StatsSO: {fileID: 11400000, guid: 8e36868878a360f7ab070f747718fced, type: 2}
