@@ -10,9 +10,8 @@ namespace Assets.Scripts
 {
     public class Enemy : MonoBehaviour
     {
-        public Stats.StatsSO StatsSO;
         [Tooltip("The maximum health the enemy has.")]
-        public float Health;
+        public float Health = 100f;
 
         private GameObject _healthText;
         private float _totalHealth;
@@ -20,7 +19,6 @@ namespace Assets.Scripts
 
         private void Start()
         {
-            Health = StatsSO.CurrentStats.Health;
             var position = transform.position;
             _healthText = new GameObject();
             _healthText.transform.position = position;
