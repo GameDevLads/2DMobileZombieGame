@@ -1,5 +1,4 @@
 using UnityEngine;
-
 namespace Assets.Scripts.Abilities
 {
     [CreateAssetMenu(fileName = "New Projectile Ability", menuName = "ScriptableObjects/Abilities/Projectile Ability")]

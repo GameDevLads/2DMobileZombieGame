@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
-
 namespace Assets.Scripts
 {
     public class Enemy : MonoBehaviour

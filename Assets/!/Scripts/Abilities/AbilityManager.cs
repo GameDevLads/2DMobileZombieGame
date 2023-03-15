@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-
 namespace Assets.Scripts.Abilities
 {
-
     public class AbilityManager : MonoBehaviour
     {
         public static AbilityManager Instance;

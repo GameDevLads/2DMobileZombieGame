@@ -114,7 +114,6 @@ public abstract class DictionaryDrawer<TK, TV> : PropertyDrawer
                 _Dictionary = new SerializableDictionary<TK, TV>();
                 fieldInfo.SetValue(target, _Dictionary);
             }
-
             _Foldout = EditorPrefs.GetBool(label.text);
         }
     }

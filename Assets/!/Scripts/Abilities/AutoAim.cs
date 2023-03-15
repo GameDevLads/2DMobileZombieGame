@@ -5,7 +5,6 @@ using UnityEngine;
 public class AutoAim : MonoBehaviour
 {
     public static AutoAim Instance { get; private set; }
-
     private void Awake()
     {
         if (Instance == null)

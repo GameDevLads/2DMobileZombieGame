@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Assets.Scripts.Stats;
 using UnityEngine;
-
 namespace Assets.Scripts.Abilities
 {
     [CreateAssetMenu(fileName = "New Passive Ability", menuName = "ScriptableObjects/Abilities/Passive Ability")]

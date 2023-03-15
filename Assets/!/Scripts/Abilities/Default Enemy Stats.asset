@@ -10,32 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92d9c0f65b9969345a9f72922778f6bb, type: 3}
-  m_Name: Player Stats
+  m_Name: Default Enemy Stats
   m_EditorClassIdentifier: 
   Tags:
-  - Player
+  - Enemy
+  - Zombie
+  - Melee
   CurrentStats:
-    Health: 200
-    Stamina: 50
-    Strength: 50
-    Armor: 50
-    MagicResist: 50
-    AttackSpeed: 1
-    AttackRange: 10
-    MovementSpeed: 5
-    CriticalChance: 10
-    CriticalDamage: 5
+    Health: 0
+    Stamina: 0
+    Strength: 0
+    Armor: 0
+    MagicResist: 0
+    AttackSpeed: 0
+    AttackRange: 0
+    MovementSpeed: 0
+    CriticalChance: 0
+    CriticalDamage: 0
     LifeSteal: 0
   BaseStats:
     Health: 200
-    Stamina: 50
-    Strength: 50
-    Armor: 50
-    MagicResist: 50
+    Stamina: 0
+    Strength: 5
+    Armor: 0
+    MagicResist: 0
     AttackSpeed: 1
-    AttackRange: 10
+    AttackRange: 2
     MovementSpeed: 5
-    CriticalChance: 10
-    CriticalDamage: 5
+    CriticalChance: 0
+    CriticalDamage: 0
     LifeSteal: 0
-

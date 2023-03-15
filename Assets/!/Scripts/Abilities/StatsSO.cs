@@ -107,7 +107,6 @@ namespace Assets.Scripts.Stats
                     throw new System.Exception($"Property {propertyName} does not exist");
             }
         }
-
         public float GetValue(string propertyName)
         {
             return propertyName switch

@@ -19,3 +19,4 @@ MonoBehaviour:
   IsUnlocked: 1
   BaseCooldown: 1
   WeaponPrefab: {fileID: 8145432674702620676, guid: de1c7dac29b49084ea90cde2365f2b25, type: 3}
+

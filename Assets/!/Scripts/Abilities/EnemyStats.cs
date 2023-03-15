@@ -13,7 +13,6 @@ namespace Assets.Scripts.Stats
         private float _attackSpeed;
         private float _attackRange;
         private float _movementSpeed;
-
         private void Start()
         {
             StatsSO.Reset();

@@ -77,7 +77,6 @@ public class EnemyMovement : MonoBehaviour
             }
         }
     }
-
     public void FindPath(Vector3 start, Vector3 end)
     {
         path = aStar.FindPath(start,end);

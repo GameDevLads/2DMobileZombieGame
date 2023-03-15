@@ -30,12 +30,10 @@ namespace Assets.Scripts.Abilities
         {
             _currentLevel = 0;
         }
-
         public void Unlock()
         {
             IsUnlocked = true;
         }
-
         public abstract void Reset();
         public abstract void Init(GameObject gameObject = null);
         public abstract void TriggerAbility();
