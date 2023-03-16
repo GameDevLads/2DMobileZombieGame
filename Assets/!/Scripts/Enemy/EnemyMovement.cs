@@ -1,105 +1,109 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Stats;
+using Assets.Scripts.AStar;
 
-public class EnemyMovement : MonoBehaviour
+namespace Assets.Scripts
 {
-    public float speed;
-    public int reachDistance;
-    [SerializeField]
-    private int currentWaypoint = 0;
-    private List<Node> path = new();
-    [SerializeField]
-    private int pathCount = 0;
-    public Transform target;
-    private Vector3 lastTargetPos;
-    private Astar aStar;
-    public Animator animator;
-    public SpriteRenderer spriteRenderer;
-    private Rigidbody2D rb;
-    private EnemyStats enemyStats;
-
-    void Start()
+    public class EnemyMovement : MonoBehaviour
     {
-        lastTargetPos = target.position;
-        aStar = GetComponent<Astar>();
-        animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
-        target = GameObject.FindWithTag("Player").transform;
-        enemyStats = GetComponent<EnemyStats>();
-        speed = enemyStats.MovementSpeed;
-        reachDistance = (int)enemyStats.AttackRange;
-    }
-    void FixedUpdate()
-    {
-        if(target == null)
-            return;
+        private float _speed;
+        private int _reachDistance;
+        [SerializeField]
+        private int _currentWaypoint = 0;
+        private List<AStarNode> _path = new();
+        [SerializeField]
+        private int _pathCount = 0;
+        public Transform Target;
+        private Vector3 _lastTargetPos;
+        private Algorithm _aStar;
+        public Animator animator;
+        public SpriteRenderer spriteRenderer;
+        private Rigidbody2D _rb;
+        private EnemyStats _enemyStats;
 
-        if(target.position != lastTargetPos)
+        void Start()
         {
-            currentWaypoint = 0;
-            lastTargetPos = target.position;
-            FindPath(transform.position, target.position);
+            _lastTargetPos = Target.position;
+            _aStar = GetComponent<Algorithm>();
+            animator = GetComponent<Animator>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            _rb = GetComponent<Rigidbody2D>();
+            Target = GameObject.FindWithTag("Player").transform;
+            _enemyStats = GetComponent<EnemyStats>();
+            _speed = _enemyStats.MovementSpeed;
+            _reachDistance = (int)_enemyStats.AttackRange;
         }
-        
-        animator.SetBool("isMoving", false);
-        rb.velocity = Vector2.zero;
-
-        if (path.Count > 0)
+        void FixedUpdate()
         {
-            // For debugging
-            pathCount = path.Count;
+            if (Target == null)
+                return;
 
-            if (currentWaypoint <= path.Count - reachDistance)
+            if (Target.position != _lastTargetPos)
             {
-                animator.SetBool("isMoving", true);
-
-                Vector3 dir = path[currentWaypoint].worldPosition - transform.position;
-                dir = Vector3.ClampMagnitude(dir.normalized, 0.5f); 
-
-                if (rb.velocity.normalized != (Vector2)dir)
-                    rb.velocity = new Vector2(dir.x * speed, dir.y * speed);
-
-                if (dir.x > 0)
-                    spriteRenderer.flipX = true;
-                else
-                    spriteRenderer.flipX = false;
-
-                if (Vector3.Distance(transform.position, path[currentWaypoint].worldPosition) < 0.1f) 
-                    currentWaypoint++;
+                _currentWaypoint = 0;
+                _lastTargetPos = Target.position;
+                FindPath(transform.position, Target.position);
             }
-            if(currentWaypoint > path.Count)
-            {
-                animator.SetBool("isMoving", false);
-                rb.velocity = Vector2.zero;
-                currentWaypoint = 0;
-            }
-        }
-    }
 
-    public void FindPath(Vector3 start, Vector3 end)
-    {
-        path = aStar.FindPath(start,end);
-    }
-    void OnDrawGizmos()
-    {
-        // Draw the path
-        if (path.Count > 0)
-        {
-            for (int i = 0; i < path.Count; i++)
+            animator.SetBool("isMoving", false);
+            _rb.velocity = Vector2.zero;
+
+            if (_path.Count > 0)
             {
-                Gizmos.color = Color.black;
-                Vector3 cur = path[i].worldPosition;
-                if(path.Count > i + 1)
+                // For debugging
+                _pathCount = _path.Count;
+
+                if (_currentWaypoint <= _path.Count - _reachDistance)
                 {
-                    Vector3 next = path[i + 1].worldPosition;
-                    Gizmos.DrawLine(cur, next);
-                }
+                    animator.SetBool("isMoving", true);
 
+                    Vector3 dir = _path[_currentWaypoint].worldPosition - transform.position;
+                    dir = Vector3.ClampMagnitude(dir.normalized, 0.5f);
+
+                    if (_rb.velocity.normalized != (Vector2)dir)
+                        _rb.velocity = new Vector2(dir.x * _speed, dir.y * _speed);
+
+                    if (dir.x > 0)
+                        spriteRenderer.flipX = true;
+                    else
+                        spriteRenderer.flipX = false;
+
+                    if (Vector3.Distance(transform.position, _path[_currentWaypoint].worldPosition) < 0.1f)
+                        _currentWaypoint++;
+                }
+                if (_currentWaypoint > _path.Count)
+                {
+                    animator.SetBool("isMoving", false);
+                    _rb.velocity = Vector2.zero;
+                    _currentWaypoint = 0;
+                }
             }
         }
-    }
 
-    
+        public void FindPath(Vector3 start, Vector3 end)
+        {
+            _path = _aStar.FindPath(start, end);
+        }
+        void OnDrawGizmos()
+        {
+            // Draw the path
+            if (_path.Count > 0)
+            {
+                for (int i = 0; i < _path.Count; i++)
+                {
+                    Gizmos.color = Color.black;
+                    Vector3 cur = _path[i].worldPosition;
+                    if (_path.Count > i + 1)
+                    {
+                        Vector3 next = _path[i + 1].worldPosition;
+                        Gizmos.DrawLine(cur, next);
+                    }
+
+                }
+            }
+        }
+
+
+    }
 }
