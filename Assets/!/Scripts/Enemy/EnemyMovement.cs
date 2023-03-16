@@ -14,22 +14,25 @@ namespace Assets.Scripts
         private List<AStarNode> _path = new();
         [SerializeField]
         private int _pathCount = 0;
+        private GameObject _player;
+        [HideInInspector]
         public Transform Target;
         private Vector3 _lastTargetPos;
         private Algorithm _aStar;
-        public Animator animator;
-        public SpriteRenderer spriteRenderer;
+        private Animator _animator;
+        private SpriteRenderer _spriteRenderer;
         private Rigidbody2D _rb;
         private EnemyStats _enemyStats;
 
         void Start()
         {
+            _player = GameObject.FindWithTag("Player");
+            Target = _player.transform;
             _lastTargetPos = Target.position;
             _aStar = GetComponent<Algorithm>();
-            animator = GetComponent<Animator>();
-            spriteRenderer = GetComponent<SpriteRenderer>();
+            _animator = GetComponent<Animator>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
             _rb = GetComponent<Rigidbody2D>();
-            Target = GameObject.FindWithTag("Player").transform;
             _enemyStats = GetComponent<EnemyStats>();
             _speed = _enemyStats.MovementSpeed;
             _reachDistance = (int)_enemyStats.AttackRange;
@@ -46,7 +49,7 @@ namespace Assets.Scripts
                 FindPath(transform.position, Target.position);
             }
 
-            animator.SetBool("isMoving", false);
+            _animator.SetBool("isMoving", false);
             _rb.velocity = Vector2.zero;
 
             if (_path.Count > 0)
@@ -56,7 +59,7 @@ namespace Assets.Scripts
 
                 if (_currentWaypoint <= _path.Count - _reachDistance)
                 {
-                    animator.SetBool("isMoving", true);
+                    _animator.SetBool("isMoving", true);
 
                     Vector3 dir = _path[_currentWaypoint].worldPosition - transform.position;
                     dir = Vector3.ClampMagnitude(dir.normalized, 0.5f);
@@ -65,16 +68,16 @@ namespace Assets.Scripts
                         _rb.velocity = new Vector2(dir.x * _speed, dir.y * _speed);
 
                     if (dir.x > 0)
-                        spriteRenderer.flipX = true;
+                        _spriteRenderer.flipX = true;
                     else
-                        spriteRenderer.flipX = false;
+                        _spriteRenderer.flipX = false;
 
                     if (Vector3.Distance(transform.position, _path[_currentWaypoint].worldPosition) < 0.1f)
                         _currentWaypoint++;
                 }
                 if (_currentWaypoint > _path.Count)
                 {
-                    animator.SetBool("isMoving", false);
+                    _animator.SetBool("isMoving", false);
                     _rb.velocity = Vector2.zero;
                     _currentWaypoint = 0;
                 }
