@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts.Stats;
 
 namespace Assets.Scripts.Abilities
 {
@@ -8,14 +9,17 @@ namespace Assets.Scripts.Abilities
     {
         public static AbilityManager Instance;
 
-        public Stats.StatsSO PlayerStats;
-        public List<Stats.StatsSO> EnemyStats = new();
+        public StatsSO PlayerStats;
+        public List<StatsSO> EnemyStats = new();
 
         [Tooltip("List of all abilities in the game")]
         public List<Ability> Abilities;
         [SerializeField]
         private readonly List<Ability> _activeAbilities = new();
         public List<Ability> ActiveAbilities => _activeAbilities;
+        // the UI canvas that holds the ability buttons
+        public GameObject AbilityPicker;
+        public GameObject UIAbilities;
 
         private void Awake()
         {
@@ -27,22 +31,23 @@ namespace Assets.Scripts.Abilities
 
         private void Start()
         {
+            AbilityPicker.SetActive(false);
             Init();
         }
 
-        private void OnGUI()
-        {
-            if (GUI.Button(new Rect(10, 10, 100, 30), "Add Ability"))
-            {
-                var ability = GetRandomAbilities(1)[0];
-                var player = GameObject.Find("Player");
-                AddOrLevelUpAbility(ability, player);
-            }
-            if (GUI.Button(new Rect(10, 50, 100, 30), "Reset"))
-            {
-                Init();
-            }
-        }
+        // private void OnGUI()
+        // {
+        //     if (GUI.Button(new Rect(10, 10, 100, 30), "Add Ability"))
+        //     {
+        //         var ability = GetRandomAbilities(1)[0];
+        //         var player = GameObject.Find("Player");
+        //         AddOrLevelUpAbility(ability, player);
+        //     }
+        //     if (GUI.Button(new Rect(10, 50, 100, 30), "Reset"))
+        //     {
+        //         Init();
+        //     }
+        // }
 
         private void Init()
         {
@@ -50,6 +55,20 @@ namespace Assets.Scripts.Abilities
             _activeAbilities.Clear();
             EnemyStats.ForEach(enemy => enemy.Reset());
             PlayerStats.Reset();
+            StartCoroutine(PresentAbilities());
+        }
+
+        private IEnumerator<WaitForSeconds> PresentAbilities()
+        {
+            yield return new WaitForSeconds(2f);
+            var abilities = GetRandomAbilities(3, true);
+            AbilityPicker.SetActive(true);
+            CanvasAbility[] canvasAbilities = UIAbilities.GetComponentsInChildren<CanvasAbility>();
+            for (int i = 0; i < abilities.Count; i++)
+            {
+                canvasAbilities[i].SetAbility(abilities[i]);
+            }
+
         }
 
 
@@ -88,6 +107,12 @@ namespace Assets.Scripts.Abilities
             return abilities;
         }
 
+        public void OnButtonPressed(Ability ability)
+        {
+            var player = GameObject.Find("Player");
+            AddOrLevelUpAbility(ability, player);
+            AbilityPicker.SetActive(false);
+        }
 
     }
 
