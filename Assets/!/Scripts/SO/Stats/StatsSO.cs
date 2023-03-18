@@ -11,6 +11,7 @@ namespace Assets.Scripts.Stats
         public List<string> Tags;
         public Stats CurrentStats = new();
         public Stats BaseStats = new();
+        public int Level = 1;
 
         public void Reset()
         {
@@ -28,6 +29,7 @@ namespace Assets.Scripts.Stats
                 CriticalDamage = BaseStats.CriticalDamage,
                 LifeSteal = BaseStats.LifeSteal
             };
+            Level = 1;
         }
         public void ApplyModifier(Abilities.ModifierSO modifier)
         {
@@ -48,6 +50,10 @@ namespace Assets.Scripts.Stats
                 default:
                     break;
             }
+        }
+        public void LevelUp()
+        {
+            Level++;
         }
     }
 

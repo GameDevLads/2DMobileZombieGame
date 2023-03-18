@@ -20,6 +20,11 @@ namespace Assets.Scripts.Abilities
             // Level.GetComponent<TextMeshProUGUI>().text = ability.CurrentLevel.ToString();
             Button.onClick.AddListener(() => AbilityManager.Instance.OnButtonPressed(ability));
         }
+        public void RemoveListeners()
+        {
+            Button.onClick.RemoveAllListeners();
+        }
+        
 
     }
 }

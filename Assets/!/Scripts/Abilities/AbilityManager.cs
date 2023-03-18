@@ -20,6 +20,8 @@ namespace Assets.Scripts.Abilities
         // the UI canvas that holds the ability buttons
         public GameObject AbilityPicker;
         public GameObject UIAbilities;
+        public FloatVariableSO PlayerXPAmountSO;
+        private float _nextLevelUpXP = 100;
 
         private void Awake()
         {
@@ -31,7 +33,6 @@ namespace Assets.Scripts.Abilities
 
         private void Start()
         {
-            AbilityPicker.SetActive(false);
             Init();
         }
 
@@ -48,19 +49,28 @@ namespace Assets.Scripts.Abilities
         //         Init();
         //     }
         // }
+        private void Update()
+        {
+            if (PlayerXPAmountSO.Value >= _nextLevelUpXP)
+            {
+                _nextLevelUpXP *= 3;
+                PlayerStats.LevelUp();
+                PresentAbilities();
+            }
+        }
 
         private void Init()
         {
+            AbilityPicker.SetActive(false);
             Abilities.ForEach(ability => ability.Reset());
             _activeAbilities.Clear();
             EnemyStats.ForEach(enemy => enemy.Reset());
             PlayerStats.Reset();
-            StartCoroutine(PresentAbilities());
         }
 
-        private IEnumerator<WaitForSeconds> PresentAbilities()
+        private void PresentAbilities()
         {
-            yield return new WaitForSeconds(2f);
+            PauseManager.Instance.TogglePause();
             var abilities = GetRandomAbilities(3, true);
             AbilityPicker.SetActive(true);
             CanvasAbility[] canvasAbilities = UIAbilities.GetComponentsInChildren<CanvasAbility>();
@@ -112,6 +122,17 @@ namespace Assets.Scripts.Abilities
             var player = GameObject.Find("Player");
             AddOrLevelUpAbility(ability, player);
             AbilityPicker.SetActive(false);
+            RemoveButtonListeners();
+            PauseManager.Instance.TogglePause();
+        }
+
+        private void RemoveButtonListeners()
+        {
+            CanvasAbility[] canvasAbilities = UIAbilities.GetComponentsInChildren<CanvasAbility>();
+            foreach (var canvasAbility in canvasAbilities)
+            {
+                canvasAbility.RemoveListeners();
+            }
         }
 
     }
