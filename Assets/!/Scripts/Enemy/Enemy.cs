@@ -29,7 +29,7 @@ namespace Assets.Scripts
             _healthText.transform.rotation = Quaternion.identity;
             _healthText.transform.SetParent(transform);
             _healthText.transform.localPosition = new Vector2(-2f, 1.5f);
-            _xpItemSpawner = GetComponent<XPItemSpawner>();
+            _xpItemSpawner = GameObject.Find("XPItemSpawner").GetComponent<XPItemSpawner>();
 
             var healthText = _healthText.AddComponent<TextMesh>();
             healthText.text = string.Format(_healthTextFormat, Health, Health);

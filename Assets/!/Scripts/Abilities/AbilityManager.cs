@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Stats;
+using Assets.Scripts.Collectable;
 
 namespace Assets.Scripts.Abilities
 {
@@ -20,8 +21,6 @@ namespace Assets.Scripts.Abilities
         // the UI canvas that holds the ability buttons
         public GameObject AbilityPicker;
         public GameObject UIAbilities;
-        public FloatVariableSO PlayerXPAmountSO;
-        private float _nextLevelUpXP = 100;
 
         private void Awake()
         {
@@ -36,28 +35,16 @@ namespace Assets.Scripts.Abilities
             Init();
         }
 
-        // private void OnGUI()
-        // {
-        //     if (GUI.Button(new Rect(10, 10, 100, 30), "Add Ability"))
-        //     {
-        //         var ability = GetRandomAbilities(1)[0];
-        //         var player = GameObject.Find("Player");
-        //         AddOrLevelUpAbility(ability, player);
-        //     }
-        //     if (GUI.Button(new Rect(10, 50, 100, 30), "Reset"))
-        //     {
-        //         Init();
-        //     }
-        // }
-        private void Update()
+        private void OnEnable()
         {
-            if (PlayerXPAmountSO.Value >= _nextLevelUpXP)
-            {
-                _nextLevelUpXP *= 3;
-                PlayerStats.LevelUp();
-                PresentAbilities();
-            }
+            XPManager.LevelUp += PresentAbilities;
         }
+
+        private void OnDisable()
+        {
+            XPManager.LevelUp -= PresentAbilities;
+        }
+
 
         private void Init()
         {

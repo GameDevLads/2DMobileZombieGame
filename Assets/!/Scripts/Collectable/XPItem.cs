@@ -10,7 +10,7 @@ namespace Assets.Scripts.Collectable
         private void OnTriggerEnter2D(Collider2D other)
         {
             // We do not need to check for Player because the xp Tag only collides with the player
-            xpAmountSO.Value += xpValue.Value;
+            XPManager.AddXP(xpValue.Value);
             Spawner.DespawnXPItem(gameObject);
         }
     }

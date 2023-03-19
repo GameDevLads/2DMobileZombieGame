@@ -4,7 +4,7 @@ namespace Assets.Scripts.Collectable
 {
     public class XPItemSpawner : MonoBehaviour
     {
-        public XPPool XPPool;
+        public ObjectPool XPPool;
         public void SpawnXPItem(Vector3 position)
         {
             GameObject xpItem = XPPool.GetObject();

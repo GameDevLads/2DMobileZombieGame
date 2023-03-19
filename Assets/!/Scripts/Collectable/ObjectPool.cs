@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Collectable
+namespace Assets.Scripts
 {
-    public class XPPool : MonoBehaviour
+    public class ObjectPool: MonoBehaviour
     {
         [SerializeField] private GameObject _objectPrefab;
         [SerializeField] private int _initialPoolSize = 10;
