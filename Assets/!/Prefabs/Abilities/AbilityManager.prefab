@@ -50,3 +50,5 @@ MonoBehaviour:
   Abilities:
   - {fileID: 11400000, guid: af252790dcd023f34850ec559339ea0f, type: 2}
   - {fileID: 11400000, guid: 180bc66633089f63ab278604326a8a49, type: 2}
+  AbilityPicker: {fileID: 0}
+  UIAbilities: {fileID: 0}
