@@ -437,4 +437,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinAmountSO: {fileID: 11400000, guid: 634297763070f894ea1153d77f083a58, type: 2}
+  xpAmountSO: {fileID: 11400000, guid: 63830cec319fab99b9d424b2d3610e20, type: 2}
   coinAmount: 0
+  _xpAmmount: 0

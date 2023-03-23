@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
+using Assets.Scripts.Collectable;
 
 namespace Assets.Scripts
 {
@@ -17,6 +18,7 @@ namespace Assets.Scripts
         private GameObject _healthText;
         private float _totalHealth;
         private const string _healthTextFormat = "Health: {0}/{1}";
+        private XPItemSpawner _xpItemSpawner;
 
         private void Start()
         {
@@ -27,6 +29,7 @@ namespace Assets.Scripts
             _healthText.transform.rotation = Quaternion.identity;
             _healthText.transform.SetParent(transform);
             _healthText.transform.localPosition = new Vector2(-2f, 1.5f);
+            _xpItemSpawner = GetComponent<XPItemSpawner>();
 
             var healthText = _healthText.AddComponent<TextMesh>();
             healthText.text = string.Format(_healthTextFormat, Health, Health);
@@ -44,6 +47,10 @@ namespace Assets.Scripts
 
         public void ApplyDamage(float damage)
         {
+            for (int i = 0; i < damage; i++)
+            {
+                _xpItemSpawner.SpawnXPItem(transform.position);
+            }
             var damageObj = new GameObject();
             damageObj.transform.position = transform.position;
             damageObj.transform.rotation = Quaternion.identity;
