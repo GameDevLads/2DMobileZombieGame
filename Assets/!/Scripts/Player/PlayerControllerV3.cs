@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Experimental.GraphView.GraphView;
 using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActions
@@ -37,8 +38,11 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     private float _trailVisibleTime = 0.2f;
     private bool _useWeapon = false;
     private bool _isGamepad;
+    private bool _manualAim = false;
 
     private GameObject _playerHandsGameObject;
+
+    private GameObject _enemy;
 
     // This is the player hand object that has a weapon as a child object which rotates around the player
     void InitPlayerHands()
@@ -59,6 +63,8 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
         //setting the target of the camera to the player
         Camera.main.GetComponent<PlayerCamera>().setTarget(gameObject.transform);
+
+        _enemy = GameObject.FindWithTag("Enemy");
     }
 
     void Update()
@@ -72,6 +78,14 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
         {
             UseWeapon();
         }
+        
+        //direction is the position of the enemy - the position of the player
+        Vector3 direction = _enemy.transform.position - transform.position;
+        if(_manualAim == false)
+        {
+            AutoAim(direction);
+        }
+        
     }
 
     private void UseWeapon()
@@ -157,23 +171,36 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     public void OnAimWeapon(InputAction.CallbackContext context)
     {
+        if (context.started)
+        {
+            _manualAim = true;
+        }
+        else if (context.canceled)
+        {
+            _manualAim = false;
+        }
+       
         if (_isGamepad == false)
         {
             // Update the rotation of the weapon based on the pointer position
             var pointerPosition = context.ReadValue<Vector2>();
             var playerHandsWeapon = _playerHandsGameObject.GetComponent<PlayerHandsController>();
             playerHandsWeapon.UpdatePositionMouse(pointerPosition);
-
-            var mouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(pointerPosition.x, pointerPosition.y, Camera.main.nearClipPlane));
-            _pointerPosition = mouseWorldPosition;
         }
 
         else if (_isGamepad == true)
         {
             var pointerPosition = context.ReadValue<Vector2>();
             var playerHandsWeapon = _playerHandsGameObject.GetComponent<PlayerHandsController>();
-            playerHandsWeapon.UpdatePositionGamepad(pointerPosition);
+            playerHandsWeapon.UpdatePositionGamepadAndAutoAim(pointerPosition);
         }
+    }
+
+    public void AutoAim(Vector3 enemyPosition)
+    {
+        var pointerPosition = enemyPosition;
+        var playerHandsWeapon = _playerHandsGameObject.GetComponent<PlayerHandsController>();
+        playerHandsWeapon.UpdatePositionGamepadAndAutoAim(pointerPosition);
     }
 
     public void OnDeviceChange(PlayerInput playerInput)

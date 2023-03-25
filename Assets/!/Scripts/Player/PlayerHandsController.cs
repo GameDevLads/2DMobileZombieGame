@@ -14,13 +14,14 @@ public class PlayerHandsController : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, _angle));
     }
 
-    public void UpdatePositionGamepad(Vector2 pointerPosition)
+    public void UpdatePositionGamepadAndAutoAim(Vector2 pointerPosition)
     {
         //this keeps the position of the weapon at the last point before rotation stopped instead of resetting to the default position
         if (pointerPosition == Vector2.zero) return;
 
         transform.localScale = pointerPosition.x > 0 ? Vector3.one : new Vector3(1, -1, -1);
         _angle = Mathf.Atan2(pointerPosition.y, pointerPosition.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(_angle * Vector3.forward); ;
+        transform.rotation = Quaternion.Euler(_angle * Vector3.forward);
     }
+
 }
