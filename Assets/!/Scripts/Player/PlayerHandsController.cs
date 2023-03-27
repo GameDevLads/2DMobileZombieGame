@@ -23,5 +23,4 @@ public class PlayerHandsController : MonoBehaviour
         _angle = Mathf.Atan2(pointerPosition.y, pointerPosition.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(_angle * Vector3.forward);
     }
-
 }

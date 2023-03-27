@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using Assets.Scripts.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +9,6 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActions
 {
-
     private Vector2 _moveDirection = Vector2.zero;
     private Vector2 _pointerPosition;
     private Vector3 _moveDirectionVector3;
@@ -41,8 +41,7 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     private bool _manualAim = false;
 
     private GameObject _playerHandsGameObject;
-
-    private GameObject _enemy;
+    public Vector3VariableSO _enemyPositionFromPlayerSO;
 
     // This is the player hand object that has a weapon as a child object which rotates around the player
     void InitPlayerHands()
@@ -62,9 +61,7 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
         InitPlayerHands();
 
         //setting the target of the camera to the player
-        Camera.main.GetComponent<PlayerCamera>().setTarget(gameObject.transform);
-
-        _enemy = GameObject.FindWithTag("Enemy");
+        Camera.main.GetComponent<PlayerCamera>().setTarget(gameObject.transform);  
     }
 
     void Update()
@@ -78,16 +75,33 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
         {
             UseWeapon();
         }
-        
-        //direction is the position of the enemy - the position of the player
-        Vector3 direction = _enemy.transform.position - transform.position;
+
+        //_enemyPositionFromPlayerSO is the position of the enemy in relation to the player.
+        _enemyPositionFromPlayerSO.Value = FindClosestEnemy().transform.position - transform.position;
         if(_manualAim == false)
         {
-            AutoAim(direction);
+            AutoAim(_enemyPositionFromPlayerSO.Value);
         }
-        
     }
-
+    public GameObject FindClosestEnemy()
+    {
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject closest = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (GameObject go in gos)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closest = go;
+                distance = curDistance;
+            }
+        }
+        return closest;
+    }
     private void UseWeapon()
     {
         var weaponScripts = GetComponentsInChildren(typeof(IPlayerWeapon));
@@ -100,7 +114,6 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
             }
         }
     }
-
     public void OnMove(InputAction.CallbackContext context)
     {
         _moveDirection = context.ReadValue<Vector2>().normalized;
