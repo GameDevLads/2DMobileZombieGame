@@ -41,7 +41,9 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     private bool _manualAim = false;
 
     private GameObject _playerHandsGameObject;
-    public Vector3VariableSO _enemyPositionFromPlayerSO;
+    public Vector3VariableSO enemyPositionFromPlayerSO;
+    public CircleCollider2D cr;
+    public FloatVariableSO autoAimRangeSO;
 
     // This is the player hand object that has a weapon as a child object which rotates around the player
     void InitPlayerHands()
@@ -61,7 +63,10 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
         InitPlayerHands();
 
         //setting the target of the camera to the player
-        Camera.main.GetComponent<PlayerCamera>().setTarget(gameObject.transform);  
+        Camera.main.GetComponent<PlayerCamera>().setTarget(gameObject.transform);
+
+        //sets the radius of the Circle Colider to the value of autoAimtRandeSO. This value will be modified by each of the guns, meaning each gun will have a different autoaim range.
+        cr.radius = autoAimRangeSO.Value;  
     }
 
     void Update()
@@ -75,14 +80,26 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
         {
             UseWeapon();
         }
+        //_enemyPositionFromPlayerSO is the Vector3 position of the enemy in relation to the player.
+        enemyPositionFromPlayerSO.Value = FindClosestEnemy().transform.position - transform.position;
+    }
 
-        //_enemyPositionFromPlayerSO is the position of the enemy in relation to the player.
-        _enemyPositionFromPlayerSO.Value = FindClosestEnemy().transform.position - transform.position;
-        if(_manualAim == false)
+    /// <summary>
+    /// The circular Collider stays trigged as long as an enemy is inside and the player isn't manually aiming.
+    /// the trigger, makes the gun shoot and engages the auto aim.
+    /// </summary>
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemy" && _manualAim == false)
         {
-            AutoAim(_enemyPositionFromPlayerSO.Value);
+            UseWeapon();
+            AutoAim(enemyPositionFromPlayerSO.Value);
         }
     }
+
+    /// <summary>
+    /// Finds the enemy object closest to the player and returns it. 
+    /// </summary>
     public GameObject FindClosestEnemy()
     {
         GameObject[] gos;
@@ -192,7 +209,7 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
         {
             _manualAim = false;
         }
-       
+
         if (_isGamepad == false)
         {
             // Update the rotation of the weapon based on the pointer position
@@ -208,7 +225,6 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
             playerHandsWeapon.UpdatePositionGamepadAndAutoAim(pointerPosition);
         }
     }
-
     public void AutoAim(Vector3 enemyPosition)
     {
         var pointerPosition = enemyPosition;
