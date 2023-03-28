@@ -65,7 +65,7 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
         //setting the target of the camera to the player
         Camera.main.GetComponent<PlayerCamera>().setTarget(gameObject.transform);
 
-        //sets the radius of the Circle Colider to the value of autoAimtRandeSO. This value will be modified by each of the guns, meaning each gun will have a different autoaim range.
+        //sets the radius of the Circle Colider to the value of autoAimtRandeSO. This value will be modified by each of the guns, meaning each gun will have a different autoaim range. At some point i should do this in the update method to make it more dynamic by having the value change mid game. 
         cr.radius = autoAimRangeSO.Value;  
     }
 
