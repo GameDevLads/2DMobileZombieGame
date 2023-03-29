@@ -4,8 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActions
 {
