@@ -341,6 +341,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3775570908808499295, guid: d2a6b1c5f1a30924abc0906619655312, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6066341481304386786, guid: d2a6b1c5f1a30924abc0906619655312, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -4881,7 +4885,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1110587954505812564, guid: 14cd9baaf05b1564cbaba086d853f415, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1110587954505812564, guid: 14cd9baaf05b1564cbaba086d853f415, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4991,7 +4995,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &778355937
 PrefabInstance:
@@ -5083,6 +5087,10 @@ PrefabInstance:
     - target: {fileID: 8565416094436821006, guid: 093552d38001b074eaee7a5e608884c2, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 2.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 9214855728008439095, guid: 093552d38001b074eaee7a5e608884c2, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 093552d38001b074eaee7a5e608884c2, type: 3}
