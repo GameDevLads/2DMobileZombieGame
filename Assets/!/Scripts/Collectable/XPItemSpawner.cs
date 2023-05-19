@@ -4,10 +4,10 @@ namespace Assets.Scripts.Collectable
 {
     public class XPItemSpawner : MonoBehaviour
     {
-        public XPPool XPPool;
+        
         public void SpawnXPItem(Vector3 position)
         {
-            GameObject xpItem = XPPool.GetObject();
+            GameObject xpItem = XPPool.instance.GetObject();
             // randomize position slightly
             position.x += Random.Range(-2f, 2f);
             position.y += Random.Range(-2f, 2f);
@@ -18,7 +18,7 @@ namespace Assets.Scripts.Collectable
 
         public void DespawnXPItem(GameObject xpItem)
         {
-            XPPool.ReturnObject(xpItem);
+            XPPool.instance.ReturnObject(xpItem);
         }
     }
 

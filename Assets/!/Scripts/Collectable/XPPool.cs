@@ -9,9 +9,13 @@ namespace Assets.Scripts.Collectable
         [SerializeField] private int _initialPoolSize = 10;
 
         private Queue<GameObject> _pooledObjects;
+        public static XPPool instance; 
 
         private void Awake()
         {
+            if (instance == null) instance = this;
+            else Destroy(gameObject);
+
             InitializePool();
         }
 

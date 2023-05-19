@@ -170,8 +170,9 @@ namespace Assets.Scripts.Gun
                 var direction = GetShootDirection(Muzzle.transform.right);
                 var raycastHit = Physics2D.Raycast(muzzlePosition, direction, _bulletShootDistance);
 
-                if (raycastHit.collider != null)
+                if (raycastHit.collider?.gameObject.tag == "Enemy")
                 { // if we have hit a surface then spawn trail
+                    Debug.Log("hit " + raycastHit.collider.gameObject.name);
                     var currentRotation = GetCurrentRotation(raycastHit.point);
                     var trail = InitTrail(TrailRenderer, Muzzle.transform.position, currentRotation);
                     StartCoroutine(SpawnTrail(trail, raycastHit.point, () => ApplyDamage(raycastHit)));

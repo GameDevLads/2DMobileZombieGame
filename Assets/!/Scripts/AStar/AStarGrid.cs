@@ -11,9 +11,11 @@ namespace Assets.Scripts.AStar
         //collidableMap is the Tilemap containing collidable tiles
         //gridWorldSize is the size of the grid in world units centered in the middle of the grid
         //allowDiagonals determines whether diagonal nodes are returned as neighbor
-        public Tilemap collidableMap;
+       
         public Vector2 gridWorldSize;
         public bool allowDiagonals = true;
+        public GameObject map;
+        private Collider2D[] _colliders;
 
         //For debugging purposes, shows the A* grid
         public bool showGrid;
@@ -40,8 +42,20 @@ namespace Assets.Scripts.AStar
             gridX = Mathf.RoundToInt(gridWorldSize.x);
             gridY = Mathf.RoundToInt(gridWorldSize.y);
 
+            _colliders = map.GetComponents<Collider2D>();
             //start building the grid
             BuildGrid();
+        }
+
+        bool isObjectHere(Vector3 position)
+        {
+            foreach(Collider2D collider in _colliders)
+            {
+                if (collider.bounds.Contains(position)) return true;
+            }
+          
+            return false;
+            
         }
 
         void BuildGrid()
@@ -60,10 +74,17 @@ namespace Assets.Scripts.AStar
                     bool isSolid = false;
 
                     //if there is a collidable tile there, then mark the node as solid
-                    if (collidableMap.HasTile(collidableMap.WorldToCell(checkPos)))
+                    //if (collidableMap.HasTile(collidableMap.WorldToCell(checkPos)))
+                    //{
+                        
+                    //    isSolid = true;
+                    //}
+                    if (isObjectHere(checkPos))
                     {
                         isSolid = true;
                     }
+
+                 
 
                     //update the node map
                     nodes[x, y] = new AStarNode(isSolid, x, y);
