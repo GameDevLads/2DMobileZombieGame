@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 863bc622781d677ebbd241128904dfbf, type: 3}
-  m_Name: MS Type
+  m_Name: Health Stat Type
   m_EditorClassIdentifier: 
-  Value: MovementSpeed
+  Value: Health
