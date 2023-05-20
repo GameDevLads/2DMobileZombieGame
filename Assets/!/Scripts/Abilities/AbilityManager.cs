@@ -77,7 +77,7 @@ namespace Assets.Scripts.Abilities
             if (ability.CurrentLevel == 0)
             {
                 _activeAbilities.Add(ability);
-                ability.Upgrade();
+                ability.IncreaseLevel();
                 ability.Init(gameObject);
                 return;
             }

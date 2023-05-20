@@ -23,6 +23,7 @@ namespace Assets.Scripts
         private SpriteRenderer _spriteRenderer;
         private Rigidbody2D _rb;
         private EnemyStats _enemyStats;
+        private Vector2 _knockbackVelocity;
 
         void Start()
         {
@@ -49,9 +50,9 @@ namespace Assets.Scripts
                 FindPath(transform.position, Target.position);
             }
 
-            _animator.SetBool("isMoving", false);
-            _rb.velocity = Vector2.zero;
 
+            _animator.SetBool("isMoving", false);
+            ReduceKnockbackForce();
             if (_path.Count > 0)
             {
                 // For debugging
@@ -63,9 +64,7 @@ namespace Assets.Scripts
 
                     Vector3 dir = _path[_currentWaypoint].worldPosition - transform.position;
                     dir = Vector3.ClampMagnitude(dir.normalized, 0.5f);
-
-                    if (_rb.velocity.normalized != (Vector2)dir)
-                        _rb.velocity = new Vector2(dir.x * _speed, dir.y * _speed);
+                    _rb.velocity = new Vector2(dir.x * _speed, dir.y * _speed) + _knockbackVelocity;
 
                     if (dir.x > 0)
                         _spriteRenderer.flipX = true;
@@ -88,6 +87,16 @@ namespace Assets.Scripts
         {
             _path = _aStar.FindPath(start, end);
         }
+        public void Knockback(Vector2 direction, float force)
+        {
+            _knockbackVelocity = direction * force;
+        }
+        private void ReduceKnockbackForce()
+        {
+            float knockbackDampening = 5f; // Adjust this value to control how quickly the knockback force is reduced.
+            _knockbackVelocity = Vector2.Lerp(_knockbackVelocity, Vector2.zero, Time.fixedDeltaTime * knockbackDampening);
+        }
+
         void OnDrawGizmos()
         {
             // Draw the path

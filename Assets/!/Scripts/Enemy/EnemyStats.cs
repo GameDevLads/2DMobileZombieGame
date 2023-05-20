@@ -11,7 +11,7 @@ namespace Assets.Scripts.Stats
         public StatsSO StatsSO;
         private float _health;
         private float _attackSpeed;
-        private float _attackRange;
+        private float _attackRange = 1f;
         private float _movementSpeed;
 
         private void Start()
@@ -19,7 +19,7 @@ namespace Assets.Scripts.Stats
             StatsSO.Reset();
             _health = StatsSO.CurrentStats.Health;
             _attackSpeed = StatsSO.CurrentStats.AttackSpeed;
-            _attackRange = StatsSO.CurrentStats.AttackRange;
+            _attackRange *= StatsSO.CurrentStats.AttackRangeMultiplier;
             _movementSpeed = StatsSO.CurrentStats.MovementSpeed;
 
         }
