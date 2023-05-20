@@ -1,13 +1,12 @@
+using Assets.Scripts;
 using Assets.Scripts.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActions
 {
-
     private Vector2 _moveDirection = Vector2.zero;
     private Vector2 _pointerPosition;
     private Vector3 _moveDirectionVector3;
@@ -37,8 +36,12 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     private float _trailVisibleTime = 0.2f;
     private bool _useWeapon = false;
     private bool _isGamepad;
+    private bool _manualAim = false;
 
     private GameObject _playerHandsGameObject;
+    public Vector3VariableSO enemyPositionFromPlayerSO;
+    public CircleCollider2D cr;
+    public FloatVariableSO autoAimRangeSO;
 
     // This is the player hand object that has a weapon as a child object which rotates around the player
     void InitPlayerHands()
@@ -59,6 +62,9 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
         //setting the target of the camera to the player
         Camera.main.GetComponent<PlayerCamera>().setTarget(gameObject.transform);
+
+        //sets the radius of the Circle Colider to the value of autoAimtRandeSO. This value will be modified by each of the guns, meaning each gun will have a different autoaim range. At some point i should do this in the update method to make it more dynamic by having the value change mid game. 
+        cr.radius = autoAimRangeSO.Value;  
     }
 
     void Update()
@@ -72,8 +78,45 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
         {
             UseWeapon();
         }
+        //_enemyPositionFromPlayerSO is the Vector3 position of the enemy in relation to the player.
+        enemyPositionFromPlayerSO.Value = FindClosestEnemy().transform.position - transform.position;
     }
 
+    /// <summary>
+    /// The circular Collider stays trigged as long as an enemy is inside and the player isn't manually aiming.
+    /// the trigger, makes the gun shoot and engages the auto aim.
+    /// </summary>
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemy" && _manualAim == false)
+        {
+            UseWeapon();
+            AutoAim(enemyPositionFromPlayerSO.Value);
+        }
+    }
+
+    /// <summary>
+    /// Finds the enemy object closest to the player and returns it. 
+    /// </summary>
+    public GameObject FindClosestEnemy()
+    {
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject closest = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (GameObject go in gos)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closest = go;
+                distance = curDistance;
+            }
+        }
+        return closest;
+    }
     private void UseWeapon()
     {
         var weaponScripts = GetComponentsInChildren(typeof(IPlayerWeapon));
@@ -86,7 +129,6 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
             }
         }
     }
-
     public void OnMove(InputAction.CallbackContext context)
     {
         _moveDirection = context.ReadValue<Vector2>().normalized;
@@ -157,23 +199,35 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     public void OnAimWeapon(InputAction.CallbackContext context)
     {
+        if (context.started)
+        {
+            _manualAim = true;
+        }
+        else if (context.canceled)
+        {
+            _manualAim = false;
+        }
+
         if (_isGamepad == false)
         {
             // Update the rotation of the weapon based on the pointer position
             var pointerPosition = context.ReadValue<Vector2>();
             var playerHandsWeapon = _playerHandsGameObject.GetComponent<PlayerHandsController>();
             playerHandsWeapon.UpdatePositionMouse(pointerPosition);
-
-            var mouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(pointerPosition.x, pointerPosition.y, Camera.main.nearClipPlane));
-            _pointerPosition = mouseWorldPosition;
         }
 
         else if (_isGamepad == true)
         {
             var pointerPosition = context.ReadValue<Vector2>();
             var playerHandsWeapon = _playerHandsGameObject.GetComponent<PlayerHandsController>();
-            playerHandsWeapon.UpdatePositionGamepad(pointerPosition);
+            playerHandsWeapon.UpdatePositionGamepadAndAutoAim(pointerPosition);
         }
+    }
+    public void AutoAim(Vector3 enemyPosition)
+    {
+        var pointerPosition = enemyPosition;
+        var playerHandsWeapon = _playerHandsGameObject.GetComponent<PlayerHandsController>();
+        playerHandsWeapon.UpdatePositionGamepadAndAutoAim(pointerPosition);
     }
 
     public void OnDeviceChange(PlayerInput playerInput)

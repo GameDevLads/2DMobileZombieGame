@@ -4390,7 +4390,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collidableMap: {fileID: 1451511970452969179, guid: 354649bfcac13fb4f963479ee59dad4b, type: 3}
-  gridBase: {fileID: 742479516959392354, guid: 8476708a271c62843b0ac24fe56d6a8c, type: 3}
   gridWorldSize: {x: 50, y: 50}
   allowDiagonals: 0
   showGrid: 0
