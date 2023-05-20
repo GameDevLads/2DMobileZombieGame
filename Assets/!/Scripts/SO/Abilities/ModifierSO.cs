@@ -7,7 +7,8 @@ namespace Assets.Scripts.Abilities
     [CreateAssetMenu(fileName = "New Modifier", menuName = "ScriptableObjects/Abilities/Modifier")]
     public class ModifierSO : ScriptableObject
     {
-        [Tooltip("The stat to modify. This should not be empty.")]
+        [Tooltip(@"Stat Type is a ScriptableObject that holds the name of the stat that should be modified;
+if you want to add a new stat, you need to create a new ScriptableObject for it, as well as add a `case` to the SetValue() method in StatsSO (/Assets/!/Scripts/SO/Stats/StatsSO.cs#L81)")]
         public Stats.StatTypeSO StatType;
         public Operation Operation;
         public float Value;

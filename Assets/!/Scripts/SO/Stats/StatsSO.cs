@@ -18,16 +18,19 @@ namespace Assets.Scripts.Stats
             CurrentStats = new Stats
             {
                 Health = BaseStats.Health,
-                Stamina = BaseStats.Stamina,
                 Strength = BaseStats.Strength,
                 Armor = BaseStats.Armor,
                 MagicResist = BaseStats.MagicResist,
                 AttackSpeed = BaseStats.AttackSpeed,
-                AttackRange = BaseStats.AttackRange,
                 MovementSpeed = BaseStats.MovementSpeed,
                 CriticalChance = BaseStats.CriticalChance,
                 CriticalDamage = BaseStats.CriticalDamage,
-                LifeSteal = BaseStats.LifeSteal
+                LifeSteal = BaseStats.LifeSteal,
+                PickupRange = BaseStats.PickupRange,
+                CooldownReduction = BaseStats.CooldownReduction,
+                HealthRegeneration = BaseStats.HealthRegeneration,
+                AttackRangeMultiplier = BaseStats.AttackRangeMultiplier,
+                XPMultiplier = BaseStats.XPMultiplier
             };
             Level = 1;
         }
@@ -61,16 +64,19 @@ namespace Assets.Scripts.Stats
     public class Stats
     {
         public float Health;
-        public float Stamina;
         public float Strength;
         public float Armor;
         public float MagicResist;
         public float AttackSpeed;
-        public float AttackRange;
         public float MovementSpeed;
         public float CriticalChance;
         public float CriticalDamage;
         public float LifeSteal;
+        public float PickupRange;
+        public float CooldownReduction;
+        public float HealthRegeneration;
+        public float AttackRangeMultiplier;
+        public float XPMultiplier;
 
         public void SetValue(string propertyName, float value)
         {
@@ -78,9 +84,6 @@ namespace Assets.Scripts.Stats
             {
                 case "Health":
                     Health = value;
-                    break;
-                case "Stamina":
-                    Stamina = value;
                     break;
                 case "Strength":
                     Strength = value;
@@ -94,9 +97,6 @@ namespace Assets.Scripts.Stats
                 case "AttackSpeed":
                     AttackSpeed = value;
                     break;
-                case "AttackRange":
-                    AttackRange = value;
-                    break;
                 case "MovementSpeed":
                     MovementSpeed = value;
                     break;
@@ -109,6 +109,21 @@ namespace Assets.Scripts.Stats
                 case "LifeSteal":
                     LifeSteal = value;
                     break;
+                case "PickupRange":
+                    PickupRange = value;
+                    break;
+                case "CooldownReduction":
+                    CooldownReduction = value;
+                    break;
+                case "HealthRegeneration":
+                    HealthRegeneration = value;
+                    break;
+                case "AttackRangeMultiplier":
+                    AttackRangeMultiplier = value;
+                    break;
+                case "XPMultiplier":
+                    XPMultiplier = value;
+                    break;
                 default:
                     throw new System.Exception($"Property {propertyName} does not exist");
             }
@@ -119,16 +134,19 @@ namespace Assets.Scripts.Stats
             return propertyName switch
             {
                 "Health" => Health,
-                "Stamina" => Stamina,
                 "Strength" => Strength,
                 "Armor" => Armor,
                 "MagicResist" => MagicResist,
                 "AttackSpeed" => AttackSpeed,
-                "AttackRange" => AttackRange,
                 "MovementSpeed" => MovementSpeed,
                 "CriticalChance" => CriticalChance,
                 "CriticalDamage" => CriticalDamage,
                 "LifeSteal" => LifeSteal,
+                "PickupRange" => PickupRange,
+                "CooldownReduction" => CooldownReduction,
+                "HealthRegeneration" => HealthRegeneration,
+                "AttackRangeMultiplier" => AttackRangeMultiplier,
+                "XPMultiplier" => XPMultiplier,
                 _ => throw new System.Exception($"Property {propertyName} does not exist"),
             };
         }
