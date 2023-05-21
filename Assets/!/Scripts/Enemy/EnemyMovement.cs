@@ -23,6 +23,7 @@ namespace Assets.Scripts
         private SpriteRenderer _spriteRenderer;
         private Rigidbody2D _rb;
         private EnemyStats _enemyStats;
+        private Vector2 _knockbackVelocity;
 
         void Start()
         {
@@ -42,52 +43,87 @@ namespace Assets.Scripts
             if (Target == null)
                 return;
 
+            // Check if the target's position has changed since the last frame
             if (Target.position != _lastTargetPos)
             {
+                // Reset the current waypoint index since the path has changed
                 _currentWaypoint = 0;
+
                 _lastTargetPos = Target.position;
+
                 FindPath(transform.position, Target.position);
             }
 
             _animator.SetBool("isMoving", false);
-            _rb.velocity = Vector2.zero;
 
+            ReduceKnockbackForce(); // Reduce the knockback velocity on every frame so that the enemy doesn't get stuck in a knockback state
+
+            // If there are waypoints in the path to follow
             if (_path.Count > 0)
             {
-                // For debugging
                 _pathCount = _path.Count;
 
-                if (_currentWaypoint <= _path.Count - _reachDistance)
+                // If the enemy hasn't reached the target (current waypoint is far from the end of the path)
+                if (_currentWaypoint < _path.Count - _reachDistance)
                 {
                     _animator.SetBool("isMoving", true);
 
+                    // Calculate the direction to the current waypoint
                     Vector3 dir = _path[_currentWaypoint].worldPosition - transform.position;
+
+                    // Normalize the direction and limit the maximum length to 0.5
                     dir = Vector3.ClampMagnitude(dir.normalized, 0.5f);
 
-                    if (_rb.velocity.normalized != (Vector2)dir)
-                        _rb.velocity = new Vector2(dir.x * _speed, dir.y * _speed);
+                    // Calculate the velocity required to move in the direction of the waypoint and apply any knockback force that might be acting on the enemy
+                    _rb.velocity = new Vector2(dir.x * _speed, dir.y * _speed) + _knockbackVelocity;
 
                     if (dir.x > 0)
                         _spriteRenderer.flipX = true;
                     else
                         _spriteRenderer.flipX = false;
 
+                    // If the entity is close enough to the waypoint, increment the waypoint counter to move to the next one
                     if (Vector3.Distance(transform.position, _path[_currentWaypoint].worldPosition) < 0.1f)
                         _currentWaypoint++;
                 }
-                if (_currentWaypoint > _path.Count)
+
+                // If we've reached the end of the path, stop moving
+                if (_currentWaypoint >= _path.Count)
                 {
                     _animator.SetBool("isMoving", false);
                     _rb.velocity = Vector2.zero;
-                    _currentWaypoint = 0;
                 }
             }
+            // If there's no path, stop moving
+            else
+            {
+                _animator.SetBool("isMoving", false);
+                _rb.velocity = Vector2.zero;
+            }
         }
+
 
         public void FindPath(Vector3 start, Vector3 end)
         {
             _path = _aStar.FindPath(start, end);
         }
+        /// <summary>
+        /// Applies a knockback force to the enemy.
+        /// </summary>
+        public void Knockback(Vector2 direction, float force)
+        {
+            _knockbackVelocity = direction * force;
+        }
+
+        /// <summary>
+        /// Reduces the knockback force over time.
+        /// </summary>
+        private void ReduceKnockbackForce()
+        {
+            float knockbackDampening = 5f; // Adjust this value to control how quickly the knockback force is reduced.
+            _knockbackVelocity = Vector2.Lerp(_knockbackVelocity, Vector2.zero, Time.fixedDeltaTime * knockbackDampening);
+        }
+
         void OnDrawGizmos()
         {
             // Draw the path

@@ -7,7 +7,7 @@ namespace Assets.Scripts.AStar
 {
     public class Algorithm : MonoBehaviour
     {
-        public AStarGrid grid;
+        private AStarGrid grid;
         void Start()
         {
             grid = AStarGrid.instance;

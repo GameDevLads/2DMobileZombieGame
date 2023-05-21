@@ -4,14 +4,11 @@ namespace Assets.Scripts.Abilities
     public abstract class Ability : ScriptableObject
     {
         public string Name;
-        public string Description;
         public Sprite Icon;
         public AudioClip Sound;
         [SerializeField]
         private int _currentLevel = 0;
         public bool IsUnlocked;
-        public float BaseCooldown = 1f;
-
         public int CurrentLevel
         {
             get
@@ -41,6 +38,8 @@ namespace Assets.Scripts.Abilities
         public abstract void Reset();
         public abstract void Init(GameObject gameObject = null);
         public abstract void TriggerAbility();
+        public abstract string GetDescription(int level);
+        public abstract float GetCooldown();
 
     }
 

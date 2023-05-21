@@ -25,6 +25,23 @@ namespace Assets.Scripts.Abilities
                 _ => null,
             };
         }
+        public override string GetDescription(int level)
+        {
+            return level switch
+            {
+                1 => Level1.Description,
+                2 => Level2.Description,
+                3 => Level3.Description,
+                4 => Level4.Description,
+                5 => Level5.Description,
+                _ => null,
+            };
+        }
+
+        public override float GetCooldown()
+        {
+            return 0;
+        }
         public override void Init(GameObject gameObject = null)
         {
         }
@@ -71,6 +88,7 @@ namespace Assets.Scripts.Abilities
     [System.Serializable]
     public class Level
     {
+        public string Description;
         public List<ModifierSO> Modifiers;
     }
 }

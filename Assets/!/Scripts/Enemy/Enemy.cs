@@ -29,7 +29,7 @@ namespace Assets.Scripts
             _healthText.transform.rotation = Quaternion.identity;
             _healthText.transform.SetParent(transform);
             _healthText.transform.localPosition = new Vector2(-2f, 1.5f);
-            _xpItemSpawner = GetComponent<XPItemSpawner>();
+            _xpItemSpawner = GameObject.Find("XPItemSpawner").GetComponent<XPItemSpawner>();
 
             var healthText = _healthText.AddComponent<TextMesh>();
             healthText.text = string.Format(_healthTextFormat, Health, Health);
@@ -47,10 +47,6 @@ namespace Assets.Scripts
 
         public void ApplyDamage(float damage)
         {
-            for (int i = 0; i < damage; i++)
-            {
-                _xpItemSpawner.SpawnXPItem(transform.position);
-            }
             var damageObj = new GameObject();
             damageObj.transform.position = transform.position;
             damageObj.transform.rotation = Quaternion.identity;
@@ -68,6 +64,7 @@ namespace Assets.Scripts
             {
                 Destroy(_healthText);
                 Destroy(gameObject);
+                _xpItemSpawner.SpawnXPItem(transform.position);
             }
 
             Destroy(damageObj, 1f);

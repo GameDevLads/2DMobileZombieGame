@@ -16,10 +16,16 @@ namespace Assets.Scripts.Abilities
         {
             Name.GetComponent<TextMeshProUGUI>().text = ability.Name;
             Image.GetComponent<Image>().sprite = ability.Icon;
-            Description.GetComponent<TextMeshProUGUI>().text = ability.Description;
+            Description.GetComponent<TextMeshProUGUI>().text = ability.GetDescription(ability.CurrentLevel + 1);
             // Level.GetComponent<TextMeshProUGUI>().text = ability.CurrentLevel.ToString();
+            Button.onClick.RemoveAllListeners();
             Button.onClick.AddListener(() => AbilityManager.Instance.OnButtonPressed(ability));
         }
+        public void RemoveListeners()
+        {
+            Button.onClick.RemoveAllListeners();
+        }
+        
 
     }
 }

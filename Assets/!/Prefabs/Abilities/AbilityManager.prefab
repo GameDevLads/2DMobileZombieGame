@@ -48,7 +48,8 @@ MonoBehaviour:
   EnemyStats:
   - {fileID: 11400000, guid: 8e36868878a360f7ab070f747718fced, type: 2}
   Abilities:
-  - {fileID: 11400000, guid: af252790dcd023f34850ec559339ea0f, type: 2}
   - {fileID: 11400000, guid: 180bc66633089f63ab278604326a8a49, type: 2}
+  - {fileID: 11400000, guid: d902d36f92f65699c96439ac678f4e10, type: 2}
+  - {fileID: 11400000, guid: df482fb32d4332264a5aa554a9cd7878, type: 2}
   AbilityPicker: {fileID: 0}
   UIAbilities: {fileID: 0}

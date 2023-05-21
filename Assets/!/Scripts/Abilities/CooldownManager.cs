@@ -31,7 +31,13 @@ namespace Assets.Scripts.Abilities
 
         private IEnumerator Cooldown(Ability ability)
         {
-            WaitForSeconds wait = new(ability.BaseCooldown);
+            float cooldown = ability.GetCooldown();
+            if (cooldown <= 0)
+            {
+                Debug.LogWarning($"Cooldown for {ability.name} is 0 or less.");
+                yield break;
+            }
+            WaitForSeconds wait = new(cooldown);
             while (true)
             {
                 ability.TriggerAbility();
