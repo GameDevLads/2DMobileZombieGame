@@ -1,13 +1,11 @@
 using UnityEngine;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Abilities;
+using System.Collections.Generic;
+using System;
 
 public class RotatingWeapons : MonoBehaviour, IProjectileController
 {
-    /*
-    * Each Projectile Ability should implement IProjectileController
-    *
-    */
     public RotatingWeapon WeaponPrefab;
     public int WeaponCount = 3;
     public float Radius = 2f;
@@ -15,6 +13,7 @@ public class RotatingWeapons : MonoBehaviour, IProjectileController
     public float Damage = 1f;
     public float Knockback = 5f;
     private RotatingWeapon[] _weapons;
+    private Dictionary<Operation, Func<float, float, float>> operations;
 
     private void Start()
     {
@@ -25,6 +24,13 @@ public class RotatingWeapons : MonoBehaviour, IProjectileController
             _weapons[i] = Instantiate(WeaponPrefab);
             _weapons[i].transform.SetParent(transform);
         }
+        operations = new Dictionary<Operation, Func<float, float, float>>
+        {
+            {Operation.Add, (a, b) => a + b},
+            {Operation.Multiply, (a, b) => a * b},
+            {Operation.Subtract, (a, b) => a - b},
+            {Operation.Divide, (a, b) => a / b},
+        };
     }
 
     private void Update()
@@ -61,99 +67,34 @@ public class RotatingWeapons : MonoBehaviour, IProjectileController
     public void UseWeapon(Vector2 direction)
     {
     }
-
-    public void AddModifier(ProjectileModifier modifier)
+    private float ModifyStat(Operation operation, float stat, float modifierValue)
     {
-        switch (modifier.StatType.Value)
-        {
-            case "Damage":
-                Damage += modifier.Value;
-                break;
-            case "Speed":
-                RotationSpeed += modifier.Value;
-                break;
-            case "Range":
-                Radius += modifier.Value;
-                break;
-            case "WeaponCount":
-                WeaponCount += (int)modifier.Value;
-                AddWeapon((int)modifier.Value);
-                break;
-            case "Knockback":
-                Knockback += modifier.Value;
-                break;
-            default:
-                break;
-        }
+        return operations[operation](stat, modifierValue);
     }
 
-    public void MultiplyModifier(ProjectileModifier modifier)
+    /// <summary>
+    /// Applies the relevant modifier stat to the weapon.
+    /// </summary>
+    public void ApplyModifier(ProjectileModifier modifier)
     {
+        var operation = modifier.Operation;
         switch (modifier.StatType.Value)
         {
             case "Damage":
-                Damage *= modifier.Value;
+                Damage = ModifyStat(operation, Damage, modifier.Value);
                 break;
             case "Speed":
-                RotationSpeed *= modifier.Value;
+                RotationSpeed = ModifyStat(operation, RotationSpeed, modifier.Value);
                 break;
             case "Range":
-                Radius *= modifier.Value;
+                Radius = ModifyStat(operation, Radius, modifier.Value);
                 break;
             case "WeaponCount":
-                WeaponCount *= (int)modifier.Value;
+                WeaponCount = (int)ModifyStat(operation, WeaponCount, (int)modifier.Value);
+                if (operation == Operation.Add) AddWeapon((int)modifier.Value);
                 break;
             case "Knockback":
-                Knockback *= modifier.Value;
-                break;
-            default:
-                break;
-        }
-    }
-
-    public void SubtractModifier(ProjectileModifier modifier)
-    {
-        switch (modifier.StatType.Value)
-        {
-            case "Damage":
-                Damage -= modifier.Value;
-                break;
-            case "Speed":
-                RotationSpeed -= modifier.Value;
-                break;
-            case "Range":
-                Radius -= modifier.Value;
-                break;
-            case "WeaponCount":
-                WeaponCount -= (int)modifier.Value;
-                break;
-            case "Knockback":
-                Knockback -= modifier.Value;
-                break;
-            default:
-                break;
-        }
-    }
-
-    public void DivideModifier(ProjectileModifier modifier)
-    {
-        switch (modifier.StatType.Value)
-        {
-            case "Damage":
-                Damage /= modifier.Value;
-                break;
-            case "Speed":
-                RotationSpeed /= modifier.Value;
-                break;
-            case "Range":
-                Radius /= modifier.Value;
-                break;
-            case "WeaponCount":
-                WeaponCount /= (int)modifier.Value;
-                Start();
-                break;
-            case "Knockback":
-                Knockback /= modifier.Value;
+                Knockback = ModifyStat(operation, Knockback, modifier.Value);
                 break;
             default:
                 break;

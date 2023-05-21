@@ -90,7 +90,6 @@ namespace Assets.Scripts.Abilities
 
         public override void TriggerAbility()
         {
-            _projectileController?.UseWeapon(AutoAim.Instance.GetAimDirection());
         }
 
 
@@ -126,22 +125,7 @@ if you want to add a new stat, you need to create a new ScriptableObject for it,
         {
             Modifiers.ForEach(modifier =>
             {
-                switch (modifier.Operation)
-                {
-                    case Operation.Add:
-                        _projectileController.AddModifier(modifier);
-                        break;
-                    case Operation.Multiply:
-                        _projectileController.MultiplyModifier(modifier);
-                        break;
-                    case Operation.Subtract:
-                        _projectileController.SubtractModifier(modifier);
-                        break;
-                    case Operation.Divide:
-                        _projectileController.DivideModifier(modifier);
-                        break;
-                    
-                }
+                _projectileController.ApplyModifier(modifier);
             });
         }
     }
