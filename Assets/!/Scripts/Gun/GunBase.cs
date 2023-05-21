@@ -168,7 +168,16 @@ namespace Assets.Scripts.Gun
                 StartCoroutine(SpawnMuzzleFlash());
 
                 var direction = GetShootDirection(Muzzle.transform.right);
-                var raycastHit = Physics2D.Raycast(muzzlePosition, direction, _bulletShootDistance);
+
+                // create a layer mask that will ignore the XP layer
+                // the "1 <<" effectively multiplies 1 by 2 raised to the power of the XP layer's index.
+                // this is necessary because Unity's layers are represented by bits in an integer.
+                int xpLayer = 1 << LayerMask.NameToLayer("XP");
+
+                // "~" flips the bits of the number, so that all bits are 1 except the XP layer's bit.
+                int layerMask = ~xpLayer;
+
+                var raycastHit = Physics2D.Raycast(muzzlePosition, direction, _bulletShootDistance, layerMask);
 
                 if (raycastHit.collider != null)
                 { // if we have hit a surface then spawn trail
