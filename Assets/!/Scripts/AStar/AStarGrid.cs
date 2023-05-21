@@ -7,23 +7,22 @@ namespace Assets.Scripts.AStar
 {
     public class AStarGrid : MonoBehaviour
     {
-        //Grid parameters:
-        //collidableMap is the Tilemap containing collidable tiles
-        //gridWorldSize is the size of the grid in world units centered in the middle of the grid
-        //allowDiagonals determines whether diagonal nodes are returned as neighbor
-        public Tilemap collidableMap;
+        [Tooltip("The size of the grid in world units centered in the middle of the grid. Should be set to a reasonable size as it will affect performance.")]
         public Vector2 gridWorldSize;
+        [Tooltip("Whether diagonal nodes are included in the pathfinding.")]
         public bool allowDiagonals = true;
 
-        //For debugging purposes, shows the A* grid
+        [Tooltip("For debugging purposes, shows the A* grid when gizmos are enabled.")]
         public bool showGrid;
 
         //The node map
         AStarNode[,] nodes;
 
         private int gridX, gridY;
-        private float offset = 0.5f;
+        private readonly float offset = 0.5f;
         public static AStarGrid instance;
+        [Tooltip("The GameObject containing the colliders that will be used to build the grid.")]
+        public GameObject Colliders;
 
         void Awake()
         {
@@ -50,6 +49,7 @@ namespace Assets.Scripts.AStar
             nodes = new AStarNode[gridX, gridY];
             //Bottom left corner of bottom left tile
             Vector3 startPos = transform.position - new Vector3(gridWorldSize.x / 2, gridWorldSize.y / 2, 0);
+            Collider2D[] colliders = Colliders.GetComponents<Collider2D>();
             //iterate across the map space
             for (int x = 0; x < gridX; x++)
             {
@@ -59,10 +59,14 @@ namespace Assets.Scripts.AStar
                     Vector3 checkPos = startPos + new Vector3(x + offset, y + offset, 0);
                     bool isSolid = false;
 
-                    //if there is a collidable tile there, then mark the node as solid
-                    if (collidableMap.HasTile(collidableMap.WorldToCell(checkPos)))
+                    //if there is a collider at checkPos, then mark the node as solid
+                    foreach (Collider2D collider in colliders)
                     {
-                        isSolid = true;
+                        if (collider.OverlapPoint(checkPos))
+                        {
+                            isSolid = true;
+                            break;
+                        }
                     }
 
                     //update the node map
@@ -130,6 +134,11 @@ namespace Assets.Scripts.AStar
             }
             return neighboringNodes;
         }
+
+
+        /// <summary>
+        /// Returns the grid node at the given world position
+        /// </summary>
         public AStarNode GetNodeByCoords(Vector3 worldPos)
         {
 
@@ -156,8 +165,9 @@ namespace Assets.Scripts.AStar
             return nodes[x, y];
         }
 
-
-
+        /// <summary>
+        /// Returns the world position of the given node.
+        /// </summary>
         public Vector3 WorldPointFromNode(AStarNode node)
         {
             //Center on grid position
@@ -168,6 +178,10 @@ namespace Assets.Scripts.AStar
 
             return pos;
         }
+
+        /// <summary>
+        /// Returns the nearest walkable node to the given node. Keep in mind that this is a very expensive operation.
+        /// </summary>
         public AStarNode GetNearestWalkableNode(AStarNode node, Vector3? exactPos = null)
         {
             if (!node.isSolid)

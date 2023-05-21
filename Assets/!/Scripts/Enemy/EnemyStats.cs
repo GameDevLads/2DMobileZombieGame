@@ -8,7 +8,7 @@ namespace Assets.Scripts.Stats
 {
     public class EnemyStats : MonoBehaviour
     {
-        public StatsSO StatsSO;
+        public StatsSO StatsSO; // the stats ScriptableObject for this enemy
         private float _health;
         private float _attackSpeed;
         private float _attackRange = 1f;

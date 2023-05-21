@@ -47,10 +47,6 @@ namespace Assets.Scripts
 
         public void ApplyDamage(float damage)
         {
-            for (int i = 0; i < damage; i++)
-            {
-                _xpItemSpawner.SpawnXPItem(transform.position);
-            }
             var damageObj = new GameObject();
             damageObj.transform.position = transform.position;
             damageObj.transform.rotation = Quaternion.identity;
@@ -68,6 +64,7 @@ namespace Assets.Scripts
             {
                 Destroy(_healthText);
                 Destroy(gameObject);
+                _xpItemSpawner.SpawnXPItem(transform.position);
             }
 
             Destroy(damageObj, 1f);

@@ -6,10 +6,10 @@ namespace Assets.Scripts.Collectable
 {
     public class XPManager : MonoBehaviour
     {
-        public Image XPBarFill;
-        public TextMeshProUGUI LevelText;
+        public Image XPBarFill; // the fill image of the xp bar in the UI
+        public TextMeshProUGUI LevelText;   // the text that displays the current level
         public PlayerXPSO PlayerXP;
-        public delegate void OnLevelUp();
+        public delegate void OnLevelUp(); 
         public static event OnLevelUp LevelUp;
         public delegate void OnXPChange(float amount);
         public static event OnXPChange XPChange;
@@ -39,6 +39,7 @@ namespace Assets.Scripts.Collectable
         private void UpdateXP(float amount)
         {
             PlayerXP.AddXP(amount);
+            // check if we have enough xp to level up
             if (PlayerXP.CurrentXP.Amount >= PlayerXP.CurrentXP.LevelUpAmount)
             {
                 LevelUp?.Invoke();

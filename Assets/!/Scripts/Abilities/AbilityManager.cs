@@ -10,7 +10,9 @@ namespace Assets.Scripts.Abilities
     {
         public static AbilityManager Instance;
 
+        [Tooltip("The player's stats ScriptableObject")]
         public StatsSO PlayerStats;
+        [Tooltip("List of all enemy stats ScriptableObjects")]
         public List<StatsSO> EnemyStats = new();
 
         [Tooltip("List of all abilities in the game")]
@@ -18,9 +20,11 @@ namespace Assets.Scripts.Abilities
         [SerializeField]
         private readonly List<Ability> _activeAbilities = new();
         public List<Ability> ActiveAbilities => _activeAbilities;
-        // the UI canvas that holds the ability buttons
+        [Tooltip("The GameObject that holds the ability picker UI")]
         public GameObject AbilityPicker;
+        [Tooltip("The child of the ability picker")]
         public GameObject UIAbilities;
+        private readonly Queue<int> levelsToProcess = new();
 
         private void Awake()
         {
@@ -35,24 +39,26 @@ namespace Assets.Scripts.Abilities
             Init();
         }
 
+
         private void OnEnable()
         {
-            XPManager.LevelUp += PresentAbilities;
+            XPManager.LevelUp += OnLevelUp;
         }
 
         private void OnDisable()
         {
-            XPManager.LevelUp -= PresentAbilities;
+            XPManager.LevelUp -= OnLevelUp;
         }
 
-
-        private void Init()
+        private void OnLevelUp()
         {
-            AbilityPicker.SetActive(false);
-            Abilities.ForEach(ability => ability.Reset());
-            _activeAbilities.Clear();
-            EnemyStats.ForEach(enemy => enemy.Reset());
-            PlayerStats.Reset();
+            levelsToProcess.Enqueue(1); // Enqueue one level to process
+
+            // If we're not currently processing a level up, start processing
+            if (levelsToProcess.Count == 1)
+            {
+                PresentAbilities();
+            }
         }
 
         private void PresentAbilities()
@@ -65,7 +71,36 @@ namespace Assets.Scripts.Abilities
             {
                 canvasAbilities[i].SetAbility(abilities[i]);
             }
+        }
 
+        public void OnButtonPressed(Ability ability)
+        {
+            GameObject player = GameObject.FindWithTag("Player");
+            AddOrLevelUpAbility(ability, player);
+            AbilityPicker.SetActive(false);
+            RemoveButtonListeners();
+            PauseManager.Instance.TogglePause();
+
+            // Remove the level we just processed
+            levelsToProcess.Dequeue();
+
+            // If there are more levels to process, present the next set of abilities
+            if (levelsToProcess.Count > 0)
+            {
+                PresentAbilities();
+            }
+        }
+
+
+
+        private void Init()
+        {
+            // reset all abilities and stats
+            AbilityPicker.SetActive(false);
+            Abilities.ForEach(ability => ability.Reset());
+            _activeAbilities.Clear();
+            EnemyStats.ForEach(enemy => enemy.Reset());
+            PlayerStats.Reset();
         }
 
 
@@ -102,15 +137,6 @@ namespace Assets.Scripts.Abilities
                     abilities.Add(ability);
             }
             return abilities;
-        }
-
-        public void OnButtonPressed(Ability ability)
-        {
-            var player = GameObject.Find("Player");
-            AddOrLevelUpAbility(ability, player);
-            AbilityPicker.SetActive(false);
-            RemoveButtonListeners();
-            PauseManager.Instance.TogglePause();
         }
 
         private void RemoveButtonListeners()

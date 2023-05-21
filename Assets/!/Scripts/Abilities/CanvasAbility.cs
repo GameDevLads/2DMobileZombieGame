@@ -18,6 +18,7 @@ namespace Assets.Scripts.Abilities
             Image.GetComponent<Image>().sprite = ability.Icon;
             Description.GetComponent<TextMeshProUGUI>().text = ability.GetDescription(ability.CurrentLevel + 1);
             // Level.GetComponent<TextMeshProUGUI>().text = ability.CurrentLevel.ToString();
+            Button.onClick.RemoveAllListeners();
             Button.onClick.AddListener(() => AbilityManager.Instance.OnButtonPressed(ability));
         }
         public void RemoveListeners()

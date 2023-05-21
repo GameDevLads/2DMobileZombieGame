@@ -15,7 +15,7 @@ namespace Assets.Scripts.Collectable
         public void LevelUp()
         {
             CurrentXP.Level++;
-            CurrentXP.Amount = 0;
+            CurrentXP.Amount -= CurrentXP.LevelUpAmount;
             CurrentXP.LevelUpAmount *= CurrentXP.LevelUpMultiplier;
         }
 
