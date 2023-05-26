@@ -64,7 +64,8 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
         Camera.main.GetComponent<PlayerCamera>().setTarget(gameObject.transform);
 
         //sets the radius of the Circle Colider to the value of autoAimtRandeSO. This value will be modified by each of the guns, meaning each gun will have a different autoaim range. At some point i should do this in the update method to make it more dynamic by having the value change mid game. 
-        cr.radius = autoAimRangeSO.Value;  
+        cr.radius = autoAimRangeSO.Value;
+
     }
 
     void Update()
@@ -246,5 +247,36 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     public void OnAbility3(InputAction.CallbackContext context)
     {
         Debug.Log("Ability 3 Place Holder");
+    }
+
+    //the following 2 functions check if a player collides with an object "in front" of it and make that object translucent
+
+    private void OnTriggerEnter2D(Collider2D collision)//collision is the gameObject's collider, i.e. the tree
+    {
+        if (collision.gameObject.CompareTag("Occludable"))
+        {
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), this.GetComponent<Collider2D>());
+            Debug.Log("Entered Occludable");
+
+            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.6f);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Occludable"))
+        {
+            Debug.Log("Exited Occludable");
+        }
+
+        SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        }
     }
 }
