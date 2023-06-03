@@ -307,65 +307,65 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     //        }
     //    }
     //}
-    //private void OnTriggerEnter2D(Collider2D collision)//collision is the gameObject's collider, i.e. the tree
-    //{
-    //    if (collision.gameObject.CompareTag("Occludable"))
+    //    private void OnTriggerEnter2D(Collider2D collision)//collision is the gameObject's collider, i.e. the tree
     //    {
-    //        Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), this.GetComponent<Collider2D>());
-    //        Debug.Log("Entered Occludable");
-
-    //        SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
-    //        if (spriteRenderer != null)
+    //*        if (collision.gameObject.CompareTag("Occludable"))
     //        {
-    //            spriteRenderer.sortingOrder = 3;
-    //            spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.4f);
+    //            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), this.GetComponent<Collider2D>());
+    //            Debug.Log("Entered Occludable");
+
+    //            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+    //            if (spriteRenderer != null)
+    //            {
+    //                spriteRenderer.sortingOrder = 3;
+    //                spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.4f);
+    //            }
     //        }
-    //    }
-    //    if (collision.gameObject.CompareTag("SortOrderSet0"))
-    //    {
-    //        Debug.Log("Entered sort order");
-    //        SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
-    //        if (spriteRenderer != null)
+    //        if (collision.gameObject.CompareTag("SortOrderSet0"))
     //        {
-    //            spriteRenderer.sortingOrder = 0;
+    //            Debug.Log("Entered sort order");
+    //            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+    //            if (spriteRenderer != null)
+    //            {
+    //                spriteRenderer.sortingOrder = 0;
+    //            }
     //        }
-    //    }
 
-    //    if (collision.gameObject.CompareTag("SlowWalking"))
-    //    {
-    //        Debug.Log("Entered slow walking");
-    //        _moveSpeed = 5f; //50% reduction in whatever movement speed is 
-
-    //        //  Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), this.GetComponent<Collider2D>());
-
-    //        SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
-    //        if (spriteRenderer != null)
+    //        if (collision.gameObject.CompareTag("SlowWalking"))
     //        {
-    //            // spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.6f);
-    //        }
-    //    }
+    //            Debug.Log("Entered slow walking");
+    //            _moveSpeed = 5f; //50% reduction in whatever movement speed is 
 
-    //    if (collision.gameObject.CompareTag("SortOrderSet1"))
-    //    {
-    //        SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
-    //        if (spriteRenderer != null)
+    //            //  Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), this.GetComponent<Collider2D>());
+
+    //            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+    //            if (spriteRenderer != null)
+    //            {
+    //                // spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.6f);
+    //            }
+    //        }
+
+    //        if (collision.gameObject.CompareTag("SortOrderSet1"))
     //        {
-    //            spriteRenderer.sortingOrder = 1;
+    //            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+    //            if (spriteRenderer != null)
+    //            {
+    //                spriteRenderer.sortingOrder = 1;
+    //            }
     //        }
-    //    }
 
-    //    if (collision.gameObject.CompareTag("SortOrderSet2"))
-    //    {
-    //        SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
-    //        if (spriteRenderer != null)
+    //        if (collision.gameObject.CompareTag("SortOrderSet2"))
     //        {
-    //            spriteRenderer.sortingOrder = 2;
+    //            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+    //            if (spriteRenderer != null)
+    //            {
+    //                spriteRenderer.sortingOrder = 2;
+    //            }
     //        }
+
     //    }
 
-    //}
-
-    //private void OnCollisionEnter(Collider collision)
+    //private void OnCollisionEnter2D(Collider collision)
     //{
     //    if (collision.tag == "Occludable")
     //    {
@@ -450,34 +450,41 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     //}
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-       
-        if (collision.collider.tag == "Occludable")
+        if (collision.otherCollider is BoxCollider2D)
         {
-            SpriteRenderer spriteRenderer = collision.collider.GetComponent<SpriteRenderer>();
-
-            //Debug.Log("triggered");
-             Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), this.GetComponent<Collider2D>());
-            //  Debug.Log("Entered Occludable");
-
-
-            if (spriteRenderer != null)
+            if (collision.collider.tag == "Occludable")
             {
-                spriteRenderer.sortingOrder = 3;
-                spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.4f);
-            }
+               // Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), this.GetComponent<BoxCollider2D>());
 
+                SpriteRenderer spriteRenderer = collision.collider.GetComponent<SpriteRenderer>();
+
+                if (spriteRenderer != null)
+                {
+                    spriteRenderer.sortingOrder = 3;
+                    spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.4f);
+                }
+            }
+            else
+            {
+                SpriteRenderer spriteRenderer = collision.collider.GetComponent<SpriteRenderer>();
+                if (spriteRenderer != null)
+                {
+                    spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                }
+            }
+            
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.collider.tag == "Occludable")
         {
+            //collision.gameObject.layer = LayerMask.NameToLayer("Default");
             SpriteRenderer spriteRenderer = collision.collider.GetComponent<SpriteRenderer>();
-            Debug.Log("exit trigger");
             spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         }
-           
+
     }
 }

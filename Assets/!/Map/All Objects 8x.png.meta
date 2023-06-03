@@ -935,7 +935,7 @@ TextureImporter:
         width: 122
         height: 1213
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -943,6 +943,27 @@ TextureImporter:
       bones: []
       spriteID: 84b259e766317904bae3cca04b0c394e
       internalID: -1360694259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TreeStump
+      rect:
+        serializedVersion: 2
+        x: 4307
+        y: 155
+        width: 161
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 269e006a3e9d0f445a481d751f566b3b
+      internalID: -1889292783
       vertices: []
       indices: 
       edges: []
@@ -1039,10 +1060,10 @@ TextureImporter:
       bush_4x1_horizontal_2: 2120367130
       All Objects 8x_485: 1289421972
       All Objects 8x_395: 313398157
-      All Objects 8x_71: -95529582
+      All Objects 8x_90: -1443419694
       All Objects 8x_22: -824348822
       All Objects 8x_365: -1303903004
-      All Objects 8x_90: -1443419694
+      All Objects 8x_71: -95529582
       All Objects 8x_266: 1725221426
       All Objects 8x_293: -1483146521
       All Objects 8x_330: -740083856
@@ -1063,6 +1084,7 @@ TextureImporter:
       All Objects 8x_171: 37261368
       bush_4x1_horizontal: 247464490
       All Objects 8x_457: -1427091234
+      TreeStump: -1889292783
       All Objects 8x_283: 1430098637
       All Objects 8x_49: 1189582264
       All Objects 8x_161: 14338874
