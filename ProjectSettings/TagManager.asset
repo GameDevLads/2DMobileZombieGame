@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Enemy
   - Occludable
+  - SlowWalking
+  - SortOrderSet1
+  - SortOrderSet0
+  - SortOrderSet2
   layers:
   - Default
   - TransparentFX

@@ -42,7 +42,7 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     public Vector3VariableSO enemyPositionFromPlayerSO;
     public CircleCollider2D cr;
     public FloatVariableSO autoAimRangeSO;
-
+    public CapsuleCollider2D capsuleCollider;
     // This is the player hand object that has a weapon as a child object which rotates around the player
     void InitPlayerHands()
     {
@@ -80,7 +80,11 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
             UseWeapon();
         }
         //_enemyPositionFromPlayerSO is the Vector3 position of the enemy in relation to the player.
-        enemyPositionFromPlayerSO.Value = FindClosestEnemy().transform.position - transform.position;
+        if (GameObject.FindGameObjectWithTag("Enemy") != null)
+        {
+            enemyPositionFromPlayerSO.Value = FindClosestEnemy().transform.position - transform.position;
+        }
+       
     }
 
     /// <summary>
@@ -95,6 +99,8 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
             AutoAim(enemyPositionFromPlayerSO.Value);
         }
     }
+
+
 
     /// <summary>
     /// Finds the enemy object closest to the player and returns it. 
@@ -251,32 +257,227 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     //the following 2 functions check if a player collides with an object "in front" of it and make that object translucent
 
-    private void OnTriggerEnter2D(Collider2D collision)//collision is the gameObject's collider, i.e. the tree
-    {
-        if (collision.gameObject.CompareTag("Occludable"))
-        {
-            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), this.GetComponent<Collider2D>());
-            Debug.Log("Entered Occludable");
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.otherCollider.GetType() == typeof(CapsuleCollider2D)){
 
-            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+    //        if (collision.collider.gameObject.CompareTag("Occludable"))
+    //        {
+    //            Physics2D.IgnoreCollision(collision.collider.gameObject.GetComponent<PolygonCollider2D>(), this.GetComponent<Collider2D>());
+    //            Debug.Log("Entered Occludable");
+
+    //            SpriteRenderer spriteRenderer = collision.collider.GetComponentInParent<SpriteRenderer>();
+    //            if (spriteRenderer != null)
+    //            {
+    //                spriteRenderer.sortingOrder = 1;
+    //                spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.4f);
+    //            }
+    //        }
+    //        if (collision.collider.gameObject.CompareTag("SortOrderSet0"))
+    //        {
+    //            Debug.Log("Entered sort order");
+    //            SpriteRenderer spriteRenderer = collision.collider.GetComponent<SpriteRenderer>();
+    //            if (spriteRenderer != null)
+    //            {
+    //                spriteRenderer.sortingOrder = 0;
+    //            }
+    //        }
+
+    //        if (collision.collider.gameObject.CompareTag("SlowWalking"))
+    //        {
+    //            Debug.Log("Entered slow walking");
+    //            _moveSpeed = 5f; //50% reduction in whatever movement speed is 
+
+    //            //  Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), this.GetComponent<Collider2D>());
+
+    //            SpriteRenderer spriteRenderer = collision.collider.GetComponent<SpriteRenderer>();
+    //            if (spriteRenderer != null)
+    //            {
+    //                // spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.6f);
+    //            }
+    //        }
+
+    //        if (collision.collider.gameObject.CompareTag("SortOrderSet1"))
+    //        {
+    //            SpriteRenderer spriteRenderer = collision.collider.GetComponent<SpriteRenderer>();
+    //            if (spriteRenderer != null)
+    //            {
+    //                spriteRenderer.sortingOrder = 1;
+    //            }
+    //        }
+    //    }
+    //}
+    //private void OnTriggerEnter2D(Collider2D collision)//collision is the gameObject's collider, i.e. the tree
+    //{
+    //    if (collision.gameObject.CompareTag("Occludable"))
+    //    {
+    //        Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), this.GetComponent<Collider2D>());
+    //        Debug.Log("Entered Occludable");
+
+    //        SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+    //        if (spriteRenderer != null)
+    //        {
+    //            spriteRenderer.sortingOrder = 3;
+    //            spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.4f);
+    //        }
+    //    }
+    //    if (collision.gameObject.CompareTag("SortOrderSet0"))
+    //    {
+    //        Debug.Log("Entered sort order");
+    //        SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+    //        if (spriteRenderer != null)
+    //        {
+    //            spriteRenderer.sortingOrder = 0;
+    //        }
+    //    }
+
+    //    if (collision.gameObject.CompareTag("SlowWalking"))
+    //    {
+    //        Debug.Log("Entered slow walking");
+    //        _moveSpeed = 5f; //50% reduction in whatever movement speed is 
+
+    //        //  Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), this.GetComponent<Collider2D>());
+
+    //        SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+    //        if (spriteRenderer != null)
+    //        {
+    //            // spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.6f);
+    //        }
+    //    }
+
+    //    if (collision.gameObject.CompareTag("SortOrderSet1"))
+    //    {
+    //        SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+    //        if (spriteRenderer != null)
+    //        {
+    //            spriteRenderer.sortingOrder = 1;
+    //        }
+    //    }
+
+    //    if (collision.gameObject.CompareTag("SortOrderSet2"))
+    //    {
+    //        SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+    //        if (spriteRenderer != null)
+    //        {
+    //            spriteRenderer.sortingOrder = 2;
+    //        }
+    //    }
+
+    //}
+
+    //private void OnCollisionEnter(Collider collision)
+    //{
+    //    if (collision.tag == "Occludable")
+    //    {
+    //       // Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), this.GetComponent<CapsuleCollider2D>());
+    //        Debug.Log("triggered");
+    //    }
+    //if (collision.gameObject.CompareTag("Occludable"))
+    //{
+    //    Debug.Log("triggered");
+    //    Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), this.GetComponent<Collider2D>());
+    //    Debug.Log("Entered Occludable");
+
+    //    SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+    //    if (spriteRenderer != null)
+    //    {
+    //        spriteRenderer.sortingOrder = 3;
+    //        spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.4f);
+    //    }
+    //}
+    //if (collision.gameObject.CompareTag("SortOrderSet0"))
+    //{
+    //    Debug.Log("Entered sort order");
+    //    SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+    //    if (spriteRenderer != null)
+    //    {
+    //        spriteRenderer.sortingOrder = 0;
+    //    }
+    //}
+
+    //if (collision.gameObject.CompareTag("SlowWalking"))
+    //{
+    //    Debug.Log("Entered slow walking");
+    //    _moveSpeed = 5f; //50% reduction in whatever movement speed is 
+
+    //    //  Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), this.GetComponent<Collider2D>());
+
+    //    SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+    //    if (spriteRenderer != null)
+    //    {
+    //        // spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.6f);
+    //    }
+    //}
+
+    //if (collision.gameObject.CompareTag("SortOrderSet1"))
+    //{
+    //    SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+    //    if (spriteRenderer != null)
+    //    {
+    //        spriteRenderer.sortingOrder = 1;
+    //    }
+    //}
+
+    //if (collision.gameObject.CompareTag("SortOrderSet2"))
+    //{
+    //    SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+    //    if (spriteRenderer != null)
+    //    {
+    //        spriteRenderer.sortingOrder = 2;
+    //    }
+    //}
+    //}
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+
+    //    if (collision.gameObject.CompareTag("SlowWalking"))
+    //    {
+    //        Debug.Log("Exit slow walking");
+    //        _moveSpeed = 10f; //should change to use a SO stat value
+    //    }
+
+    //    if (collision.gameObject.CompareTag("Occludable"))
+    //    {
+    //        Debug.Log("Exited Occludable");
+
+    //        SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+    //        if (spriteRenderer != null)
+    //        {
+    //            spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+    //        }
+    //    }
+
+
+    //}
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+       
+        if (collision.collider.tag == "Occludable")
+        {
+            SpriteRenderer spriteRenderer = collision.collider.GetComponent<SpriteRenderer>();
+
+            //Debug.Log("triggered");
+             Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), this.GetComponent<Collider2D>());
+            //  Debug.Log("Entered Occludable");
+
+
             if (spriteRenderer != null)
             {
-                spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.6f);
+                spriteRenderer.sortingOrder = 3;
+                spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.4f);
             }
+
         }
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Occludable"))
+        if (collision.collider.tag == "Occludable")
         {
-            Debug.Log("Exited Occludable");
-        }
-
-        SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
-        {
+            SpriteRenderer spriteRenderer = collision.collider.GetComponent<SpriteRenderer>();
+            Debug.Log("exit trigger");
             spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         }
+           
     }
 }

@@ -447,10 +447,10 @@ TextureImporter:
       name: iron_fence
       rect:
         serializedVersion: 2
-        x: 96
-        y: 113
-        width: 1645
-        height: 1214
+        x: 266
+        y: 129
+        width: 1479
+        height: 1198
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -926,6 +926,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: iron_fence_left
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 126
+        width: 122
+        height: 1213
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84b259e766317904bae3cca04b0c394e
+      internalID: -1360694259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1018,10 +1039,10 @@ TextureImporter:
       bush_4x1_horizontal_2: 2120367130
       All Objects 8x_485: 1289421972
       All Objects 8x_395: 313398157
-      All Objects 8x_90: -1443419694
+      All Objects 8x_71: -95529582
       All Objects 8x_22: -824348822
       All Objects 8x_365: -1303903004
-      All Objects 8x_71: -95529582
+      All Objects 8x_90: -1443419694
       All Objects 8x_266: 1725221426
       All Objects 8x_293: -1483146521
       All Objects 8x_330: -740083856
@@ -1388,6 +1409,7 @@ TextureImporter:
       All Objects 8x_435: -346663768
       rock_tall: -108294748
       All Objects 8x_122: 982555967
+      iron_fence_left: -1360694259
       All Objects 8x_64: 15685249
       All Objects 8x_455: 293045933
       All Objects 8x_190: -1415862113
