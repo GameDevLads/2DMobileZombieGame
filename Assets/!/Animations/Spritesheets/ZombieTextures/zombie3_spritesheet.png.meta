@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bf1f1466eca3d294d92af612ade84035
+guid: cfcab78851c33794bbaf4651aaa62f0f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -129,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_Left_0
+      name: zombie3_spritesheet_0
       rect:
         serializedVersion: 2
-        x: 154
-        y: 1325
-        width: 100
-        height: 220
+        x: 144
+        y: 865
+        width: 140
+        height: 235
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +143,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4bb974ea97fae5843948c68d3bb318ce
-      internalID: -1928470767
+      spriteID: d098816bbf786f74185e88f7265653b5
+      internalID: 1331408333
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Left_2
+      name: zombie3_spritesheet_1
       rect:
         serializedVersion: 2
-        x: 564
-        y: 1325
-        width: 100
-        height: 220
+        x: 551
+        y: 865
+        width: 140
+        height: 235
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,20 +164,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52a0ef3310e74f34b8041d5c4c07e725
-      internalID: 1432618539
+      spriteID: b6c8ebf6bab703e42927ab8b87993024
+      internalID: -1865424682
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Left_4
+      name: zombie3_spritesheet_2
       rect:
         serializedVersion: 2
-        x: 976
-        y: 1324
-        width: 100
-        height: 220
+        x: 948
+        y: 865
+        width: 140
+        height: 235
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,20 +185,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91fed4a0307d9a847a97831cc5c357b9
-      internalID: 1879243337
+      spriteID: 82980cf83174e074f85e001bb1f6004a
+      internalID: 427666187
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Left_5
+      name: zombie3_spritesheet_3
       rect:
         serializedVersion: 2
-        x: 1386
-        y: 1328
-        width: 100
-        height: 220
+        x: 1352
+        y: 866
+        width: 140
+        height: 235
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,20 +206,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b54c9e063871b2d4c8387b34d454e0a3
-      internalID: -1804241491
+      spriteID: d7a67cbe8c8771b4aa408c10b6614abe
+      internalID: 737414752
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Left_6
+      name: zombie3_spritesheet_4
       rect:
         serializedVersion: 2
-        x: 1794
-        y: 1325
-        width: 100
-        height: 220
+        x: 146
+        y: 465
+        width: 140
+        height: 235
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,20 +227,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4841a29a38cd78546a9efd58a4c02641
-      internalID: 2063313859
+      spriteID: 7274c89e106134144be861dc53a1df18
+      internalID: 828250619
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Left_12
+      name: zombie3_spritesheet_5
       rect:
         serializedVersion: 2
-        x: 156
-        y: 911
-        width: 100
-        height: 220
+        x: 540
+        y: 466
+        width: 140
+        height: 235
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -248,20 +248,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da91b2a337bf5714c9aa981b55879abf
-      internalID: 1744355267
+      spriteID: 7d2c9e69dce1cfe43bff5b6745dd24b3
+      internalID: -548321555
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Left_14
+      name: zombie3_spritesheet_6
       rect:
         serializedVersion: 2
-        x: 564
-        y: 915
-        width: 100
-        height: 220
+        x: 932
+        y: 465
+        width: 140
+        height: 235
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -269,20 +269,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7c2fcc4ce16dbe40881c4f0f343f84d
-      internalID: -1827598136
+      spriteID: cbb7b5d519ff0e7418e65da2639735d1
+      internalID: -166694866
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Left_15
+      name: zombie3_spritesheet_7
       rect:
         serializedVersion: 2
-        x: 976
-        y: 913
-        width: 100
-        height: 220
+        x: 1340
+        y: 465
+        width: 140
+        height: 235
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -290,20 +290,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25be5136a1c1c72419af296320224322
-      internalID: -1174548241
+      spriteID: 5c355e79e05ff654d964aebb5413fbc4
+      internalID: -1995124605
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Left_16
+      name: zombie3_spritesheet_8
       rect:
         serializedVersion: 2
-        x: 1384
-        y: 915
-        width: 100
-        height: 220
+        x: 150
+        y: 66
+        width: 140
+        height: 235
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -311,20 +311,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dcb2741d011ea1e45ae079fbe19fb798
-      internalID: -1979883874
+      spriteID: 49598ad6ca0f498449526dfd447b9ce7
+      internalID: 751088040
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Left_17
+      name: zombie3_spritesheet_9
       rect:
         serializedVersion: 2
-        x: 1794
-        y: 915
-        width: 100
-        height: 220
+        x: 544
+        y: 65
+        width: 140
+        height: 235
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -332,20 +332,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf96abe866b2e1b418004ee58c24a534
-      internalID: -1338227825
+      spriteID: 3dc720fb93fc2a446b965c8c34a9a26a
+      internalID: -760737213
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Left_20
+      name: zombie3_spritesheet_10
       rect:
         serializedVersion: 2
-        x: 154
-        y: 505
-        width: 100
-        height: 220
+        x: 947
+        y: 66
+        width: 140
+        height: 235
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -353,20 +353,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4a7d8d03bef1ab49b9473eee3859aea
-      internalID: -753814255
+      spriteID: ad9967bb22a3e3d409c815eabf32c458
+      internalID: -1876931173
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Left_21
+      name: zombie3_spritesheet_11
       rect:
         serializedVersion: 2
-        x: 564
-        y: 505
-        width: 100
-        height: 220
+        x: 1350
+        y: 66
+        width: 140
+        height: 235
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -374,134 +374,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e6b6d374fa262b418a6a5cd82ab1b7c
-      internalID: -1789712767
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Left_23
-      rect:
-        serializedVersion: 2
-        x: 974
-        y: 507
-        width: 100
-        height: 220
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 61f20b4b3cba51d41812ee89bb814530
-      internalID: -2086574237
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Left_24
-      rect:
-        serializedVersion: 2
-        x: 1388
-        y: 505
-        width: 100
-        height: 220
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 30d82f57b7f42b44a881bde331124b29
-      internalID: 1250446717
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Left_27
-      rect:
-        serializedVersion: 2
-        x: 156
-        y: 93
-        width: 100
-        height: 220
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8bbc4964c75269f479b9ae2781b98336
-      internalID: 1201564159
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Left_28
-      rect:
-        serializedVersion: 2
-        x: 566
-        y: 99
-        width: 100
-        height: 220
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 042a6aee0aa32e34c868e68ecb711730
-      internalID: -1611797952
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Left_29
-      rect:
-        serializedVersion: 2
-        x: 973
-        y: 95
-        width: 100
-        height: 220
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f44df198670d62541af592dce45212f3
-      internalID: 2093602654
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Left_31
-      rect:
-        serializedVersion: 2
-        x: 1384
-        y: 95
-        width: 100
-        height: 220
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7605cb73723286346a76cc2dbc82af9e
-      internalID: -1218905079
+      spriteID: 9bd903211edb3c943964f3416744655d
+      internalID: -251339635
       vertices: []
       indices: 
       edges: []
@@ -517,40 +391,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Player_Left_22: -748563239
-      Player_Left_26: -308431467
-      Player_Left_6: 2063313859
-      Player_Left_23: -2086574237
-      Player_Left_3: 989899937
-      Player_Left_5: -1804241491
-      Player_Left_12: 1744355267
-      Player_Left_16: -1979883874
-      Player_Left_9: 1953994410
-      Player_Left_25: 441547418
-      Player_Left_20: -753814255
-      Player_Left_2: 1432618539
-      Player_Left_17: -1338227825
-      Player_Left_19: 1536102315
-      Player_Left_30: -1932329619
-      Player_Left_8: -2137851637
-      Player_Left_28: -1611797952
-      Player_Left_24: 1250446717
-      Player_Left_13: 284838959
-      Player_Left_32: -1147589827
-      Player_Left_18: -1018623340
-      Player_Left_0: -1928470767
-      Player_Left_10: -2117142155
-      Player_Left_14: -1827598136
-      Player_Left_15: -1174548241
-      Player_Left_11: 110991478
-      Player_Left_4: 1879243337
-      Player_Left_21: -1789712767
-      Player_Left_27: 1201564159
-      Player_Left_1: 1859394619
-      Player_Left_31: -1218905079
-      Player_Left_33: -2060014210
-      Player_Left_7: 482994122
-      Player_Left_29: 2093602654
+      zombie3_spritesheet_2: 427666187
+      zombie3_spritesheet_1: -1865424682
+      zombie3_spritesheet_5: -548321555
+      zombie3_spritesheet_7: -1995124605
+      zombie3_spritesheet_6: -166694866
+      zombie3_spritesheet_0: 1331408333
+      zombie3_spritesheet_8: 751088040
+      zombie3_spritesheet_10: -1876931173
+      zombie3_spritesheet_11: -251339635
+      zombie3_spritesheet_9: -760737213
+      zombie3_spritesheet_12: -1022646621
+      zombie3_spritesheet_4: 828250619
+      zombie3_spritesheet_3: 737414752
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

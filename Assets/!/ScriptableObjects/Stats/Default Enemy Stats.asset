@@ -17,14 +17,14 @@ MonoBehaviour:
   - Zombie
   - Melee
   CurrentStats:
-    Health: 0
+    Health: 200
     Stamina: 0
     Strength: 0
     Armor: 0
     MagicResist: 0
     AttackSpeed: 0
     AttackRange: 0
-    MovementSpeed: 0
+    MovementSpeed: 5
     CriticalChance: 0
     CriticalDamage: 0
     LifeSteal: 0

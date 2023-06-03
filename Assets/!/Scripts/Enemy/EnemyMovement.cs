@@ -7,8 +7,9 @@ namespace Assets.Scripts
 {
     public class EnemyMovement : MonoBehaviour
     {
+        public StatsSO StatsSO;
         private float _speed;
-        private int _reachDistance;
+        private float _reachDistance;
         [SerializeField]
         private int _currentWaypoint = 0;
         private List<AStarNode> _path = new();
@@ -22,7 +23,7 @@ namespace Assets.Scripts
         private Animator _animator;
         private SpriteRenderer _spriteRenderer;
         private Rigidbody2D _rb;
-        private EnemyStats _enemyStats;
+        //private EnemyStats _enemyStats;
 
         void Start()
         {
@@ -33,9 +34,9 @@ namespace Assets.Scripts
             _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _rb = GetComponent<Rigidbody2D>();
-            _enemyStats = GetComponent<EnemyStats>();
-            _speed = _enemyStats.MovementSpeed;
-            _reachDistance = (int)_enemyStats.AttackRange;
+            //_enemyStats = GetComponent<EnemyStats>();
+            _speed = StatsSO.CurrentStats.MovementSpeed;
+            _reachDistance = StatsSO.CurrentStats.AttackRange;
         }
         void FixedUpdate()
         {

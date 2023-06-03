@@ -274,9 +274,12 @@ namespace Assets.Scripts.Gun
 
                 yield return null;
             }
-            trailRenderer.transform.position = point;
 
-            Destroy(trailRenderer.gameObject);
+            if (trailRenderer != null)
+            {
+                trailRenderer.transform.position = point;
+                Destroy(trailRenderer.gameObject);
+            }
 
             if (onCollide != null)
                 onCollide();
