@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8657146484412018561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2959325123100305180}
+  - component: {fileID: 7768743809081601993}
+  m_Layer: 0
+  m_Name: WaveSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2959325123100305180
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8657146484412018561}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.036656976, y: 9.474946, z: 0.7830531}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7768743809081601993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8657146484412018561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b178458b46e0554e8ee06e1c735e93d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies:
+  - enemyPrefab: {fileID: 7375728346704147026, guid: 60f573493f8b1c5489464264d6c9f99e, type: 3}
+  - enemyPrefab: {fileID: 6066341481304386814, guid: d2a6b1c5f1a30924abc0906619655312, type: 3}
+  - enemyPrefab: {fileID: 8565416094436821001, guid: 093552d38001b074eaee7a5e608884c2, type: 3}
+  spawnLocations:
+  - {fileID: 0}
+  - {fileID: 0}
+  spawnEnemies: 1
+  currentWaveSO: {fileID: 11400000, guid: a2745ec4cc554074abe9b60a7ef15ab2, type: 2}
+  currentWave: 0
+  enemiesKilledSO: {fileID: 11400000, guid: 02dffc14030be1e45ae5e5d09d01aa20, type: 2}
+  enemiesKilled: 0
+  StatsSO: {fileID: 11400000, guid: 8e36868878a360f7ab070f747718fced, type: 2}
+  enemiesOnScreenSO: {fileID: 11400000, guid: e691103e0f0d35a4b8670a55cc39d1fa, type: 2}

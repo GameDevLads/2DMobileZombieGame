@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 6066341481304386791}
   - component: {fileID: 6066341481304386788}
   - component: {fileID: 4599625978148104503}
-  - component: {fileID: -4779638311227717604}
   - component: {fileID: -5767037810494083999}
   m_Layer: 0
   m_Name: Zombie2
@@ -81,12 +80,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 49979b5055489354d887aeba3af99dfe, type: 3}
+  m_Sprite: {fileID: 1295960703, guid: 1d1740ea242bce445954e90f0f0148db, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.01, y: 1.69}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -104,14 +103,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a831207d95adec9e8c98e1c0c7e1d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  reachDistance: 0
-  currentWaypoint: 0
-  pathCount: 0
-  target: {fileID: 7056076110292853779, guid: 14cd9baaf05b1564cbaba086d853f415, type: 3}
-
-  animator: {fileID: 6066341481304386785}
-  spriteRenderer: {fileID: 6066341481304386786}
+  StatsSO: {fileID: 11400000, guid: 8e36868878a360f7ab070f747718fced, type: 2}
+  _currentWaypoint: 0
+  _pathCount: 0
+  Target: {fileID: 0}
 --- !u!114 &6066341481304386787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,18 +153,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.119630456, y: -0.41410565}
+  m_Offset: {x: -0.037701726, y: -0.068184376}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 1.01, y: 1.69}
+    newSize: {x: 1.01, y: 1.69}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.96322465, y: 1.6626029}
+  m_Size: {x: 0.94501805, y: 1.771841}
   m_EdgeRadius: 0
 --- !u!114 &6066341481304386788
 MonoBehaviour:
@@ -183,6 +178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d24898922b8a89048ae038617d5ea055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemiesKilledSO: {fileID: 11400000, guid: 02dffc14030be1e45ae5e5d09d01aa20, type: 2}
+  enemiesOnScreenSO: {fileID: 11400000, guid: e691103e0f0d35a4b8670a55cc39d1fa, type: 2}
   StatsSO: {fileID: 11400000, guid: 8e36868878a360f7ab070f747718fced, type: 2}
   Health: 200
 --- !u!50 &4599625978148104503
@@ -206,21 +203,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-4779638311227717604
-
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6066341481304386814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 992db146fbe61122f84fa7b55ff01289, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StatsSO: {fileID: 11400000, guid: 8e36868878a360f7ab070f747718fced, type: 2}
-
 --- !u!114 &-5767037810494083999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,4 +216,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   XPPool: {fileID: 0}
-
