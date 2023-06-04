@@ -79,7 +79,11 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
             UseWeapon();
         }
         //_enemyPositionFromPlayerSO is the Vector3 position of the enemy in relation to the player.
-        enemyPositionFromPlayerSO.Value = FindClosestEnemy().transform.position - transform.position;
+        if (GameObject.FindGameObjectWithTag("Enemy") != null)
+        {
+            enemyPositionFromPlayerSO.Value = FindClosestEnemy().transform.position - transform.position;
+        }
+        
     }
 
     /// <summary>

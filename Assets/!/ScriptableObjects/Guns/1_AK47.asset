@@ -50,8 +50,8 @@ MonoBehaviour:
   TrailEndWidth: 0.13
   TrailTime: 0.08
   AmmoChamberCount: 30
-  TotalAmmoCount: 120
+  TotalAmmoCount: 100000
   BulletScale: {x: 0.2, y: 0.2}
   MuzzleFlash: {fileID: 21300000, guid: 9850d937ff2907c4cbebf19ad6140f4e, type: 3}
   GunShotAudioClip: {fileID: 8300000, guid: 8e7416e70a9020941bf4d574c124073d, type: 3}
-  HasInfiniteAmmo: 0
+  HasInfiniteAmmo: 1
