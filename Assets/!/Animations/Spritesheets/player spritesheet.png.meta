@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cfcab78851c33794bbaf4651aaa62f0f
+guid: d5fb81884c48cc342a6c7c110217203a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -129,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: zombie3_spritesheet_0
+      name: player spritesheet from original assets_0
       rect:
         serializedVersion: 2
         x: 150
-        y: 865
-        width: 140
-        height: 235
+        y: 1291
+        width: 100
+        height: 220
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +143,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d098816bbf786f74185e88f7265653b5
-      internalID: 1331408333
+      spriteID: 3e27da51944261945b3e1fcbb5685243
+      internalID: 1525798588
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zombie3_spritesheet_1
+      name: player spritesheet from original assets_1
       rect:
         serializedVersion: 2
         x: 550
-        y: 865
-        width: 140
-        height: 235
+        y: 1291
+        width: 100
+        height: 220
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,20 +164,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6c8ebf6bab703e42927ab8b87993024
-      internalID: -1865424682
+      spriteID: 421f3953b84ec2f41ad65774eebdc57f
+      internalID: -804260188
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zombie3_spritesheet_2
+      name: player spritesheet from original assets_2
       rect:
         serializedVersion: 2
         x: 950
-        y: 865
-        width: 140
-        height: 235
+        y: 1291
+        width: 100
+        height: 220
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,20 +185,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82980cf83174e074f85e001bb1f6004a
-      internalID: 427666187
+      spriteID: c3094ad5788968b4fa1982ccd3f92835
+      internalID: -2102662755
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zombie3_spritesheet_3
+      name: player spritesheet from original assets_3
       rect:
         serializedVersion: 2
         x: 1350
-        y: 865
-        width: 140
-        height: 235
+        y: 1291
+        width: 100
+        height: 220
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,20 +206,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7a67cbe8c8771b4aa408c10b6614abe
-      internalID: 737414752
+      spriteID: 326c9458db58fa54281a04d887fb5526
+      internalID: -1705035768
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zombie3_spritesheet_4
+      name: player spritesheet from original assets_4
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 1291
+        width: 100
+        height: 220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df00a73d81c6ee94e9f0fa3c6bc34c5e
+      internalID: -1040926975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player spritesheet from original assets_5
       rect:
         serializedVersion: 2
         x: 150
-        y: 465
-        width: 140
-        height: 235
+        y: 891
+        width: 100
+        height: 220
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,20 +248,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7274c89e106134144be861dc53a1df18
-      internalID: 828250619
+      spriteID: 5087f7f55e84b1648b3f8b9816a93eed
+      internalID: 1191075357
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zombie3_spritesheet_5
+      name: player spritesheet from original assets_6
       rect:
         serializedVersion: 2
         x: 550
-        y: 465
-        width: 140
-        height: 235
+        y: 891
+        width: 100
+        height: 220
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -248,20 +269,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d2c9e69dce1cfe43bff5b6745dd24b3
-      internalID: -548321555
+      spriteID: ef9b876c3f7d7c74f9292592de7dba2b
+      internalID: 721524571
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zombie3_spritesheet_6
+      name: player spritesheet from original assets_7
       rect:
         serializedVersion: 2
         x: 950
-        y: 465
-        width: 140
-        height: 235
+        y: 891
+        width: 100
+        height: 220
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -269,20 +290,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbb7b5d519ff0e7418e65da2639735d1
-      internalID: -166694866
+      spriteID: ae5cf100de1b1714a8bf8390acd7cfd5
+      internalID: -774431617
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zombie3_spritesheet_7
+      name: player spritesheet from original assets_8
       rect:
         serializedVersion: 2
         x: 1350
-        y: 465
-        width: 140
-        height: 235
+        y: 891
+        width: 100
+        height: 220
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -290,20 +311,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c355e79e05ff654d964aebb5413fbc4
-      internalID: -1995124605
+      spriteID: 23f8a0ca9b935164699e02fe6e037d47
+      internalID: 598983147
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zombie3_spritesheet_8
+      name: player spritesheet from original assets_9
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 891
+        width: 100
+        height: 220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c359fa581fe3352428e471c7e242c092
+      internalID: -703457871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player spritesheet from original assets_10
       rect:
         serializedVersion: 2
         x: 150
-        y: 65
-        width: 140
-        height: 235
+        y: 491
+        width: 100
+        height: 220
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -311,20 +353,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49598ad6ca0f498449526dfd447b9ce7
-      internalID: 751088040
+      spriteID: 8cc93fd8f0d99c343ba516957fd9ea34
+      internalID: -24642849
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zombie3_spritesheet_9
+      name: player spritesheet from original assets_11
       rect:
         serializedVersion: 2
         x: 550
-        y: 65
-        width: 140
-        height: 235
+        y: 491
+        width: 100
+        height: 220
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -332,20 +374,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3dc720fb93fc2a446b965c8c34a9a26a
-      internalID: -760737213
+      spriteID: e2f7bff51568d7c4695869d2a764352c
+      internalID: 867215379
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zombie3_spritesheet_10
+      name: player spritesheet from original assets_12
       rect:
         serializedVersion: 2
         x: 950
-        y: 65
-        width: 140
-        height: 235
+        y: 491
+        width: 100
+        height: 220
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -353,20 +395,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad9967bb22a3e3d409c815eabf32c458
-      internalID: -1876931173
+      spriteID: e4ed66b1ef877ea48969a0d153a611e1
+      internalID: -395445755
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zombie3_spritesheet_11
+      name: player spritesheet from original assets_13
       rect:
         serializedVersion: 2
         x: 1350
-        y: 65
-        width: 140
-        height: 235
+        y: 491
+        width: 100
+        height: 220
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -374,8 +416,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bd903211edb3c943964f3416744655d
-      internalID: -251339635
+      spriteID: 2ae9f26e02056644db46638e637722d0
+      internalID: -1226086251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player spritesheet from original assets_14
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 91
+        width: 100
+        height: 220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bbd78e13a0abc642be2e4c2d5bcc5dd
+      internalID: 995203877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player spritesheet from original assets_15
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 91
+        width: 100
+        height: 220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efaf89dae3c6bf04e9f848092c726070
+      internalID: -855442452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player spritesheet from original assets_16
+      rect:
+        serializedVersion: 2
+        x: 950
+        y: 91
+        width: 100
+        height: 220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5a90c630891f3548a5d9ac85b5aceca
+      internalID: 1931750491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player spritesheet from original assets_17
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 91
+        width: 100
+        height: 220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8f5d277d60d31144bb16d56ae189791
+      internalID: 1981992860
       vertices: []
       indices: 
       edges: []
@@ -391,19 +517,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      zombie3_spritesheet_2: 427666187
-      zombie3_spritesheet_1: -1865424682
-      zombie3_spritesheet_5: -548321555
-      zombie3_spritesheet_7: -1995124605
-      zombie3_spritesheet_6: -166694866
-      zombie3_spritesheet_0: 1331408333
-      zombie3_spritesheet_8: 751088040
-      zombie3_spritesheet_10: -1876931173
-      zombie3_spritesheet_11: -251339635
-      zombie3_spritesheet_9: -760737213
-      zombie3_spritesheet_12: -1022646621
-      zombie3_spritesheet_4: 828250619
-      zombie3_spritesheet_3: 737414752
+      player spritesheet from original assets_7: -774431617
+      player spritesheet from original assets_16: 1931750491
+      player spritesheet from original assets_12: -395445755
+      player spritesheet from original assets_17: 1981992860
+      player spritesheet from original assets_0: 1525798588
+      player spritesheet from original assets_9: -703457871
+      player spritesheet from original assets_15: -855442452
+      player spritesheet from original assets_11: 867215379
+      player spritesheet from original assets_10: -24642849
+      player spritesheet from original assets_3: -1705035768
+      player spritesheet from original assets_14: 995203877
+      player spritesheet from original assets_13: -1226086251
+      player spritesheet from original assets_8: 598983147
+      player spritesheet from original assets_6: 721524571
+      player spritesheet from original assets_2: -2102662755
+      player spritesheet from original assets_1: -804260188
+      player spritesheet from original assets_4: -1040926975
+      player spritesheet from original assets_5: 1191075357
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
