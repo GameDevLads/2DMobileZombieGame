@@ -3,102 +3,105 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class WaveSpawner : MonoBehaviour
 {
-    //List that holds all the enemy prefabs.
     public List<Enemy> enemies = new List<Enemy>();
-
-    //Holds an enemy that in instantiated inside the GenereateEnemiesMethod().
     private GameObject _enemyPrefab;
-
-    //Holds a list of all the spawn locations.
     public List<Transform> spawnLocations = new List<Transform>();
-
-    //A check that allows you to disable the wavespawner from the editor.
-    public bool spawnEnemies = false;
-
-    //A scriptable object that keeps track of the current wave of enemies. This should be used to feed the wave number in the UI.
-    public IntVariableSO currentWaveSO;
-    // a tracker to see the current wave on the WaveSpawner script (Not needed for functinality)
-    public int currentWave;
-
-    //this gets initiliased to 1. Each time a new wave is triggered, the value of this is increased by 1. This value is passed onto EnemyWaveAlgorithm() to determine how many enemies spawn each new wave and how strong the zombies area.
-    private int _newWaveValue = 1;
-
-    //This variable is the starting point of the number of enemies in wave 1. This value is used to check if the number of enemies killed in a wave is equal to this number, if true, then a new wave is triggered. Each new Wave the value of this is incremented by 5 in EnemyWaveAlgorithm().
-    private int _numberOFEnemies = 10;
-
-    // A scriptable object for tracking the enemies killed per wave. This value is updated each time in the ApplyDamage() method in the enemy script when an enemy dies. This value along with _numberOfEnemies is used as a check in the TriggerNextWave() method to trigger the next wave.   
-    public IntVariableSO enemiesKilledSO;
-    // a tracker for the above (Not needed for functinality)
-    public int enemiesKilled;
-
-    // For storing the current Wave Value. Wave Value is used to determine how many enemies should spawn per wave. Each time a new wave gets triggered the _newWaveValue gets assigned to the _waveValue and that's how the enemies get harder and more of them spawn. 
-    private int _enemiesToSpawnValue;
-
-    //ScriptableObject for accessing the enemy stats.
     public StatsSO StatsSO;
+    private int _enemiesAllowedOnScreen;
+    public int _enemiesSpawnedInCurrentWave;
+    public int _numberOfEnemiesToKill;
 
-    //Value that dictates how many zombies can be on screen at once. If a wave has 20 zombies only 5 will be on screen and if one zombie is killed than another will spawn to satisfy the below 5 enemy limit.  
-    private int _enemiesAllowedOnScreen = 5;
-
-    //Scriptable object that keeps track of how many zombies are on screen. Everytime an enemy spawns(GenerateEnemies()), this value increases, and any time a zombie dies (Enemy.ApplyDamage()) this value decreases. The value is always reset to 0 at the beginning of the game. 
     public IntVariableSO enemiesOnScreenSO;
+    public int enemiesOnScreenSODisplay;
 
-    //keeps track of all the enemies that have been spawned per wave. This value does not change when the enemy dies. 
-    private int _enemiesSpawnedInCurrentWave = 0;
+    public IntVariableSO currentWaveSO;
+    public int currentWaveSODisplay;
 
+    public IntVariableSO enemiesKilledSO;
+    public int enemiesKilledSODisplay;
 
-    // How much it takes to spawn an enemy. When an enemy spawns, this value gets taken away from _wavevalue until _waveValue is euqal to 0. At this pint enemies stop spawning
-    private int _spawnCost = 1;
+    //BOSS LOGIC
+    public List<Boss> bosses = new List<Boss>();
+    private GameObject _bossPrefab;
+    private int _bossesAllowedOnScreen;
+    private bool _isBossRound;
 
-    /// <summary>
-    /// This resets most of the values to their initial states and spawns the first set of enemies. It's inside an if statement that is triggered by the public bool variable spawnEnemies.
-    /// </summary>
     void Start()
     {
-        if (spawnEnemies == true)
+        enemiesOnScreenSO.Value = 0;
+        _enemiesAllowedOnScreen = 5;
+        currentWaveSO.Value = 0;
+        currentWaveSO.Value++;
+        _numberOfEnemiesToKill = 10;
+        enemiesKilledSO.Value = 0;
+        StatsSO.CurrentStats.Health = StatsSO.BaseStats.Health;
+        _enemiesSpawnedInCurrentWave = 0;
+
+        //BOSS LOGIC
+        _isBossRound = false;
+        _bossesAllowedOnScreen = 1;
+
+    }
+
+    /// <summary>
+    /// This Update method is temporary only so we can manually skip wave's. This can be deleted in the future it no longer needed
+    /// </summary>
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            enemiesOnScreenSO.Value = 0;
-            currentWaveSO.Value = 1;
-            enemiesKilledSO.Value = 0;
-            StatsSO.CurrentStats.Health = StatsSO.BaseStats.Health;
-            GenerrateWave();
+            TriggerNextWave();
         }
     }
 
     /// <summary>
-    /// Runs the GenerateWave() and riggerNextWave() on a loop. 
+    /// The main game loop for the Wave System. Essentially every 5 rounds a boss enemy spawns intead of regular zombies. 
     /// </summary>
     void FixedUpdate()
     {
-        //displays for scriptable objects (Not needed for functionality)
-        enemiesKilled = enemiesKilledSO.Value;
-        currentWave = currentWaveSO.Value;
+        // these are only displays for the scriptable objects. Not needed for functinality.
+        enemiesKilledSODisplay = enemiesKilledSO.Value;
+        enemiesOnScreenSODisplay = enemiesOnScreenSO.Value;
+        currentWaveSODisplay = currentWaveSO.Value;
 
-        GenerrateWave();
-        TriggerNextWave();
-    }
+        isBossRound();
 
-    /// <summary>
-    ///  Runs the code to spawn the enemies until it spawned all the enemies needed for the given wave. 
-    /// </summary>
-    public void GenerrateWave()
-    {
-        if (_enemiesSpawnedInCurrentWave <= _enemiesToSpawnValue)
+        if (_isBossRound == true)
         {
-            _enemiesToSpawnValue = EnemyWaveAlgorithm(_newWaveValue);
-            GenerateEnemies();
+            GenerateBossWave();
+        }
+        else
+        {
+            GenerateWave();
         }
     }
 
     /// <summary>
-    /// Contains the logic for spawning the enemies. The code pics a random enemy from the enemies list and spawns it in a random x y cord and a random spawn location. Each time an enemy is spawned a few of the variables from above are updated accordigly to correctly keep track of the enemies, and wave state.
+    ///  Logic for how the regular enemy wave is calculated. 
+    /// </summary>
+    public void GenerateWave()
+    {
+        if (_enemiesSpawnedInCurrentWave < _numberOfEnemiesToKill)
+        {
+            GenerateEnemies();
+        }
+        else
+        {
+            if (_numberOfEnemiesToKill <= enemiesKilledSO.Value)
+            {
+                TriggerNextWave();
+            }
+        }
+    }
+
+    /// <summary>
+    /// The method below spawns the regular zombie prefabs.
     /// </summary>
     public void GenerateEnemies()
     {
-        if (_enemiesToSpawnValue > 0 && _enemiesAllowedOnScreen > enemiesOnScreenSO.Value)
+        if (_enemiesAllowedOnScreen > enemiesOnScreenSO.Value)
         {
             int randEnemyId = Random.Range(0, enemies.Count);
             _enemyPrefab = enemies[randEnemyId].enemyPrefab;
@@ -115,35 +118,102 @@ public class WaveSpawner : MonoBehaviour
             Instantiate(_enemyPrefab, spawnPosition, Quaternion.identity);
             enemiesOnScreenSO.Value++;
             _enemiesSpawnedInCurrentWave++;
-            _enemiesToSpawnValue -= _spawnCost;
         }
     }
 
     /// <summary>
-    /// The method below triggers a new wave under a condition that all the enemies of the specific wave have been killed. 
+    /// Method below contains logic for spawning next wave. 
     /// </summary>
     public void TriggerNextWave()
     {
-        if (enemiesKilledSO.Value == _numberOFEnemies)
+        KillAllEnemies();
+        enemiesOnScreenSO.Value = 0;
+        currentWaveSO.Value++;
+        MakeWaveHarderAlgorithm();
+        enemiesKilledSO.Value = 0;
+        _enemiesSpawnedInCurrentWave = 0;
+    }
+
+    /// <summary>
+    /// How zombie enemies become harder after each passing wave. This will get more sophisticated as the game progresses, it's fine for now.  
+    /// </summary>
+    public void MakeWaveHarderAlgorithm()
+    {
+        _numberOfEnemiesToKill += 5;
+        StatsSO.CurrentStats.Health += 5f;
+    }
+
+    /// <summary>
+    /// A method for killing all enemiies on screen. This is needed inside the TriggerNextWave().
+    /// </summary>
+    public void KillAllEnemies()
+    {
+        GameObject[] enemiesOnScreen = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject prefab in enemiesOnScreen)
         {
-            enemiesKilledSO.Value = 0;
-            _newWaveValue++;
-            _enemiesSpawnedInCurrentWave = 0;
+            Destroy(prefab);
+        }
+    }
+
+
+    //BOSS LOGIC
+    /// <summary>
+    /// Similar to GenerateWave but this time for the Boss rounds. 
+    /// </summary>
+    public void GenerateBossWave()
+    {
+        if (_enemiesSpawnedInCurrentWave < _bossesAllowedOnScreen)
+        {
+            GenerateBosses();
+        }
+        else
+        {
+            if (_bossesAllowedOnScreen <= enemiesKilledSO.Value)
+            {
+                TriggerNextWave();
+            }
         }
     }
 
     /// <summary>
-    /// Currently how enemies increase in power per wave. Will be modified in the future to make it more interesting. 
+    /// A check that runs int he FixedUpdate method to determine whether the current wave is a boss wave. 
     /// </summary>
-    public int EnemyWaveAlgorithm(int newWaveValue)
+    public void isBossRound()
     {
-        if (newWaveValue > currentWaveSO.Value)
+        if (currentWaveSO.Value % 5 == 0)
         {
-            currentWaveSO.Value = newWaveValue;
-            StatsSO.CurrentStats.Health += 5f;
-            _numberOFEnemies += 5;
+            _isBossRound = true;
         }
-        return _numberOFEnemies;
+        else
+        {
+            _isBossRound = false;
+        }
+    }
+
+    /// <summary>
+    /// Similar to Generate Enemies but for bosses.
+    /// </summary>
+    public void GenerateBosses()
+    {
+        if (_bossesAllowedOnScreen > enemiesOnScreenSO.Value)
+        {
+            int randEnemyId = Random.Range(0, bosses.Count);
+            _bossPrefab = bosses[randEnemyId].bossPrefab;
+            Transform randomSpawnLocation = spawnLocations[Random.Range(0, spawnLocations.Count)];
+
+            // Calculate random spawn position within the spawn area
+            Vector2 spawnSize = randomSpawnLocation.localScale;
+            Vector2 spawnCenter = randomSpawnLocation.position;
+
+            float spawnX = spawnCenter.x + Random.Range(-spawnSize.x / 2f, spawnSize.x / 2f);
+            float spawnY = spawnCenter.y + Random.Range(-spawnSize.y / 2f, spawnSize.y / 2f);
+            Vector2 spawnPosition = new Vector2(spawnX, spawnY);
+
+            Instantiate(_bossPrefab, spawnPosition, Quaternion.identity);
+            enemiesOnScreenSO.Value++;
+            _enemiesSpawnedInCurrentWave++;
+        }
     }
 }
 
@@ -154,4 +224,13 @@ public class WaveSpawner : MonoBehaviour
 public class Enemy
 {
     public GameObject enemyPrefab;
+}
+
+/// <summary>
+/// An boss object used to create a list of boss to hold the zombie prefabs. 
+/// </summary>
+[System.Serializable]
+public class Boss
+{
+    public GameObject bossPrefab;
 }

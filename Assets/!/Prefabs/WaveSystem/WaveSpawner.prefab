@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2959325123100305180}
-  - component: {fileID: 7768743809081601993}
+  - component: {fileID: 5493358297040060898}
   m_Layer: 0
   m_Name: WaveSpawner
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7768743809081601993
+--- !u!114 &5493358297040060898
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -51,10 +51,14 @@ MonoBehaviour:
   spawnLocations:
   - {fileID: 0}
   - {fileID: 0}
-  spawnEnemies: 1
-  currentWaveSO: {fileID: 11400000, guid: a2745ec4cc554074abe9b60a7ef15ab2, type: 2}
-  currentWave: 0
-  enemiesKilledSO: {fileID: 11400000, guid: 02dffc14030be1e45ae5e5d09d01aa20, type: 2}
-  enemiesKilled: 0
   StatsSO: {fileID: 11400000, guid: 8e36868878a360f7ab070f747718fced, type: 2}
+  _enemiesSpawnedInCurrentWave: 0
+  _numberOfEnemiesToKill: 0
   enemiesOnScreenSO: {fileID: 11400000, guid: e691103e0f0d35a4b8670a55cc39d1fa, type: 2}
+  enemiesOnScreenSODisplay: 0
+  currentWaveSO: {fileID: 11400000, guid: a2745ec4cc554074abe9b60a7ef15ab2, type: 2}
+  currentWaveSODisplay: 0
+  enemiesKilledSO: {fileID: 11400000, guid: 02dffc14030be1e45ae5e5d09d01aa20, type: 2}
+  enemiesKilledSODisplay: 0
+  bosses:
+  - bossPrefab: {fileID: 7375728346704147026, guid: ace671a7cac3e2f41afcb729ae592a4b, type: 3}
