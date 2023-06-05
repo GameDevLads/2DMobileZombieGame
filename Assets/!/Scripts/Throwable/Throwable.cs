@@ -61,8 +61,6 @@ namespace Assets.Scripts.Throwable
             var mouseWorldDirection = (pointerPosition.ConvertTo<Vector3>() - Camera.main.transform.position).normalized;
             var mouseRay = new Ray(Camera.main.transform.position, mouseWorldDirection);
             
-            // need to get direction based on parent obj postition and position of throwable
-
             var raycastHit = Physics2D.RaycastAll(gameObject.transform.position, mouseRay.direction, ThrowableData.ThrowDistance)
                 .FirstOrDefault(x => !string.Equals(x.collider.tag, "Player"));
 
