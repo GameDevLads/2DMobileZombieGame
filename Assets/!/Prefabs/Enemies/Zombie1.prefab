@@ -180,6 +180,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StatsSO: {fileID: 11400000, guid: 8e36868878a360f7ab070f747718fced, type: 2}
   Health: 200
+  HealthBar: {fileID: 8154786990295000539, guid: 09ef1baeb5764e34998eb7d467eafa53, type: 3}
+  EnemyData: {fileID: 11400000, guid: cdd4582db35e0554aa8baf099c43f453, type: 2}
 --- !u!50 &1631889372180872059
 Rigidbody2D:
   serializedVersion: 4

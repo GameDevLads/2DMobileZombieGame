@@ -3,6 +3,7 @@ using Assets.Scripts.Gun.Data;
 using Assets.Scripts.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Unity.Burst.CompilerServices;
@@ -168,12 +169,17 @@ namespace Assets.Scripts.Gun
                 StartCoroutine(SpawnMuzzleFlash());
 
                 var direction = GetShootDirection(Muzzle.transform.right);
-                var raycastHit = Physics2D.Raycast(muzzlePosition, direction, _bulletShootDistance);
+
+                // We need to ignore the player colliders 
+                var raycastHit = Physics2D.RaycastAll(muzzlePosition, direction, _bulletShootDistance)
+                    .FirstOrDefault(x => !string.Equals(x.collider.tag, "Player"));
 
                 if (raycastHit.collider != null)
                 { // if we have hit a surface then spawn trail
                     var currentRotation = GetCurrentRotation(raycastHit.point);
                     var trail = InitTrail(TrailRenderer, Muzzle.transform.position, currentRotation);
+
+                    Debug.DrawLine(muzzlePosition, raycastHit.point);
                     StartCoroutine(SpawnTrail(trail, raycastHit.point, () => ApplyDamage(raycastHit)));
                 }
                 else
@@ -181,6 +187,8 @@ namespace Assets.Scripts.Gun
                     var forwardDir = Muzzle.transform.position + direction * _bulletShootDistance;
                     var currentRotation = GetCurrentRotation(forwardDir);
                     var trail = InitTrail(TrailRenderer, Muzzle.transform.position, currentRotation);
+
+                    Debug.DrawLine(muzzlePosition, forwardDir); 
                     StartCoroutine(SpawnTrail(trail, forwardDir, () => ApplyDamage(raycastHit)));
                 }
             }
@@ -274,9 +282,12 @@ namespace Assets.Scripts.Gun
 
                 yield return null;
             }
-            trailRenderer.transform.position = point;
-
-            Destroy(trailRenderer.gameObject);
+            
+            if (trailRenderer != null)
+            {
+                trailRenderer.transform.position = point;
+                Destroy(trailRenderer.gameObject);
+            }
 
             if (onCollide != null)
                 onCollide();

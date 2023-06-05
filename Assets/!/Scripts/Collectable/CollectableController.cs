@@ -1,14 +1,17 @@
+using Assets.__.Scripts.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-public class CollectableController : MonoBehaviour
+public class CollectableController : MonoBehaviour, ICollectable
 {
     public FloatVariableSO coinAmountSO;
     public FloatVariableSO collectableLifetimeSO;
     public FloatVariableSO blinkingDelayedStartSO;
     public FloatVariableSO blinkingIntervalSO;
+
+    public float DropChancePercentage { get; set; } = 10; // This should come from collectable config SO.
 
     private void Start()
     {
