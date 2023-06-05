@@ -43,6 +43,11 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     public CircleCollider2D cr;
     public FloatVariableSO autoAimRangeSO;
 
+    private TreeCollider treeColliderEnter;
+    private TreeCollider treeColliderExit;
+
+
+
     // This is the player hand object that has a weapon as a child object which rotates around the player
     void InitPlayerHands()
     {
@@ -55,6 +60,12 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     void Start()
     {
+        treeColliderEnter = transform.Find("TreeCollider").GetComponent<TreeCollider>();
+        treeColliderExit = transform.Find("TreeCollider").GetComponent<TreeCollider>();
+        
+        treeColliderEnter.OnCollisionEnter2D_Action += treeCollider_OnCollisionEnter2D;
+        treeColliderExit.OnCollisionEnter2D_Action += treeCollider_OnCollisionExit2D;
+
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -65,6 +76,30 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
         //sets the radius of the Circle Colider to the value of autoAimtRandeSO. This value will be modified by each of the guns, meaning each gun will have a different autoaim range. At some point i should do this in the update method to make it more dynamic by having the value change mid game. 
         cr.radius = autoAimRangeSO.Value;  
+
+        
+    }
+    private void treeCollider_OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Occludable"))
+        {
+            SpriteRenderer spriteRenderer = collision.collider.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+            }
+        }
+    }
+    private void treeCollider_OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Occludable"))
+        {
+            SpriteRenderer spriteRenderer = collision.collider.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            }
+        }
     }
 
     void Update()
@@ -251,4 +286,7 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     {
         Debug.Log("Ability 3 Place Holder");
     }
+
+    
+
 }
