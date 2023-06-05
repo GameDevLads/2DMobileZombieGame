@@ -21,6 +21,9 @@ namespace Assets.Scripts
 {
     public class Enemy : MonoBehaviour
     {
+        public IntVariableSO enemiesKilledSO;
+        public IntVariableSO enemiesOnScreenSO;
+
         public Stats.StatsSO StatsSO;
         
         [Tooltip("The maximum health the enemy has.")]
@@ -77,6 +80,8 @@ namespace Assets.Scripts
                 Destroy(_healthText);
                 Destroy(gameObject);
                 DropCollectable();
+                enemiesKilledSO.Value++;
+                enemiesOnScreenSO.Value--;
             }
         }
 
