@@ -43,6 +43,8 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     public CircleCollider2D cr;
     public FloatVariableSO autoAimRangeSO;
 
+    private OccludableCollider occludableCollider;
+
     // This is the player hand object that has a weapon as a child object which rotates around the player
     void InitPlayerHands()
     {
@@ -55,6 +57,11 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     void Start()
     {
+        occludableCollider = transform.Find("OccludableCollider").GetComponent<OccludableCollider>();
+
+        occludableCollider.OnTriggerEnter2D_Action += occludableCollider_OnCollisionEnter2D;
+        occludableCollider.OnTriggerExit2D_Action += occludableCollider_OnCollisionExit2D;
+
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -82,8 +89,7 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
         if (GameObject.FindGameObjectWithTag("Enemy") != null)
         {
             enemyPositionFromPlayerSO.Value = FindClosestEnemy().transform.position - transform.position;
-        }
-        
+        }  
     }
 
     /// <summary>
@@ -251,4 +257,29 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     {
         Debug.Log("Ability 3 Place Holder");
     }
+
+
+    private void occludableCollider_OnCollisionEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Occludable"))
+        {
+            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+            }
+        }
+    }
+    private void occludableCollider_OnCollisionExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Occludable"))
+        {
+            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            }
+        }
+    }
+
 }
