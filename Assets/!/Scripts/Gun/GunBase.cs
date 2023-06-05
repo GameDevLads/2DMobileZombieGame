@@ -179,7 +179,6 @@ namespace Assets.Scripts.Gun
                     var currentRotation = GetCurrentRotation(raycastHit.point);
                     var trail = InitTrail(TrailRenderer, Muzzle.transform.position, currentRotation);
 
-                    Debug.DrawLine(muzzlePosition, raycastHit.point);
                     StartCoroutine(SpawnTrail(trail, raycastHit.point, () => ApplyDamage(raycastHit)));
                 }
                 else
@@ -188,7 +187,6 @@ namespace Assets.Scripts.Gun
                     var currentRotation = GetCurrentRotation(forwardDir);
                     var trail = InitTrail(TrailRenderer, Muzzle.transform.position, currentRotation);
 
-                    Debug.DrawLine(muzzlePosition, forwardDir); 
                     StartCoroutine(SpawnTrail(trail, forwardDir, () => ApplyDamage(raycastHit)));
                 }
             }
