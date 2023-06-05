@@ -1,21 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
+﻿using UnityEngine;
 using Assets.Scripts.Collectable;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 using Slider = UnityEngine.UI.Slider;
 using TMPro;
 using System.Collections;
-using UnityEngine.SocialPlatforms;
 using Assets.__.Scripts.Enemy.Data;
 using Assets.__.Scripts.Interfaces;
-using Assets.__.Scripts.Collectable;
-using Unity.VisualScripting;
 
 namespace Assets.Scripts
 {
@@ -35,7 +24,6 @@ namespace Assets.Scripts
         [Tooltip("The enemy configuration data.")]
         public EnemyData EnemyData;
 
-        private GameObject _healthText;
         private float _totalHealth;
         private const string _healthTextFormat = "Health: {0}/{1}";
         private XPItemSpawner _xpItemSpawner;
@@ -46,15 +34,7 @@ namespace Assets.Scripts
         private void Start()
         {
             Health = StatsSO.CurrentStats.Health;
-            var position = transform.position;
-            _healthText = new GameObject();
-            _healthText.transform.position = position;
-            _healthText.transform.rotation = Quaternion.identity;
-            _healthText.transform.SetParent(transform);
-            _healthText.transform.localPosition = new Vector2(-2f, 1.5f);
             _xpItemSpawner = GetComponent<XPItemSpawner>();
-
-            _healthText.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             _totalHealth = Health;
             AddHealthBar();
             AddCollectablePool();
@@ -77,7 +57,6 @@ namespace Assets.Scripts
 
             if (Health <= 0)
             {
-                Destroy(_healthText);
                 Destroy(gameObject);
                 DropCollectable();
                 enemiesKilledSO.Value++;
@@ -94,9 +73,6 @@ namespace Assets.Scripts
                 return;
 
             _collectablePool.DropCollectable();
-            //var collectablePool = EnemyData.CollectablePool.GetComponents<ICollectablePool>().FirstOrDefault();
-            //var collectablePool =  //(CollectablePool)EnemyData.CollectablePool;
-            //collectablePool.DropCollectable();
         }
 
         /// <summary>
@@ -117,6 +93,9 @@ namespace Assets.Scripts
             Destroy(damageObj, 1f);
         }
 
+        /// <summary>
+        /// Add collectable pool that's responsible for dropping collectables based on chance %.
+        /// </summary>
         private void AddCollectablePool()
         {
             if (EnemyData.CollectablePool == null)
