@@ -182,6 +182,8 @@ MonoBehaviour:
   enemiesOnScreenSO: {fileID: 11400000, guid: e691103e0f0d35a4b8670a55cc39d1fa, type: 2}
   StatsSO: {fileID: 11400000, guid: 8e36868878a360f7ab070f747718fced, type: 2}
   Health: 200
+  HealthBar: {fileID: 8154786990295000539, guid: 09ef1baeb5764e34998eb7d467eafa53, type: 3}
+  EnemyData: {fileID: 11400000, guid: cdd4582db35e0554aa8baf099c43f453, type: 2}
 --- !u!50 &4599625978148104503
 Rigidbody2D:
   serializedVersion: 4

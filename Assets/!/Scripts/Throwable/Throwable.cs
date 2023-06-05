@@ -60,7 +60,9 @@ namespace Assets.Scripts.Throwable
             _isThrown = true;
             var mouseWorldDirection = (pointerPosition.ConvertTo<Vector3>() - Camera.main.transform.position).normalized;
             var mouseRay = new Ray(Camera.main.transform.position, mouseWorldDirection);
-            var raycastHit = Physics2D.Raycast(gameObject.transform.position, mouseRay.direction, ThrowableData.ThrowDistance);
+            
+            var raycastHit = Physics2D.RaycastAll(gameObject.transform.position, mouseRay.direction, ThrowableData.ThrowDistance)
+                .FirstOrDefault(x => !string.Equals(x.collider.tag, "Player"));
 
             Vector2 throwPosition;
             var parentObj = gameObject.transform.parent;
