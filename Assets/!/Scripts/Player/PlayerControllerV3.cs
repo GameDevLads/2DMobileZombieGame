@@ -43,7 +43,11 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     public CircleCollider2D cr;
     public FloatVariableSO autoAimRangeSO;
 
-    // This is the player hand object that has a weapon as a child object which rotates around the player
+    private OccludableCollider occludableCollider;
+
+    /// <summary>
+    /// This is the player hand object that has a weapon as a child object which rotates around the player
+    /// </summary>
     void InitPlayerHands()
     {
         _playerHandsGameObject = new GameObject("Player Hands");
@@ -55,6 +59,11 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     void Start()
     {
+        occludableCollider = transform.Find("OccludableCollider").GetComponent<OccludableCollider>();
+
+        occludableCollider.OnTriggerEnter2D_Action += OccludableCollider_OnCollisionEnter2D;
+        occludableCollider.OnTriggerExit2D_Action += OccludableCollider_OnCollisionExit2D;
+
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -83,7 +92,6 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
         {
             enemyPositionFromPlayerSO.Value = FindClosestEnemy().transform.position - transform.position;
         }
-        
     }
 
     /// <summary>
@@ -250,5 +258,30 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     public void OnAbility3(InputAction.CallbackContext context)
     {
         Debug.Log("Ability 3 Place Holder");
+    }
+    /// <summary>
+    /// When the below methods receive trigger actions on enter and on exit from the OccludableColliders child class that this script subscribes to, they make the object that is being colided with transparant. 
+    /// </summary>
+    private void OccludableCollider_OnCollisionEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Occludable"))
+        {
+            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+            }
+        }
+    }
+    private void OccludableCollider_OnCollisionExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Occludable"))
+        {
+            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            }
+        }
     }
 }

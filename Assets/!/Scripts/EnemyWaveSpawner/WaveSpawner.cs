@@ -81,7 +81,7 @@ public class WaveSpawner : MonoBehaviour
     /// <summary>
     ///  Logic for how the regular enemy wave is calculated. 
     /// </summary>
-    public void GenerateWave()
+    private void GenerateWave()
     {
         if (_enemiesSpawnedInCurrentWave < _numberOfEnemiesToKill)
         {
@@ -99,7 +99,7 @@ public class WaveSpawner : MonoBehaviour
     /// <summary>
     /// The method below spawns the regular zombie prefabs.
     /// </summary>
-    public void GenerateEnemies()
+    private void GenerateEnemies()
     {
         if (_enemiesAllowedOnScreen > enemiesOnScreenSO.Value)
         {
@@ -124,7 +124,7 @@ public class WaveSpawner : MonoBehaviour
     /// <summary>
     /// Method below contains logic for spawning next wave. 
     /// </summary>
-    public void TriggerNextWave()
+    private void TriggerNextWave()
     {
         KillAllEnemies();
         enemiesOnScreenSO.Value = 0;
@@ -137,7 +137,7 @@ public class WaveSpawner : MonoBehaviour
     /// <summary>
     /// How zombie enemies become harder after each passing wave. This will get more sophisticated as the game progresses, it's fine for now.  
     /// </summary>
-    public void MakeWaveHarderAlgorithm()
+    private void MakeWaveHarderAlgorithm()
     {
         _numberOfEnemiesToKill += 5;
         StatsSO.CurrentStats.Health += 5f;
@@ -146,7 +146,7 @@ public class WaveSpawner : MonoBehaviour
     /// <summary>
     /// A method for killing all enemiies on screen. This is needed inside the TriggerNextWave().
     /// </summary>
-    public void KillAllEnemies()
+    private void KillAllEnemies()
     {
         GameObject[] enemiesOnScreen = GameObject.FindGameObjectsWithTag("Enemy");
 
@@ -161,7 +161,7 @@ public class WaveSpawner : MonoBehaviour
     /// <summary>
     /// Similar to GenerateWave but this time for the Boss rounds. 
     /// </summary>
-    public void GenerateBossWave()
+    private void GenerateBossWave()
     {
         if (_enemiesSpawnedInCurrentWave < _bossesAllowedOnScreen)
         {
@@ -179,7 +179,7 @@ public class WaveSpawner : MonoBehaviour
     /// <summary>
     /// A check that runs int he FixedUpdate method to determine whether the current wave is a boss wave. 
     /// </summary>
-    public void isBossRound()
+    private void isBossRound()
     {
         if (currentWaveSO.Value % 5 == 0)
         {
@@ -194,7 +194,7 @@ public class WaveSpawner : MonoBehaviour
     /// <summary>
     /// Similar to Generate Enemies but for bosses.
     /// </summary>
-    public void GenerateBosses()
+    private void GenerateBosses()
     {
         if (_bossesAllowedOnScreen > enemiesOnScreenSO.Value)
         {
