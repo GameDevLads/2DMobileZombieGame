@@ -5,33 +5,41 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-  public IntVariableSO NOZombies;
-  public AudioClip[] Zombie1Audios;
-  public AudioClip[] Zombie2Audios;
-  public AudioClip[] Zombie3Audios;
-  private AudioSource[] audioSources;
+  public IntVariableSO NOAudioSources;
+  public AudioClipType[] AudioClipTypes;
+
+  private AudioSource[] AudioSources;
   // Start is called before the first frame update
   void Start()
   {
-    audioSources = GetComponents<AudioSource>();
-    var nOAudioSources = NOZombies.Value > 2 ? 3 : NOZombies.Value;
-    StartCoroutine(PlaySoundsLoop(nOAudioSources));
+    //create audiosources
+    AudioSources = new AudioSource[NOAudioSources.Value];
+    for (int i = 0; i < AudioSources.Length; i++)
+    {
+      AudioSources[i] = gameObject.AddComponent<AudioSource>(); 
+    }
+    StartCoroutine(PlaySoundsLoop(NOAudioSources.Value));
   }
 
   IEnumerator PlaySoundsLoop(int nOAudioSources)
   {
-    while (NOZombies)
+    var hasSources = true;
+    while (hasSources)
     {
-      for (int i = 0; i < nOAudioSources; i++)
+      var randomClipType = new RandomOptionSelector(AudioClipTypes.Length);
+      foreach (var audioSource in AudioSources)
       {
-        AudioClip randomClip = Zombie1Audios[UnityEngine.Random.Range(0, Zombie1Audios.Length)];
+        //select clip type. I.E. Zombie1, Zombie2
+        var selectedIndexClipType = randomClipType.GetRandomOption();
+        AudioClipType selectedClipType = AudioClipTypes[selectedIndexClipType];
+        //select random clip from random clip type
+        var randomClipPerType = new RandomOptionSelector(selectedClipType.AudioClips.Length);
+        var randomClipPerTypeNumber = randomClipPerType.GetRandomOption();
+        audioSource.clip = selectedClipType.AudioClips[randomClipPerTypeNumber];
         float sourceDelay = UnityEngine.Random.Range(0.5f, 1.5f);
-        audioSources[i].clip = randomClip;
-        audioSources[i].Play();
         yield return new WaitForSeconds(sourceDelay);
+        audioSource.Play();
       }
-      float interval = UnityEngine.Random.Range(1, 2);
-      yield return new WaitForSeconds(interval);
     }
   }
 
@@ -40,4 +48,13 @@ public class AudioManager : MonoBehaviour
   {
 
   }
+}
+
+[Serializable]
+public class AudioClipType
+{
+  public string Name;
+  public IntVariableSO NOAudioSources;
+  public IntVariableSO NOCurrentSources;
+  public AudioClip[] AudioClips;
 }
