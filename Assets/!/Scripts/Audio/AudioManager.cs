@@ -6,7 +6,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
   public IntVariableSO NOAudioSources;
-  public AudioClipType[] AudioClipTypes;
+  public AudioEvent[] audioEvents;
 
   private AudioSource[] AudioSources;
   // Start is called before the first frame update
@@ -23,38 +23,19 @@ public class AudioManager : MonoBehaviour
 
   IEnumerator PlaySoundsLoop(int nOAudioSources)
   {
-    var hasSources = true;
-    while (hasSources)
+    while (true)
     {
-      var randomClipType = new RandomOptionSelector(AudioClipTypes.Length);
+      var randomAudioEvent = new RandomOptionSelector(audioEvents.Length);
       foreach (var audioSource in AudioSources)
       {
         //select clip type. I.E. Zombie1, Zombie2
-        var selectedIndexClipType = randomClipType.GetRandomOption();
-        AudioClipType selectedClipType = AudioClipTypes[selectedIndexClipType];
+        var selectedIndexClipType = randomAudioEvent.GetRandomOption();
+        AudioEvent selectedAudioEvent = audioEvents[selectedIndexClipType];
         //select random clip from random clip type
-        var randomClipPerType = new RandomOptionSelector(selectedClipType.AudioClips.Length);
-        var randomClipPerTypeNumber = randomClipPerType.GetRandomOption();
-        audioSource.clip = selectedClipType.AudioClips[randomClipPerTypeNumber];
         float sourceDelay = UnityEngine.Random.Range(0.5f, 1.5f);
         yield return new WaitForSeconds(sourceDelay);
-        audioSource.Play();
+        selectedAudioEvent.Play(audioSource);
       }
     }
   }
-
-  // Update is called once per frame
-  void Update()
-  {
-
-  }
-}
-
-[Serializable]
-public class AudioClipType
-{
-  public string Name;
-  public IntVariableSO NOAudioSources;
-  public IntVariableSO NOCurrentSources;
-  public AudioClip[] AudioClips;
 }

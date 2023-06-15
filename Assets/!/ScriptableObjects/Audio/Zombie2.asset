@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Zombie2
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 77643127b6c9ff048b2697cfc1ea1ffe, type: 3}
-  - {fileID: 8300000, guid: 4e910b527d415b649a606af81b599e62, type: 3}
-  - {fileID: 8300000, guid: 7c1b00bdcdd74c24d866f42ba105ae82, type: 3}
-  - {fileID: 8300000, guid: 0b8a12acafcbeac47844940b52c7e2a8, type: 3}
-  - {fileID: 8300000, guid: 374be090d2104684a8d1c41db5ff7372, type: 3}
+  - {fileID: 8300000, guid: af54fd6556faeb84f84e7cfb62b24ada, type: 3}
+  - {fileID: 8300000, guid: 5070931fa05c99348a97229194482830, type: 3}
+  - {fileID: 8300000, guid: 2fadfe0120b9d7b49b369637dcadd2a2, type: 3}
+  - {fileID: 8300000, guid: 74e504232b5c13c40bb5c73df730ec0e, type: 3}
+  - {fileID: 8300000, guid: 28744474da1665a499c40bd3b786c993, type: 3}
+  - {fileID: 8300000, guid: aebb63d356839f54f8be2cbd10581995, type: 3}
+  - {fileID: 8300000, guid: 6e0d195c4228e6c4c801d686e080bf1c, type: 3}
   volume:
     minValue: 0.4025423
     maxValue: 0.91101676
