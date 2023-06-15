@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-  public IntVariableSO NOAudioSources;
+  public int AudioSourcesLimit;
   public AudioEvent[] audioEvents;
 
   private AudioSource[] AudioSources;
@@ -13,23 +13,23 @@ public class AudioManager : MonoBehaviour
   void Start()
   {
     //create audiosources
-    AudioSources = new AudioSource[NOAudioSources.Value];
+    AudioSources = new AudioSource[AudioSourcesLimit];
     for (int i = 0; i < AudioSources.Length; i++)
     {
       AudioSources[i] = gameObject.AddComponent<AudioSource>(); 
     }
-    StartCoroutine(PlaySoundsLoop(NOAudioSources.Value));
+    StartCoroutine(PlaySoundsLoop(AudioSourcesLimit));
   }
 
   IEnumerator PlaySoundsLoop(int nOAudioSources)
   {
     while (true)
     {
-      var randomAudioEvent = new RandomOptionSelector(audioEvents.Length);
+      var randomAudioEventSelector = new RandomOptionSelector(audioEvents.Length);
       foreach (var audioSource in AudioSources)
       {
         //select clip type. I.E. Zombie1, Zombie2
-        var selectedIndexClipType = randomAudioEvent.GetRandomOption();
+        var selectedIndexClipType = randomAudioEventSelector.GetRandomOption();
         AudioEvent selectedAudioEvent = audioEvents[selectedIndexClipType];
         //select random clip from random clip type
         float sourceDelay = UnityEngine.Random.Range(0.5f, 1.5f);
