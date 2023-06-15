@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
   public RangedFloat SourceDelay;
 
   private AudioSource[] AudioSources;
+  private Coroutine SoundsRoutine;
   // Start is called before the first frame update
   void Start()
   {
@@ -20,7 +21,12 @@ public class AudioManager : MonoBehaviour
     {
       AudioSources[i] = gameObject.AddComponent<AudioSource>(); 
     }
-    StartCoroutine(PlaySoundsLoop(AudioSourcesLimit));
+    SoundsRoutine = StartCoroutine(PlaySoundsLoop(AudioSourcesLimit));
+  }
+
+  public void StopSounds()
+  {
+    StopCoroutine(SoundsRoutine);
   }
 
   IEnumerator PlaySoundsLoop(int nOAudioSources)
