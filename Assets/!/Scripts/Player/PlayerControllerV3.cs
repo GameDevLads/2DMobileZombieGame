@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static Unity.VisualScripting.Metadata;
 
 public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActions
 {
@@ -264,13 +265,39 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     /// </summary>
     private void OccludableCollider_OnCollisionEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Occludable"))
+        if (collision.gameObject.CompareTag("Occludable") && collision.GetType() == typeof(PolygonCollider2D))
         {
             SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
             if (spriteRenderer != null)
             {
                 spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+                spriteRenderer.sortingOrder = 12;
             }
+        }
+
+        if(collision.CompareTag("SetSortLayerForeground") && collision.GetType() == typeof(PolygonCollider2D))
+        {
+            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+            SpriteRenderer[] children = collision.GetComponentsInChildren<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.sortingLayerName = "Default";
+            }
+
+            if (children != null)
+            {
+                children[1].sortingLayerName = "Foreground";
+                children[2].sortingLayerName = "Foreground";
+            }
+        }
+
+        if(collision.CompareTag("SlowWalking"))
+        {
+            ///this still has issues with the colliders, I think there are too many bushes next to one another with individual colliders and that's what causes problems
+            ///when walking through them it still does that thing where you suddenly move fast through them when you shouldn't
+            ///i.e it triggers the collision exit method and doesn't trigger the collision enter right away
+            ///so thats why its commented out for now, if you lot know how to do it fix it please
+          //  _moveSpeed = 2f;
         }
     }
     private void OccludableCollider_OnCollisionExit2D(Collider2D collision)
@@ -281,7 +308,27 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
             if (spriteRenderer != null)
             {
                 spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                spriteRenderer.sortingOrder = 0;
             }
         }
+        if (collision.CompareTag("SetSortLayerForeground"))
+        {
+            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+            SpriteRenderer[] children = collision.GetComponentsInChildren<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.sortingLayerName = "Background";
+            }
+            if (children != null)
+            {
+                children[1].sortingLayerName = "Default";
+                children[2].sortingLayerName = "Default";
+            }
+        }
+        if (collision.CompareTag("SlowWalking"))
+        {
+            _moveSpeed = 10f;
+        }
     }
+
 }

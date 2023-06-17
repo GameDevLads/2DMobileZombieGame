@@ -20,4 +20,5 @@ public class OccludableCollider : MonoBehaviour
     {
         OnTriggerExit2D_Action?.Invoke(collision);
     }
+
 }
