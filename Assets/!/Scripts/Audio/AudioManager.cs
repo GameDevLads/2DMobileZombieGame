@@ -5,23 +5,20 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-  public int AudioSourcesLimit;
-  public AudioEvent[] AudioEvents;
+  public List<BackgroundAudioInstance> BGAudioInstances;
   [MinMaxRange(0.1f, 5f)]
   public RangedFloat SourceDelay;
-
-  private AudioSource[] AudioSources;
   private Coroutine SoundsRoutine;
+
+  void Awake()
+  {
+    BGAudioInstances = new List<BackgroundAudioInstance>();
+  }
+
   // Start is called before the first frame update
   void Start()
   {
-    //create audiosources
-    AudioSources = new AudioSource[AudioSourcesLimit];
-    for (int i = 0; i < AudioSources.Length; i++)
-    {
-      AudioSources[i] = gameObject.AddComponent<AudioSource>(); 
-    }
-    SoundsRoutine = StartCoroutine(PlaySoundsLoop(AudioSourcesLimit));
+    SoundsRoutine = StartCoroutine(PlaySoundsLoop());
   }
 
   public void StopSounds()
@@ -29,21 +26,16 @@ public class AudioManager : MonoBehaviour
     StopCoroutine(SoundsRoutine);
   }
 
-  IEnumerator PlaySoundsLoop(int nOAudioSources)
+  IEnumerator PlaySoundsLoop()
   {
     while (true)
     {
-      var randomAudioEventSelector = new RandomOptionSelector(AudioEvents.Length);
-      foreach (var audioSource in AudioSources)
-      {
-        //select clip type. I.E. Zombie1, Zombie2
-        var selectedIndexClipType = randomAudioEventSelector.GetRandomOption();
-        AudioEvent selectedAudioEvent = AudioEvents[selectedIndexClipType];
-        //select random clip from random clip type
-        float sourceDelay = UnityEngine.Random.Range(SourceDelay.minValue, SourceDelay.maxValue);
-        yield return new WaitForSeconds(sourceDelay);
-        selectedAudioEvent.Play(audioSource);
-      }
+      Debug.Log(BGAudioInstances.Count);
+      var interval = UnityEngine.Random.Range(SourceDelay.minValue, SourceDelay.maxValue);
+      yield return new WaitForSeconds(interval);
+      if (BGAudioInstances.Count == 0) continue;
+      var random = UnityEngine.Random.Range(0, BGAudioInstances.Count);
+      BGAudioInstances[random].Play();
     }
   }
 }

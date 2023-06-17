@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8565416094436821007}
   - component: {fileID: -6016515470377485071}
   - component: {fileID: 7641133536590350937}
+  - component: {fileID: 4407512666824964996}
   m_Layer: 0
   m_Name: Zombie3
   m_TagString: Enemy
@@ -216,3 +217,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   XPPool: {fileID: 0}
+--- !u!114 &4407512666824964996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8565416094436821001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d0c131dd53b346900f05d0697298b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioManager: {fileID: 5583307819132948634, guid: d9c61017238752b4c99db3723897b74f, type: 3}
+  AudioEvent: {fileID: 11400000, guid: c3370630239511840a3c4b350f66c9d3, type: 2}
