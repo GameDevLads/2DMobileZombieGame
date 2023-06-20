@@ -6,35 +6,37 @@ using UnityEngine;
 
 public class CollectableController : MonoBehaviour, ICollectable
 {
-    public FloatVariableSO coinAmountSO;
-    public FloatVariableSO collectableLifetimeSO;
-    public FloatVariableSO blinkingDelayedStartSO;
-    public FloatVariableSO blinkingIntervalSO;
+    public FloatVariableSO CollectableAmountSO;
+    public FloatVariableSO CollectableLifetimeSO;
+    public FloatVariableSO BlinkingDelayedStartSO;
+    public FloatVariableSO BlinkingIntervalSO;
 
-    public float DropChancePercentage { get; set; } = 10;
+    [field: SerializeField]
+    public FloatVariableSO DropChancePercentage { get; set; }
 
     private void Start()
     {
         StartCoroutine(Blink());
-        Destroy(gameObject, collectableLifetimeSO.Value);
+        Destroy(gameObject, CollectableLifetimeSO.Value);
     }
   
+    // TODO: Enable/Disable blinking based on config
     private IEnumerator Blink()
     {
-        yield return new WaitForSeconds(blinkingDelayedStartSO.Value);
+        yield return new WaitForSeconds(BlinkingDelayedStartSO.Value);
         while (true)
         {
             GetComponent<Renderer>().material.color = Color.yellow;
-            yield return new WaitForSeconds(blinkingIntervalSO.Value);
+            yield return new WaitForSeconds(BlinkingIntervalSO.Value);
             GetComponent<Renderer>().material.color = Color.red;
-            yield return new WaitForSeconds(blinkingIntervalSO.Value);
+            yield return new WaitForSeconds(BlinkingIntervalSO.Value);
         }       
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            coinAmountSO.Value++;
+            CollectableAmountSO.Value++;
             Destroy(gameObject);
         }
     }

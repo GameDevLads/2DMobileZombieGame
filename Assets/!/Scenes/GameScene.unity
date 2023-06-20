@@ -1316,7 +1316,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 436034843121623243, guid: 14cd9baaf05b1564cbaba086d853f415, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1110587953630753305, guid: 14cd9baaf05b1564cbaba086d853f415, type: 3}
       propertyPath: m_Size.x
@@ -1334,6 +1334,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1110587953630753312, guid: 14cd9baaf05b1564cbaba086d853f415, type: 3}
+      propertyPath: BrowniePointsSO
+      value: 
+      objectReference: {fileID: 11400000, guid: ddccb5130fb25484fac644eb2092f538, type: 2}
     - target: {fileID: 1110587953630753313, guid: 14cd9baaf05b1564cbaba086d853f415, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1348,7 +1352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1110587953630753316, guid: 14cd9baaf05b1564cbaba086d853f415, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.0202491
+      value: 1.0002441
       objectReference: {fileID: 0}
     - target: {fileID: 1110587953630753316, guid: 14cd9baaf05b1564cbaba086d853f415, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y

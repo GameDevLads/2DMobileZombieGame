@@ -98,9 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 700da86fc9a14168c8d7590e1b43b88f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Spawner: {fileID: 0}
   xpAmountSO: {fileID: 11400000, guid: 63830cec319fab99b9d424b2d3610e20, type: 2}
   xpValue: {fileID: 11400000, guid: 5bf686db5986ced8e87f8f9c63ac7bdf, type: 2}
+  <DropChancePercentage>k__BackingField: {fileID: 11400000, guid: 10a30c3c7fe29df47b1d7d7c9a993918, type: 2}
 --- !u!58 &971253789983269389
 CircleCollider2D:
   m_ObjectHideFlags: 0

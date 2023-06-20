@@ -2,6 +2,6 @@
 {
     public interface ICollectable
     {
-        public float DropChancePercentage { get; set; }
+        public FloatVariableSO DropChancePercentage { get; set; }
     }
 }

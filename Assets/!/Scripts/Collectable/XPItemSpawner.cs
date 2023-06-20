@@ -13,7 +13,7 @@ namespace Assets.Scripts.Collectable
             position.y += Random.Range(-2f, 2f);
             xpItem.transform.position = position;
             XPItem xpItemComponent = xpItem.GetComponent<XPItem>();
-            xpItemComponent.Spawner = this;
+            //xpItemComponent.Spawner = this;
         }
 
         public void DespawnXPItem(GameObject xpItem)
