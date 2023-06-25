@@ -5,8 +5,6 @@ using UnityEngine;
 public class BackgroundAudioInstance : MonoBehaviour
 {
   [SerializeField]
-  private AudioManager AudioManager;
-  [SerializeField]
   private AudioEvent AudioEvent;
   private AudioSource AudioSource;
   // Start is called before the first frame update
@@ -18,13 +16,15 @@ public class BackgroundAudioInstance : MonoBehaviour
 
   void OnEnable()
   {
-    AudioManager.BGAudioInstances.Add(this);
+    AudioManager AudioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+    AudioManager.AddAudioInstance(this);
   }
 
   void OnDisable()
   {
     AudioSource.Stop();
-    AudioManager.BGAudioInstances.Remove(this);
+    AudioManager AudioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+    AudioManager.RemoveAudioInstance(this);
   }
 
   public void Play()

@@ -21,6 +21,16 @@ public class AudioManager : MonoBehaviour
     SoundsRoutine = StartCoroutine(PlaySoundsLoop());
   }
 
+  public void AddAudioInstance(BackgroundAudioInstance backgroundAudioInstance)
+  {
+    BGAudioInstances.Add(backgroundAudioInstance);
+  }
+
+  public void RemoveAudioInstance(BackgroundAudioInstance backgroundAudioInstance)
+  {
+    BGAudioInstances.Remove(backgroundAudioInstance);
+  }
+
   public void StopSounds()
   {
     StopCoroutine(SoundsRoutine);
@@ -30,7 +40,6 @@ public class AudioManager : MonoBehaviour
   {
     while (true)
     {
-      Debug.Log(BGAudioInstances.Count);
       var interval = UnityEngine.Random.Range(SourceDelay.minValue, SourceDelay.maxValue);
       yield return new WaitForSeconds(interval);
       if (BGAudioInstances.Count == 0) continue;
