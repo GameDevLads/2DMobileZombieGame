@@ -5,8 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - AudioManager
-  - Occludable
   layers:
   - Default
   - TransparentFX
