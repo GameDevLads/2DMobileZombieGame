@@ -229,5 +229,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce8d0c131dd53b346900f05d0697298b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AudioManager: {fileID: 5583307819132948634, guid: d9c61017238752b4c99db3723897b74f, type: 3}
+  AudioManager: {fileID: 7477596511725109301, guid: d9c61017238752b4c99db3723897b74f, type: 3}
   AudioEvent: {fileID: 11400000, guid: 7e9a2b59bd6c33c4e896d8d5acb0b4b9, type: 2}

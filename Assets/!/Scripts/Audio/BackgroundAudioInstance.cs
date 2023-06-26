@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BackgroundAudioInstance : MonoBehaviour
 {
+  public AudioManager AudioManager;
   [SerializeField]
   private AudioEvent AudioEvent;
   private AudioSource AudioSource;
@@ -16,14 +17,12 @@ public class BackgroundAudioInstance : MonoBehaviour
 
   void OnEnable()
   {
-    AudioManager AudioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
     AudioManager.AddAudioInstance(this);
   }
 
   void OnDisable()
   {
     AudioSource.Stop();
-    AudioManager AudioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
     AudioManager.RemoveAudioInstance(this);
   }
 
