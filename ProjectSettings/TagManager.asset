@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Occludable
+  - SlowWalking
+  - SortOrderSet0
+  - SortOrderSet2
+  - SortOrderSet11
+  - SetSortLayerForeground
   layers:
   - Default
   - TransparentFX
@@ -39,6 +45,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1660779579
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Foreground
+    uniqueID: 2401309257
     locked: 0
