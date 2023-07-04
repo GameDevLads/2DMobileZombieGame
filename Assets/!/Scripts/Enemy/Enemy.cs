@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Assets.Scripts.Collectable;
 using Slider = UnityEngine.UI.Slider;
 using TMPro;
 using System.Collections;
@@ -26,7 +25,6 @@ namespace Assets.Scripts
 
         private float _totalHealth;
         private const string _healthTextFormat = "Health: {0}/{1}";
-        private XPItemSpawner _xpItemSpawner;
         private Slider _healthSlider;
         private TextMeshProUGUI _healthTextPro;
         private ICollectablePool _collectablePool;
@@ -34,7 +32,6 @@ namespace Assets.Scripts
         private void Start()
         {
             Health = StatsSO.CurrentStats.Health;
-            _xpItemSpawner = GetComponent<XPItemSpawner>();
             _totalHealth = Health;
             AddHealthBar();
             AddCollectablePool();
@@ -42,11 +39,6 @@ namespace Assets.Scripts
 
         public void ApplyDamage(float damage)
         {
-            //for (int i = 0; i < damage; i++)
-            //{
-            //    _xpItemSpawner.SpawnXPItem(transform.position);
-            //}
-
             Health = Health - damage;
 
             if (EnemyData.EnableVisualDamageText)
