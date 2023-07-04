@@ -43,7 +43,11 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     public CircleCollider2D cr;
     public FloatVariableSO autoAimRangeSO;
 
-    // This is the player hand object that has a weapon as a child object which rotates around the player
+    private OccludableCollider occludableCollider;
+
+    /// <summary>
+    /// This is the player hand object that has a weapon as a child object which rotates around the player
+    /// </summary>
     void InitPlayerHands()
     {
         _playerHandsGameObject = new GameObject("Player Hands");
@@ -55,6 +59,11 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     void Start()
     {
+        occludableCollider = transform.Find("OccludableCollider").GetComponent<OccludableCollider>();
+
+        occludableCollider.OnTriggerEnter2D_Action += OccludableCollider_OnCollisionEnter2D;
+        occludableCollider.OnTriggerExit2D_Action += OccludableCollider_OnCollisionExit2D;
+
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -83,7 +92,6 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
         {
             enemyPositionFromPlayerSO.Value = FindClosestEnemy().transform.position - transform.position;
         }
-        
     }
 
     /// <summary>
@@ -251,4 +259,75 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     {
         Debug.Log("Ability 3 Place Holder");
     }
+    /// <summary>
+    /// When the below methods receive trigger actions on enter and on exit from the OccludableColliders child class that this script subscribes to, they make the object that is being colided with transparant. 
+    /// </summary>
+    private void OccludableCollider_OnCollisionEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Occludable") && collision.GetType() == typeof(PolygonCollider2D))
+        {
+            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+                spriteRenderer.sortingOrder = 12;
+            }
+        }
+
+        if(collision.CompareTag("SetSortLayerForeground") && collision.GetType() == typeof(PolygonCollider2D))
+        {
+            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+            SpriteRenderer[] children = collision.GetComponentsInChildren<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.sortingLayerName = "Default";
+            }
+
+            if (children != null)
+            {
+                children[1].sortingLayerName = "Foreground";
+                children[2].sortingLayerName = "Foreground";
+            }
+        }
+
+        if(collision.CompareTag("SlowWalking"))
+        {
+            ///this still has issues with the colliders, I think there are too many bushes next to one another with individual colliders and that's what causes problems
+            ///when walking through them it still does that thing where you suddenly move fast through them when you shouldn't
+            ///i.e it triggers the collision exit method and doesn't trigger the collision enter right away
+            ///so thats why its commented out for now, if you lot know how to do it fix it please
+          //  _moveSpeed = 2f;
+        }
+    }
+    private void OccludableCollider_OnCollisionExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Occludable"))
+        {
+            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                spriteRenderer.sortingOrder = 0;
+            }
+        }
+        if (collision.CompareTag("SetSortLayerForeground"))
+        {
+            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+            SpriteRenderer[] children = collision.GetComponentsInChildren<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.sortingLayerName = "Background";
+            }
+            if (children != null)
+            {
+                children[1].sortingLayerName = "Default";
+                children[2].sortingLayerName = "Default";
+            }
+        }
+        if (collision.CompareTag("SlowWalking"))
+        {
+            _moveSpeed = 10f;
+        }
+    }
+
 }
