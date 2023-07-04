@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e5d946c7bbee9641bc05b231721ce99, type: 3}
-  m_Name: EnemyData
+  m_Script: {fileID: 11500000, guid: 832f37ccda7b0d241a580860109c32e5, type: 3}
+  m_Name: PlayerWeaponSlot2
   m_EditorClassIdentifier: 
-  EnableVisualDamageText: 1
-  EnableHealthbar: 1
-  CollectablePool: {fileID: 8242248495796505794, guid: cb1ce56505bc3b14db15eab96222837b, type: 3}
+  Weapon: {fileID: 6725790222379810855, guid: c8513ea4b4cb4c9408dc866cdca58752, type: 3}

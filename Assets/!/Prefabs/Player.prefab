@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2817682900796868578}
   - component: {fileID: 2817682900796868581}
   - component: {fileID: 2817682900796868580}
+  - component: {fileID: 383779613}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -32,7 +33,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2817682900796868583}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.000061035156, y: 0, z: 0}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
@@ -402,6 +403,7 @@ MonoBehaviour:
   tr: {fileID: 2817682900796868574}
   coinAmountSO: {fileID: 11400000, guid: 634297763070f894ea1153d77f083a58, type: 2}
   DefaultWeapon: {fileID: 6820678582435311943, guid: c54473dbcd67c5e4e8aaae0b42bc3e16, type: 3}
+  SelectedPlayerWeapon: {fileID: 11400000, guid: ea08454c3ac7f0b4184761134b3ba43b, type: 2}
   WeaponPlayerDistance: 1.5
   _dashSpeed: 60
   _flashAmount: 10
@@ -461,6 +463,34 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2
+--- !u!114 &383779613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2817682900796868583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7294f3c31af4c9a428d6648c4b0e761f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: ece987c81c6a0df41bdb10ba41201304, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2817682900796868579}
+        m_TargetAssemblyTypeName: PlayerControllerV3, Assembly-CSharp
+        m_MethodName: UseSelectedWeapon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2817682901183718013
 GameObject:
   m_ObjectHideFlags: 0

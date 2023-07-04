@@ -1,3 +1,4 @@
+using Assets.__.Scripts.SO.Player;
 using Assets.Scripts;
 using Assets.Scripts.Interfaces;
 using System.Collections;
@@ -20,6 +21,9 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     [Tooltip("Player's default weapon.")]
     public GameObject DefaultWeapon;
+
+    [Tooltip("Player's selected weapon.")]
+    public PlayerWeaponSO SelectedPlayerWeapon;
 
     [Tooltip("How far away the weapon is from the player.")]
     public float WeaponPlayerDistance = 1.5f;
@@ -52,9 +56,20 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     {
         _playerHandsGameObject = new GameObject("Player Hands");
         _playerHandsGameObject.AddComponent<PlayerHandsController>();
-        var weapon = Instantiate(DefaultWeapon, new Vector2(WeaponPlayerDistance, 0), Quaternion.identity);
+        var weapon = Instantiate(SelectedPlayerWeapon.Weapon, new Vector2(WeaponPlayerDistance, 0), Quaternion.identity);
         weapon.transform.parent = _playerHandsGameObject.gameObject.transform;
         _playerHandsGameObject.transform.parent = gameObject.transform;
+    }
+
+    public void UseSelectedWeapon()
+    {
+        if (_playerHandsGameObject.transform.childCount > 0)
+        {
+            var currentWeapon = _playerHandsGameObject.transform.GetChild(0);
+            Destroy(currentWeapon.gameObject);
+            var weapon = Instantiate(SelectedPlayerWeapon.Weapon, currentWeapon.position, currentWeapon.rotation,
+                _playerHandsGameObject.transform);
+        }
     }
 
     void Start()

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b178458b46e0554e8ee06e1c735e93d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WaveChangedEvent: {fileID: 11400000, guid: 41578620461b6be488349cb3218612d6, type: 2}
   enemies:
   - enemyPrefab: {fileID: 7375728346704147026, guid: 60f573493f8b1c5489464264d6c9f99e, type: 3}
   - enemyPrefab: {fileID: 6066341481304386814, guid: d2a6b1c5f1a30924abc0906619655312, type: 3}

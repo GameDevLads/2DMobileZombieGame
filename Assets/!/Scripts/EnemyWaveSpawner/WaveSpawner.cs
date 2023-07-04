@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
+    public GameEvent WaveChangedEvent;
     public List<Enemy> enemies = new List<Enemy>();
     private GameObject _enemyPrefab;
     public List<Transform> spawnLocations = new List<Transform>();
@@ -132,6 +133,7 @@ public class WaveSpawner : MonoBehaviour
         MakeWaveHarderAlgorithm();
         enemiesKilledSO.Value = 0;
         _enemiesSpawnedInCurrentWave = 0;
+        WaveChangedEvent?.Raise();
     }
 
     /// <summary>
