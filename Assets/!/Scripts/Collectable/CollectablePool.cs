@@ -1,9 +1,7 @@
 ﻿using Assets.__.Scripts.Interfaces;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 namespace Assets.__.Scripts.Collectable
 {
