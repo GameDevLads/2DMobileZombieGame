@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6543336519109426157}
   - component: {fileID: -5023631499426006026}
-  - component: {fileID: -7296839157212313813}
   - component: {fileID: 971253789983269389}
+  - component: {fileID: 6730785071387032411}
   m_Layer: 9
   m_Name: xp
   m_TagString: Untagged
@@ -86,21 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-7296839157212313813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1522143147373953408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 700da86fc9a14168c8d7590e1b43b88f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Spawner: {fileID: 0}
-  xpAmountSO: {fileID: 11400000, guid: 63830cec319fab99b9d424b2d3610e20, type: 2}
-  xpValue: {fileID: 11400000, guid: 5bf686db5986ced8e87f8f9c63ac7bdf, type: 2}
 --- !u!58 &971253789983269389
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -117,3 +102,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.51
+--- !u!114 &6730785071387032411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522143147373953408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4452437f38f61c148811faf6996dfd77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollectableAmountSO: {fileID: 11400000, guid: 63830cec319fab99b9d424b2d3610e20, type: 2}
+  CollectableLifetimeSO: {fileID: 11400000, guid: d5d41319b54faa9418e9f940dfb560e6, type: 2}
+  BlinkingDelayedStartSO: {fileID: 11400000, guid: 071dc1192254dd4478e7f8c23a1debd2, type: 2}
+  BlinkingIntervalSO: {fileID: 11400000, guid: 5700073e6f5fa8c459aa8d716e2c3a84, type: 2}
+  <DropChancePercentage>k__BackingField: {fileID: 11400000, guid: 10a30c3c7fe29df47b1d7d7c9a993918, type: 2}
