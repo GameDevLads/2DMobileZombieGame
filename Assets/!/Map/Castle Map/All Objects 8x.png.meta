@@ -1,0 +1,1528 @@
+fileFormatVersion: 2
+guid: 56b13ab2e6514f045ab1ec46f83027a9
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: brown_wall_corner
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 2140
+        width: 489
+        height: 716
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c9ad0145889fd34085762763d4fb2e5
+      internalID: 31104865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: car
+      rect:
+        serializedVersion: 2
+        x: 1615
+        y: 2481
+        width: 523
+        height: 273
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 500c20bcd5122654f93722167d44e494
+      internalID: -535762304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: table
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 2491
+        width: 359
+        height: 279
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be32af1fae9c6ae4ea33258f651d6ab8
+      internalID: 1499551989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rubbish
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 2502
+        width: 255
+        height: 233
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9917f1abd7a8644192d17f1da8031ee
+      internalID: 1484604876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bench2
+      rect:
+        serializedVersion: 2
+        x: 3341
+        y: 2498
+        width: 319
+        height: 145
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20a762d04dc56ad488f539d94491b1f1
+      internalID: 690012578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bench1
+      rect:
+        serializedVersion: 2
+        x: 2926
+        y: 2500
+        width: 315
+        height: 136
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29b45cc0a7e0cb44984c5fa3175323fe
+      internalID: 449312884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_wall_long
+      rect:
+        serializedVersion: 2
+        x: 1271
+        y: 2157
+        width: 1413
+        height: 145
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 571b6e991e530ff4684a9dbe6da3197e
+      internalID: -170005752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bench_vertical
+      rect:
+        serializedVersion: 2
+        x: 3802
+        y: 2037
+        width: 106
+        height: 288
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d9a7fad978ca4c47b629c08c9e0a7b4
+      internalID: -715857499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fountain
+      rect:
+        serializedVersion: 2
+        x: 669
+        y: 1764
+        width: 589
+        height: 463
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff56e1fa304e8bf49a964972cbb6bfd8
+      internalID: 664459641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_wall_corner
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 1585
+        width: 395
+        height: 394
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dc3552c3c7daf542b8f54be5a32db3e
+      internalID: 979503739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shelf1
+      rect:
+        serializedVersion: 2
+        x: 1362
+        y: 1500
+        width: 337
+        height: 478
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c11a5e574a3bd6a41a21b2976d52cb14
+      internalID: 430389923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rock_flat
+      rect:
+        serializedVersion: 2
+        x: 2636
+        y: 1669
+        width: 248
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71a506156b9d93845ad5cdcf92c40be4
+      internalID: 806695813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rock_tall
+      rect:
+        serializedVersion: 2
+        x: 2251
+        y: 1510
+        width: 223
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d311646193c726a409796c6b459cf071
+      internalID: -108294748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_wall_small
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 1376
+        width: 333
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af0a665fa4a896545ae658b031d58e3a
+      internalID: -1038008182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shelf2
+      rect:
+        serializedVersion: 2
+        x: 1762
+        y: 1500
+        width: 364
+        height: 479
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bec596e10fd475342b783f57ed189480
+      internalID: 32895731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iron_fence
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 129
+        width: 1479
+        height: 1198
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89bc58dcd99e2224fad9bdf7213e0e43
+      internalID: 1204005732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tree
+      rect:
+        serializedVersion: 2
+        x: 4137
+        y: 152
+        width: 475
+        height: 929
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c40c0f362c2ef304285b5497552330c4
+      internalID: 1433432161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bush_1x2_vertical_2
+      rect:
+        serializedVersion: 2
+        x: 3145
+        y: 445
+        width: 163
+        height: 309
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7826e1bea7032e4fb82afe4ab3e4069
+      internalID: 1067869197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bush_1x1_1
+      rect:
+        serializedVersion: 2
+        x: 3525
+        y: 444
+        width: 177
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31d1a6c9886282144ab2f88e09801428
+      internalID: -491137541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brown_wall_horizontal
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 2142
+        width: 493
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1f7f0ec41b077248a428dcd2359fde9
+      internalID: 1060562908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brown_wall_vertical
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 2144
+        width: 96
+        height: 710
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d06fb25ebe7348d4db6d5287eb0a1648
+      internalID: -109994491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flower_white_1
+      rect:
+        serializedVersion: 2
+        x: 3945
+        y: 1588
+        width: 92
+        height: 143
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc4a18a940e993d4e858ffa43f29db71
+      internalID: 1529792296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flower_white_2
+      rect:
+        serializedVersion: 2
+        x: 3214
+        y: 1353
+        width: 97
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b93f52d46c349942b770dba0801e002
+      internalID: 1642185227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flower_blue_1
+      rect:
+        serializedVersion: 2
+        x: 3465
+        y: 1561
+        width: 101
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e45a76650d43d3240928432819157e9b
+      internalID: 385106423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flower_blue_2
+      rect:
+        serializedVersion: 2
+        x: 3682
+        y: 1365
+        width: 98
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 995ecf557c7339b4cae633df9446eb12
+      internalID: 1315239927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flower_purple_1
+      rect:
+        serializedVersion: 2
+        x: 3459
+        y: 1305
+        width: 108
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 088aad3f8ffacc84d8481691c4020cc8
+      internalID: 1383075421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flower_purple_2
+      rect:
+        serializedVersion: 2
+        x: 3931
+        y: 1435
+        width: 105
+        height: 136
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f23f96269984bf46afcde645678a65b
+      internalID: -1824573814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bush_1x2_vertical
+      rect:
+        serializedVersion: 2
+        x: 3193
+        y: 848
+        width: 176
+        height: 317
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 209d04c04cfbffd4f8daa8b627cb2d2d
+      internalID: 205476295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bush_4x1_horizontal
+      rect:
+        serializedVersion: 2
+        x: 3487
+        y: 812
+        width: 509
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22c84d5a11db5e34ebb776cb7f73dceb
+      internalID: 247464490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bush_4x1_horizontal_2
+      rect:
+        serializedVersion: 2
+        x: 2837
+        y: 210
+        width: 522
+        height: 164
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 502b9c41421a4f84e8dd30d397977051
+      internalID: 2120367130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bush_1x1_horizontal_1
+      rect:
+        serializedVersion: 2
+        x: 2842
+        y: 435
+        width: 179
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caa8a4a155356b54c9997e42f3066f7f
+      internalID: -1619199862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bush_1x1_horizontal_2
+      rect:
+        serializedVersion: 2
+        x: 2236
+        y: 739
+        width: 176
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e02829b55f103540a1dc2f7922d6bad
+      internalID: -1651627570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bush_1x1_horizontal_3
+      rect:
+        serializedVersion: 2
+        x: 3647
+        y: 1027
+        width: 182
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac9b695eb703c544783a4c14f877cdf1
+      internalID: -2029326091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bush_1x2_vertical_1
+      rect:
+        serializedVersion: 2
+        x: 2829
+        y: 664
+        width: 184
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e060a07c4990b044b408b711d377731
+      internalID: -1126971993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bush_vertical_1x2_2
+      rect:
+        serializedVersion: 2
+        x: 2537
+        y: 511
+        width: 174
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba02438012fa5cd4e9cffe02669954cd
+      internalID: 178862314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bush_1x2_vertical_
+      rect:
+        serializedVersion: 2
+        x: 2538
+        y: 140
+        width: 173
+        height: 311
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7eb4392393d31b418f91651347f9585
+      internalID: -442059393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bush_4x1_horizontal_3
+      rect:
+        serializedVersion: 2
+        x: 1876
+        y: 508
+        width: 517
+        height: 162
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa1623c6b6fe078478797ae2b098ce68
+      internalID: 2071614337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bush_4x1_horizontal_4
+      rect:
+        serializedVersion: 2
+        x: 1877
+        y: 287
+        width: 511
+        height: 167
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6393e4374dc2904fb3207425599fbcf
+      internalID: 1813374227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iron_fence_left
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 126
+        width: 122
+        height: 1213
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84b259e766317904bae3cca04b0c394e
+      internalID: -1360694259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TreeStump
+      rect:
+        serializedVersion: 2
+        x: 4307
+        y: 155
+        width: 161
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 269e006a3e9d0f445a481d751f566b3b
+      internalID: -1889292783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      All Objects 8x_344: 776612749
+      All Objects 8x_24: 336262222
+      All Objects 8x_39: -987020961
+      All Objects 8x_258: -1990480600
+      All Objects 8x_101: 295530947
+      All Objects 8x_250: -160442255
+      All Objects 8x_21: 164534491
+      All Objects 8x_422: -34875937
+      All Objects 8x_135: 2019643596
+      All Objects 8x_411: -1666864616
+      All Objects 8x_522: -910719219
+      Tree: 1433432161
+      All Objects 8x_430: 127120799
+      All Objects 8x_57: 1934146174
+      All Objects 8x_493: 690851628
+      All Objects 8x_484: -1363736100
+      bush_1x1_horizontal_1: -1619199862
+      All Objects 8x_31: 1389693042
+      All Objects 8x_366: 913860547
+      All Objects 8x_369: 282399814
+      All Objects 8x_419: -538563621
+      All Objects 8x_504: 2062398764
+      All Objects 8x_17: -1084477516
+      All Objects 8x_48: -1380988901
+      All Objects 8x_222: 1120109295
+      All Objects 8x_199: -507845488
+      All Objects 8x_482: 740019815
+      All Objects 8x_194: -755769041
+      bench_vertical: -715857499
+      All Objects 8x_87: 973118843
+      All Objects 8x_182: 157345466
+      All Objects 8x_379: 1551002250
+      All Objects 8x_383: 226231606
+      All Objects 8x_516: 754637510
+      All Objects 8x_125: -621133677
+      All Objects 8x_134: 1036007272
+      All Objects 8x_339: -1654950213
+      All Objects 8x_501: -669230341
+      All Objects 8x_215: 759149969
+      All Objects 8x_397: 1583452643
+      All Objects 8x_102: 1434585129
+      All Objects 8x_409: 960934429
+      All Objects 8x_356: -884460529
+      All Objects 8x_254: -1052878814
+      All Objects 8x_180: -45544600
+      All Objects 8x_257: 1583694407
+      All Objects 8x_302: -1236704897
+      All Objects 8x_512: -170488108
+      All Objects 8x_56: 863930819
+      All Objects 8x_162: -1904805549
+      All Objects 8x_212: -120624565
+      All Objects 8x_494: 1597712621
+      All Objects 8x_55: 1764741287
+      All Objects 8x_114: 1343215524
+      All Objects 8x_41: -159228300
+      All Objects 8x_146: -798996488
+      blue_wall_long: -170005752
+      All Objects 8x_481: 1129502981
+      All Objects 8x_329: -251445985
+      All Objects 8x_204: -393279280
+      All Objects 8x_255: -634349335
+      All Objects 8x_216: 1921670681
+      All Objects 8x_281: 288277323
+      All Objects 8x_413: 696770507
+      All Objects 8x_44: 869238312
+      All Objects 8x_469: -1217747882
+      All Objects 8x_519: 1152515606
+      All Objects 8x_317: -1115085430
+      All Objects 8x_340: -411941034
+      All Objects 8x_52: 423087168
+      All Objects 8x_345: 1161957038
+      All Objects 8x_442: 2073539781
+      All Objects 8x_446: 2135405517
+      All Objects 8x_498: -1805027587
+      All Objects 8x_245: 300785441
+      All Objects 8x_100: -427276651
+      All Objects 8x_277: -2057933935
+      All Objects 8x_116: 1554600807
+      bush_4x1_horizontal_2: 2120367130
+      All Objects 8x_485: 1289421972
+      All Objects 8x_395: 313398157
+      All Objects 8x_90: -1443419694
+      All Objects 8x_22: -824348822
+      All Objects 8x_365: -1303903004
+      All Objects 8x_71: -95529582
+      All Objects 8x_266: 1725221426
+      All Objects 8x_293: -1483146521
+      All Objects 8x_330: -740083856
+      All Objects 8x_118: -1026214524
+      All Objects 8x_476: 874721534
+      All Objects 8x_500: -1026739119
+      All Objects 8x_157: -318778771
+      All Objects 8x_47: -22100061
+      All Objects 8x_247: -1546126087
+      All Objects 8x_233: -12626010
+      All Objects 8x_202: 354223917
+      All Objects 8x_78: 2143325978
+      All Objects 8x_188: 13958028
+      All Objects 8x_429: 431299793
+      All Objects 8x_265: 411132660
+      bush_1x1_horizontal_2: -1651627570
+      bush_vertical_1x2_2: 178862314
+      All Objects 8x_171: 37261368
+      bush_4x1_horizontal: 247464490
+      All Objects 8x_457: -1427091234
+      TreeStump: -1889292783
+      All Objects 8x_283: 1430098637
+      All Objects 8x_49: 1189582264
+      All Objects 8x_161: 14338874
+      All Objects 8x_294: -1539725713
+      All Objects 8x_291: -1641695679
+      All Objects 8x_11: -1218173852
+      All Objects 8x_158: 1386309005
+      All Objects 8x_79: -556725197
+      All Objects 8x_175: 154245861
+      All Objects 8x_95: 170797022
+      All Objects 8x_252: 740096466
+      All Objects 8x_389: -1496376937
+      All Objects 8x_239: -140198414
+      All Objects 8x_270: 532801554
+      All Objects 8x_308: -1715526255
+      All Objects 8x_506: -1871980240
+      All Objects 8x_399: 1022205614
+      All Objects 8x_38: 191475433
+      All Objects 8x_271: 1483201479
+      All Objects 8x_249: 1282239152
+      All Objects 8x_367: 1987341328
+      All Objects 8x_370: -290940486
+      All Objects 8x_275: -395106620
+      All Objects 8x_167: 1790804966
+      All Objects 8x_99: -875693290
+      All Objects 8x_439: -1136574760
+      All Objects 8x_33: -1257050704
+      All Objects 8x_67: -588672555
+      All Objects 8x_384: -1512253580
+      All Objects 8x_203: 614512160
+      All Objects 8x_342: 414758564
+      All Objects 8x_486: 1036273525
+      All Objects 8x_463: 455679530
+      All Objects 8x_210: 553613279
+      All Objects 8x_402: -476691066
+      All Objects 8x_480: 1687348956
+      brown_wall_vertical: -109994491
+      All Objects 8x_495: -340376890
+      All Objects 8x_229: 1738039195
+      All Objects 8x_147: -1260000228
+      All Objects 8x_184: 236783944
+      All Objects 8x_273: -1210367316
+      All Objects 8x_236: 1304926072
+      All Objects 8x_163: -2049465303
+      All Objects 8x_450: 1759818088
+      All Objects 8x_143: -295983304
+      All Objects 8x_14: 349400488
+      All Objects 8x_59: 52898457
+      All Objects 8x_374: 379515151
+      All Objects 8x_42: 494152241
+      All Objects 8x_60: -1668895815
+      All Objects 8x_428: 744798967
+      All Objects 8x_209: -782218772
+      All Objects 8x_348: -919715217
+      All Objects 8x_292: -632536424
+      All Objects 8x_417: -281497742
+      All Objects 8x_77: 377758956
+      All Objects 8x_437: -1330241432
+      All Objects 8x_98: -263473705
+      All Objects 8x_354: 1161376174
+      All Objects 8x_473: 1854554397
+      All Objects 8x_479: 308665559
+      All Objects 8x_23: 512876735
+      All Objects 8x_301: -2110675689
+      All Objects 8x_520: 1917056188
+      All Objects 8x_156: -610659972
+      All Objects 8x_426: 1352047965
+      All Objects 8x_336: -795117377
+      bush_1x2_vertical: 205476295
+      All Objects 8x_46: -1742273273
+      All Objects 8x_237: -417286292
+      rock_flat: 806695813
+      flower_white_1: 1529792296
+      All Objects 8x_320: -1917119117
+      rubbish: 1484604876
+      All Objects 8x_286: 657817193
+      All Objects 8x_173: -66552918
+      All Objects 8x_220: 1701918104
+      All Objects 8x_213: 1736745058
+      All Objects 8x_477: -732096199
+      All Objects 8x_177: 1332870624
+      All Objects 8x_471: -1594128769
+      All Objects 8x_284: -682240826
+      All Objects 8x_62: 903939724
+      All Objects 8x_63: -1484011068
+      table: 1499551989
+      All Objects 8x_9: 1061595934
+      All Objects 8x_398: 1661359945
+      All Objects 8x_108: -873234713
+      All Objects 8x_164: 868289968
+      All Objects 8x_68: 1821549275
+      All Objects 8x_176: -1454549894
+      All Objects 8x_447: 2081293700
+      All Objects 8x_231: 1017416126
+      All Objects 8x_511: -322618693
+      All Objects 8x_228: -296251184
+      bench1: 449312884
+      All Objects 8x_347: 1567522417
+      All Objects 8x_144: -1217107073
+      All Objects 8x_459: -835028739
+      All Objects 8x_393: -1233380332
+      All Objects 8x_207: 1118275103
+      All Objects 8x_385: 1258513807
+      All Objects 8x_3: 2015325545
+      All Objects 8x_139: -1382499045
+      All Objects 8x_244: 144000454
+      bush_1x1_horizontal_3: -2029326091
+      All Objects 8x_412: 2051497495
+      All Objects 8x_315: -26476503
+      All Objects 8x_327: -1779676522
+      All Objects 8x_75: 1171093294
+      All Objects 8x_103: 1970341277
+      All Objects 8x_18: 414304721
+      All Objects 8x_113: -746367975
+      bush_1x2_vertical_: -1397456576
+      All Objects 8x_230: -809947082
+      All Objects 8x_16: -1671695103
+      All Objects 8x_328: 1617392681
+      All Objects 8x_297: 1326038304
+      All Objects 8x_306: 1664800611
+      All Objects 8x_355: 511094701
+      All Objects 8x_404: 1663215381
+      All Objects 8x_487: 55626177
+      All Objects 8x_61: 1089246809
+      All Objects 8x_368: -1683095953
+      All Objects 8x_242: 866032097
+      All Objects 8x_396: 1327464747
+      All Objects 8x_460: -980995113
+      All Objects 8x_407: -1571313034
+      All Objects 8x_153: 631806216
+      All Objects 8x_248: -1752508158
+      All Objects 8x_332: 711545065
+      All Objects 8x_375: -1877189194
+      All Objects 8x_154: -308357391
+      All Objects 8x_5: 974620072
+      flower_blue_1: 385106423
+      All Objects 8x_121: 282030969
+      All Objects 8x_438: 1405292268
+      flower_blue_2: 1315239927
+      All Objects 8x_357: -1257522591
+      All Objects 8x_489: 2016489651
+      All Objects 8x_170: -397573495
+      All Objects 8x_200: 729194893
+      All Objects 8x_453: -750455228
+      All Objects 8x_12: -1822585124
+      All Objects 8x_124: 741684801
+      All Objects 8x_321: 294024991
+      All Objects 8x_333: 1894089911
+      All Objects 8x_316: -1549392715
+      All Objects 8x_510: -625756892
+      All Objects 8x_341: 642203835
+      All Objects 8x_418: -1302541043
+      All Objects 8x_172: -1443355012
+      All Objects 8x_352: 1031623711
+      All Objects 8x_193: -2016836965
+      bush_1x2_vertical_2: 1067869197
+      All Objects 8x_433: 1330550428
+      All Objects 8x_464: -1008535879
+      All Objects 8x_310: -478539249
+      All Objects 8x_267: -1033908955
+      All Objects 8x_218: -615557981
+      All Objects 8x_232: -187919177
+      All Objects 8x_54: 469427950
+      All Objects 8x_263: 1999850878
+      All Objects 8x_165: -1478201300
+      All Objects 8x_169: 173461187
+      All Objects 8x_364: -741712289
+      All Objects 8x_441: 819755994
+      All Objects 8x_386: 62792354
+      bush_4x1_horizontal_4: 938285933
+      All Objects 8x_338: 1249250896
+      All Objects 8x_151: -1202244023
+      All Objects 8x_234: 626994446
+      All Objects 8x_470: 770240955
+      All Objects 8x_223: -1825093736
+      All Objects 8x_424: -809792048
+      All Objects 8x_394: -1624520868
+      All Objects 8x_288: -1406142030
+      All Objects 8x_309: 645485721
+      All Objects 8x_45: -632001529
+      All Objects 8x_93: 1393272401
+      All Objects 8x_337: -1276920299
+      All Objects 8x_25: -708954089
+      All Objects 8x_133: 1328573512
+      All Objects 8x_181: -1829680748
+      All Objects 8x_508: -1170828673
+      All Objects 8x_152: 1511882385
+      All Objects 8x_70: -2056368684
+      All Objects 8x_361: 421680462
+      All Objects 8x_34: -354281147
+      All Objects 8x_246: -303365391
+      All Objects 8x_406: 1734127937
+      All Objects 8x_179: -683893569
+      All Objects 8x_319: 642279459
+      All Objects 8x_166: -940291173
+      blue_wall_corner: 979503739
+      All Objects 8x_483: 2060987668
+      All Objects 8x_505: 677343198
+      fountain: 664459641
+      All Objects 8x_488: -1795612187
+      All Objects 8x_132: 1933266594
+      All Objects 8x_226: 983756488
+      All Objects 8x_517: 1987290442
+      All Objects 8x_238: -1071132191
+      All Objects 8x_449: 1305912352
+      All Objects 8x_168: 2073978599
+      All Objects 8x_362: -472726476
+      All Objects 8x_74: 868741880
+      All Objects 8x_88: -1992090814
+      All Objects 8x_454: -1226776192
+      All Objects 8x_185: -992627840
+      All Objects 8x_456: -1592179921
+      All Objects 8x_110: 1018357149
+      All Objects 8x_496: -1772032930
+      All Objects 8x_346: -1483492376
+      All Objects 8x_208: -59447229
+      All Objects 8x_83: 1867488589
+      All Objects 8x_474: -628759563
+      All Objects 8x_221: 334812093
+      All Objects 8x_300: -1384191586
+      All Objects 8x_448: -1449578749
+      All Objects 8x_372: 162095084
+      All Objects 8x_37: 1132031177
+      All Objects 8x_84: 1834430808
+      All Objects 8x_388: -717216197
+      All Objects 8x_131: -869162324
+      All Objects 8x_521: 366663092
+      All Objects 8x_186: 797273273
+      bush_4x1_horizontal_3: 2071614337
+      All Objects 8x_235: -50105537
+      bush_1x2_vertical_1: -1126971993
+      All Objects 8x_89: 1438390284
+      All Objects 8x_51: 932174183
+      All Objects 8x_296: 768748842
+      All Objects 8x_198: 1891401021
+      All Objects 8x_115: 1359320537
+      All Objects 8x_225: -1478426046
+      All Objects 8x_130: -1508932578
+      All Objects 8x_514: -507706271
+      All Objects 8x_240: -1879358815
+      All Objects 8x_290: 2135004816
+      All Objects 8x_359: 441032326
+      flower_white_2: 1642185227
+      All Objects 8x_268: -901485765
+      All Objects 8x_390: 1805048494
+      All Objects 8x_129: -478853151
+      All Objects 8x_405: -1069753449
+      All Objects 8x_376: 134760945
+      All Objects 8x_35: -1843714083
+      All Objects 8x_111: 1902866922
+      All Objects 8x_217: -386610620
+      All Objects 8x_378: 1289134075
+      All Objects 8x_400: -1015304955
+      All Objects 8x_468: 774776084
+      All Objects 8x_126: -2084284842
+      All Objects 8x_149: 268953193
+      All Objects 8x_7: -978937787
+      All Objects 8x_189: -871095819
+      All Objects 8x_432: 567259628
+      All Objects 8x_278: 1776561009
+      brown_wall_corner: 31104865
+      All Objects 8x_19: -1868045796
+      All Objects 8x_214: 503352727
+      All Objects 8x_85: 619669552
+      All Objects 8x_287: -1805426744
+      All Objects 8x_261: 1403434153
+      All Objects 8x_391: -298632472
+      All Objects 8x_280: -959736333
+      All Objects 8x_509: 723620756
+      bench2: 690012578
+      All Objects 8x_295: -522503912
+      All Objects 8x_445: -249058918
+      All Objects 8x_381: 1135066054
+      All Objects 8x_137: -1220597085
+      All Objects 8x_148: -1945529173
+      All Objects 8x_415: 1017293829
+      All Objects 8x_282: 899558699
+      All Objects 8x_120: -1148962214
+      All Objects 8x_444: -272807212
+      All Objects 8x_219: -1937753457
+      All Objects 8x_206: 383778243
+      All Objects 8x_27: -796901068
+      All Objects 8x_478: 2001788987
+      All Objects 8x_105: -74979100
+      All Objects 8x_276: 1286250476
+      All Objects 8x_112: -634255055
+      All Objects 8x_28: 249050693
+      All Objects 8x_58: 1207799651
+      All Objects 8x_414: -407377338
+      All Objects 8x_65: -1778695241
+      All Objects 8x_150: -92091409
+      All Objects 8x_178: 1740425874
+      All Objects 8x_94: -1912174602
+      All Objects 8x_72: 1158670043
+      All Objects 8x_431: 1336078730
+      All Objects 8x_313: -353862291
+      All Objects 8x_32: 583109729
+      All Objects 8x_318: -820462282
+      All Objects 8x_461: -301982707
+      All Objects 8x_421: -1896540275
+      All Objects 8x_350: 1716895213
+      All Objects 8x_360: 624272404
+      All Objects 8x_335: 1801137959
+      All Objects 8x_174: -1059193495
+      All Objects 8x_43: -1714727053
+      All Objects 8x_160: 493809582
+      All Objects 8x_351: 875444314
+      All Objects 8x_66: 1483393850
+      All Objects 8x_192: 1192646117
+      All Objects 8x_475: 1106299428
+      All Objects 8x_499: -402722859
+      All Objects 8x_224: 1702288041
+      All Objects 8x_436: 843246208
+      All Objects 8x_303: 190722313
+      All Objects 8x_8: -1436504884
+      All Objects 8x_123: -1811511242
+      All Objects 8x_36: 239702175
+      All Objects 8x_4: -215667
+      All Objects 8x_311: -749709306
+      All Objects 8x_140: -102838788
+      All Objects 8x_227: 1187813577
+      All Objects 8x_502: 539865833
+      All Objects 8x_363: 621792748
+      All Objects 8x_128: -1577189113
+      All Objects 8x_387: 1640530723
+      All Objects 8x_256: 581348401
+      All Objects 8x_440: 47510775
+      All Objects 8x_452: -274471020
+      All Objects 8x_392: 1588206256
+      brown_wall_horizontal: 178862314
+      All Objects 8x_81: -1110673869
+      All Objects 8x_269: -1917578685
+      All Objects 8x_492: -105360155
+      All Objects 8x_466: 1928741463
+      All Objects 8x_513: 2104690562
+      All Objects 8x_299: -2141679374
+      All Objects 8x_408: 2070929727
+      All Objects 8x_307: 589661571
+      All Objects 8x_507: -1068592345
+      All Objects 8x_92: 158884531
+      All Objects 8x_107: -1370710074
+      All Objects 8x_334: -598088146
+      All Objects 8x_211: -1921437449
+      All Objects 8x_435: -346663768
+      rock_tall: -108294748
+      All Objects 8x_122: 982555967
+      iron_fence_left: -1360694259
+      All Objects 8x_64: 15685249
+      All Objects 8x_455: 293045933
+      All Objects 8x_190: -1415862113
+      All Objects 8x_138: -1803388040
+      All Objects 8x_403: 1591805848
+      All Objects 8x_503: 1965220928
+      iron_fence: 1204005732
+      All Objects 8x_253: -2048373710
+      All Objects 8x_323: -925416655
+      All Objects 8x_373: 1290901225
+      All Objects 8x_462: -1918926947
+      All Objects 8x_73: -1575120907
+      All Objects 8x_497: -1980055157
+      All Objects 8x_127: -1722601387
+      All Objects 8x_262: 111106334
+      All Objects 8x_13: 260814751
+      All Objects 8x_410: 1304573564
+      All Objects 8x_304: 2024395948
+      All Objects 8x_491: -497356550
+      All Objects 8x_91: 1034451725
+      All Objects 8x_324: -1263802284
+      All Objects 8x_467: -1620534541
+      All Objects 8x_371: -977257678
+      All Objects 8x_465: 1737792523
+      All Objects 8x_314: 1072365533
+      bush_1x1_1: -491137541
+      All Objects 8x_104: 833084011
+      All Objects 8x_285: 1401408688
+      All Objects 8x_458: 230948533
+      All Objects 8x_331: -1879305286
+      blue_wall_small: -1038008182
+      All Objects 8x_343: -1910503214
+      All Objects 8x_251: -1186064088
+      flower_purple_2: -1824573814
+      All Objects 8x_86: -1955138498
+      All Objects 8x_264: 1819343550
+      All Objects 8x_183: 2072169661
+      All Objects 8x_69: 1729840640
+      All Objects 8x_380: -432838205
+      All Objects 8x_97: -428696978
+      All Objects 8x_274: 1194223535
+      All Objects 8x_420: 1267928022
+      All Objects 8x_197: 1327199091
+      All Objects 8x_377: -950454325
+      All Objects 8x_117: 1810245689
+      All Objects 8x_136: 1132252218
+      All Objects 8x_423: -1008301574
+      All Objects 8x_15: 1532962504
+      All Objects 8x_159: 1889390518
+      All Objects 8x_243: -644238353
+      All Objects 8x_518: 1640351611
+      All Objects 8x_401: 389322581
+      All Objects 8x_241: -1614432041
+      All Objects 8x_358: -1588610907
+      flower_purple_1: 1383075421
+      All Objects 8x_53: -1965088428
+      All Objects 8x_272: -52962603
+      All Objects 8x_425: 48588834
+      All Objects 8x_312: -124999919
+      All Objects 8x_382: -72644710
+      All Objects 8x_349: 1177709897
+      All Objects 8x_191: -1486439340
+      shelf2: 32895731
+      All Objects 8x_195: -35737937
+      All Objects 8x_10: 1612267799
+      All Objects 8x_20: -266209488
+      All Objects 8x_145: 248887405
+      All Objects 8x_298: -1747008023
+      All Objects 8x_80: 1527689839
+      All Objects 8x_196: 1102638053
+      All Objects 8x_106: 1895944674
+      All Objects 8x_325: -1274413659
+      All Objects 8x_201: -346614182
+      All Objects 8x_305: -1983296600
+      All Objects 8x_472: -1209128550
+      All Objects 8x_515: 952752528
+      All Objects 8x_205: 948454463
+      All Objects 8x_434: 916418991
+      All Objects 8x_427: -607607085
+      All Objects 8x_451: -487620886
+      All Objects 8x_119: -1363005142
+      All Objects 8x_259: 2026399026
+      car: -535762304
+      All Objects 8x_490: 1088299182
+      All Objects 8x_76: -287185045
+      All Objects 8x_279: -1530065253
+      All Objects 8x_322: -1607445222
+      shelf1: 430389923
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

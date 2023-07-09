@@ -99,4 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Collectables:
   - {fileID: 247796029135214586, guid: 7b6f3ae6a8a1a644f9a742d38e4b4bf0, type: 3}
-  TotalChanceDropPercentage: 100
+  - {fileID: 1522143147373953408, guid: ace5c38e891e5b6b6989fa8335188f5a, type: 3}
+  - {fileID: 6201961038142147961, guid: 90b33aef723d82244b47fd58220c4094, type: 3}
+  EnableDrops: 1
+  MinDropPercentage: 0
+  MaxDropPercentage: 1
