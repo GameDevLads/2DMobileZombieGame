@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfaf3db1a4a505e4faea8f74b057248c, type: 3}
   m_Name: AutoAimRange
   m_EditorClassIdentifier: 
-  Value: 7
+  Value: 10
   IsNull: 0

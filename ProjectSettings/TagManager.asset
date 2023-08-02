@@ -11,6 +11,7 @@ TagManager:
   - SortOrderSet2
   - SortOrderSet11
   - SetSortLayerForeground
+  - AutoAim
   layers:
   - Default
   - TransparentFX

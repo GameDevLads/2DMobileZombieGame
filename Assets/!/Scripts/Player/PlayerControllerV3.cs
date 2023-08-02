@@ -40,10 +40,10 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     private GameObject _playerHandsGameObject;
     public Vector3VariableSO enemyPositionFromPlayerSO;
-    public CircleCollider2D cr;
     public FloatVariableSO autoAimRangeSO;
 
     private OccludableCollider occludableCollider;
+    private AutoAimCollider autoAimCollider;
 
     /// <summary>
     /// This is the player hand object that has a weapon as a child object which rotates around the player
@@ -64,6 +64,9 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
         occludableCollider.OnTriggerEnter2D_Action += OccludableCollider_OnCollisionEnter2D;
         occludableCollider.OnTriggerExit2D_Action += OccludableCollider_OnCollisionExit2D;
 
+        autoAimCollider = transform.Find("AutoAimCollider").GetComponent<AutoAimCollider>();
+        autoAimCollider.OnTriggerStay2D_Action += AutoAimCollider_OnTriggerStay2D;
+
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -72,8 +75,9 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
         //setting the target of the camera to the player
         Camera.main.GetComponent<PlayerCamera>().setTarget(gameObject.transform);
 
-        //sets the radius of the Circle Colider to the value of autoAimtRandeSO. This value will be modified by each of the guns, meaning each gun will have a different autoaim range. At some point i should do this in the update method to make it more dynamic by having the value change mid game. 
-        cr.radius = autoAimRangeSO.Value;  
+        //sets the radius of the AutoAim Colider to the value of autoAimtRandeSO. This value will be modified by each of the guns, meaning each gun will have a different autoaim range. At some point i should do this in the update method to make it more dynamic by having the value change mid game. 
+
+        autoAimCollider.cr.radius = autoAimRangeSO.Value;
     }
 
     void Update()
@@ -99,6 +103,15 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     /// the trigger, makes the gun shoot and engages the auto aim.
     /// </summary>
     private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemy" && _manualAim == false)
+        {
+            UseWeapon();
+            AutoAim(enemyPositionFromPlayerSO.Value);
+        }
+    }
+
+    private void AutoAimCollider_OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Enemy" && _manualAim == false)
         {
