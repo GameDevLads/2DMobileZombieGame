@@ -28,8 +28,6 @@ public class EnemyMovementV2 : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //_animator.SetBool("isMoving", false);
-        //_rb.velocity = Vector2.zero;
 
         _animator.SetBool("isMoving", true);
 
@@ -39,11 +37,19 @@ public class EnemyMovementV2 : MonoBehaviour
         transform.position = Vector2.MoveTowards(this.transform.position, _player.transform.position, _speed * Time.deltaTime);
 
         if (direction.x > 0)
+        {
             _spriteRenderer.flipX = true;
+        }
+
         else
+        {
             _spriteRenderer.flipX = false;
+        }
 
-
-
+        if (_rb.IsSleeping())
+        {
+            _animator.SetBool("isMoving", false);
+            _rb.velocity = Vector2.zero;
+        }
     }
 }
