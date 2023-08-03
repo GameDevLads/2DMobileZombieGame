@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6066341481304386788}
   - component: {fileID: 4599625978148104503}
   - component: {fileID: -4985492000363082492}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Zombie2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.037701726, y: -0.068184376}
