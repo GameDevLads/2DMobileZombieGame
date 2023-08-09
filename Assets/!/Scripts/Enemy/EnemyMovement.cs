@@ -23,7 +23,6 @@ namespace Assets.Scripts
         private Animator _animator;
         private SpriteRenderer _spriteRenderer;
         private Rigidbody2D _rb;
-        //private EnemyStats _enemyStats;
 
         void Start()
         {
@@ -34,7 +33,6 @@ namespace Assets.Scripts
             _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _rb = GetComponent<Rigidbody2D>();
-            //_enemyStats = GetComponent<EnemyStats>();
             _speed = StatsSO.CurrentStats.MovementSpeed;
             _reachDistance = StatsSO.CurrentStats.AttackRange;
         }

@@ -172,7 +172,7 @@ namespace Assets.Scripts.Gun
 
                 // We need to ignore the player colliders 
                 var raycastHit = Physics2D.RaycastAll(muzzlePosition, direction, _bulletShootDistance)
-                    .FirstOrDefault(x => !string.Equals(x.collider.tag, "Player"));
+                    .FirstOrDefault(x => !string.Equals(x.collider.tag, "AutoAim") && !string.Equals(x.collider.tag, "Player"));
 
                 if (raycastHit.collider != null)
                 { // if we have hit a surface then spawn trail
