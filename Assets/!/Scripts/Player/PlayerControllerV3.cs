@@ -1,7 +1,5 @@
-using Assets.Scripts;
 using Assets.Scripts.Interfaces;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,9 +23,6 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     public float WeaponPlayerDistance = 1.5f;
 
     [SerializeField]
-    private float _dashSpeed = 60f;
-
-    [SerializeField]
     private float _flashAmount = 10f;
 
     [SerializeField]
@@ -42,7 +37,6 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     public Vector3VariableSO enemyPositionFromPlayerSO;
     public FloatVariableSO autoAimRangeSO;
 
-    private OccludableCollider occludableCollider;
     private AutoAimCollider autoAimCollider;
 
     /// <summary>
@@ -59,11 +53,6 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     void Start()
     {
-        occludableCollider = transform.Find("OccludableCollider").GetComponent<OccludableCollider>();
-
-        occludableCollider.OnTriggerEnter2D_Action += OccludableCollider_OnCollisionEnter2D;
-        occludableCollider.OnTriggerExit2D_Action += OccludableCollider_OnCollisionExit2D;
-
         autoAimCollider = transform.Find("AutoAimCollider").GetComponent<AutoAimCollider>();
         autoAimCollider.OnTriggerStay2D_Action += AutoAimCollider_OnTriggerStay2D;
 
@@ -102,14 +91,6 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     /// The circular Collider stays trigged as long as an enemy is inside and the player isn't manually aiming.
     /// the trigger, makes the gun shoot and engages the auto aim.
     /// </summary>
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.tag == "Enemy" && _manualAim == false)
-        {
-            UseWeapon();
-            AutoAim(enemyPositionFromPlayerSO.Value);
-        }
-    }
 
     private void AutoAimCollider_OnTriggerStay2D(Collider2D collision)
     {
@@ -174,31 +155,19 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
 
     public void Flash(InputAction.CallbackContext context)
     {
-        if (context.ReadValueAsButton() && coinAmountSO.Value > 0 && IsPlayerMoving() == true)
+        if (context.ReadValueAsButton() && IsPlayerMoving() == true)
         {
-            coinAmountSO.Value--;
-            rb.MovePosition(transform.position + _moveDirectionVector3 * _flashAmount);
+            StartCoroutine(FlashingMechanic());
         }
     }
 
-    public void Dash(InputAction.CallbackContext context)
+    private IEnumerator FlashingMechanic()
     {
-        if (context.ReadValueAsButton() && coinAmountSO.Value > 0 && IsPlayerMoving() == true)
-        {
-            StartCoroutine(DashingMechanic());
-        }
-    }
-
-    private IEnumerator DashingMechanic()
-    {
-        coinAmountSO.Value--;
-        rb.velocity = new Vector2(_moveDirection.x * _dashSpeed, _moveDirection.y * _dashSpeed);
+        rb.MovePosition(transform.position + _moveDirectionVector3 * _flashAmount);
         tr.emitting = true;
         yield return new WaitForSeconds(_trailVisibleTime);
-        rb.velocity = new Vector2(_moveDirection.x * _moveSpeed, _moveDirection.y * _moveSpeed);
         tr.emitting = false;
     }
-
     private bool IsPlayerMoving()
     {
         bool result = false;
@@ -259,88 +228,8 @@ public class PlayerControllerV3 : MonoBehaviour, PlayerInputActions.IPlayerActio
     {
         _isGamepad = playerInput.currentControlScheme.Equals("Gamepad") ? true : false;
     }
-
-    public void OnAbility1(InputAction.CallbackContext context)
-    {
-        Dash(context);
-    }
     public void OnAbility2(InputAction.CallbackContext context)
     {
         Flash(context);
     }
-    public void OnAbility3(InputAction.CallbackContext context)
-    {
-        Debug.Log("Ability 3 Place Holder");
-    }
-    /// <summary>
-    /// When the below methods receive trigger actions on enter and on exit from the OccludableColliders child class that this script subscribes to, they make the object that is being colided with transparant. 
-    /// </summary>
-    private void OccludableCollider_OnCollisionEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Occludable") && collision.GetType() == typeof(PolygonCollider2D))
-        {
-            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
-            if (spriteRenderer != null)
-            {
-                spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
-                spriteRenderer.sortingOrder = 12;
-            }
-        }
-
-        if(collision.CompareTag("SetSortLayerForeground") && collision.GetType() == typeof(PolygonCollider2D))
-        {
-            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
-            SpriteRenderer[] children = collision.GetComponentsInChildren<SpriteRenderer>();
-            if (spriteRenderer != null)
-            {
-                spriteRenderer.sortingLayerName = "Default";
-            }
-
-            if (children != null)
-            {
-                children[1].sortingLayerName = "Foreground";
-                children[2].sortingLayerName = "Foreground";
-            }
-        }
-
-        if(collision.CompareTag("SlowWalking"))
-        {
-            ///this still has issues with the colliders, I think there are too many bushes next to one another with individual colliders and that's what causes problems
-            ///when walking through them it still does that thing where you suddenly move fast through them when you shouldn't
-            ///i.e it triggers the collision exit method and doesn't trigger the collision enter right away
-            ///so thats why its commented out for now, if you lot know how to do it fix it please
-          //  _moveSpeed = 2f;
-        }
-    }
-    private void OccludableCollider_OnCollisionExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Occludable"))
-        {
-            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
-            if (spriteRenderer != null)
-            {
-                spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-                spriteRenderer.sortingOrder = 0;
-            }
-        }
-        if (collision.CompareTag("SetSortLayerForeground"))
-        {
-            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
-            SpriteRenderer[] children = collision.GetComponentsInChildren<SpriteRenderer>();
-            if (spriteRenderer != null)
-            {
-                spriteRenderer.sortingLayerName = "Background";
-            }
-            if (children != null)
-            {
-                children[1].sortingLayerName = "Default";
-                children[2].sortingLayerName = "Default";
-            }
-        }
-        if (collision.CompareTag("SlowWalking"))
-        {
-            _moveSpeed = 10f;
-        }
-    }
-
 }

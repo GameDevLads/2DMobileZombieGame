@@ -55,27 +55,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Ability1"",
-                    ""type"": ""Button"",
-                    ""id"": ""1ce0de15-334f-4fd8-aa82-7d4c5fcbde89"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Ability2"",
                     ""type"": ""Button"",
                     ""id"": ""136301fa-ff88-42bf-9ac9-6126a92d0f66"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Ability3"",
-                    ""type"": ""Button"",
-                    ""id"": ""accee5aa-e7ee-498b-9608-19f5eba31332"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -250,28 +232,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f20f9189-c51c-481c-b408-6d57477422e9"",
-                    ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": ""Tap"",
-                    ""processors"": """",
-                    ""groups"": ""KBM"",
-                    ""action"": ""Ability1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f2c65674-d04d-42d0-af9d-dc049eaafa25"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": ""Tap"",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Ability1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""ab1e43bc-c4be-426f-9036-d2f5c42f7ea5"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": ""Tap"",
@@ -289,28 +249,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Ability2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6ec3b081-f608-4f8e-925f-4aa115a7308a"",
-                    ""path"": ""<Keyboard>/leftCtrl"",
-                    ""interactions"": ""Tap"",
-                    ""processors"": """",
-                    ""groups"": ""KBM"",
-                    ""action"": ""Ability3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c8067a54-8439-4d85-affe-288cdd3f1067"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": ""Tap"",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Ability3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -352,9 +290,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_AimWeapon = m_Player.FindAction("Aim Weapon", throwIfNotFound: true);
         m_Player_UseWeapon = m_Player.FindAction("Use Weapon", throwIfNotFound: true);
-        m_Player_Ability1 = m_Player.FindAction("Ability1", throwIfNotFound: true);
         m_Player_Ability2 = m_Player.FindAction("Ability2", throwIfNotFound: true);
-        m_Player_Ability3 = m_Player.FindAction("Ability3", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -417,9 +353,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_AimWeapon;
     private readonly InputAction m_Player_UseWeapon;
-    private readonly InputAction m_Player_Ability1;
     private readonly InputAction m_Player_Ability2;
-    private readonly InputAction m_Player_Ability3;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -427,9 +361,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @AimWeapon => m_Wrapper.m_Player_AimWeapon;
         public InputAction @UseWeapon => m_Wrapper.m_Player_UseWeapon;
-        public InputAction @Ability1 => m_Wrapper.m_Player_Ability1;
         public InputAction @Ability2 => m_Wrapper.m_Player_Ability2;
-        public InputAction @Ability3 => m_Wrapper.m_Player_Ability3;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -448,15 +380,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @UseWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseWeapon;
                 @UseWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseWeapon;
                 @UseWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseWeapon;
-                @Ability1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility1;
-                @Ability1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility1;
-                @Ability1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility1;
                 @Ability2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility2;
                 @Ability2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility2;
                 @Ability2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility2;
-                @Ability3.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility3;
-                @Ability3.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility3;
-                @Ability3.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility3;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -470,15 +396,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @UseWeapon.started += instance.OnUseWeapon;
                 @UseWeapon.performed += instance.OnUseWeapon;
                 @UseWeapon.canceled += instance.OnUseWeapon;
-                @Ability1.started += instance.OnAbility1;
-                @Ability1.performed += instance.OnAbility1;
-                @Ability1.canceled += instance.OnAbility1;
                 @Ability2.started += instance.OnAbility2;
                 @Ability2.performed += instance.OnAbility2;
                 @Ability2.canceled += instance.OnAbility2;
-                @Ability3.started += instance.OnAbility3;
-                @Ability3.performed += instance.OnAbility3;
-                @Ability3.canceled += instance.OnAbility3;
             }
         }
     }
@@ -506,8 +426,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnAimWeapon(InputAction.CallbackContext context);
         void OnUseWeapon(InputAction.CallbackContext context);
-        void OnAbility1(InputAction.CallbackContext context);
         void OnAbility2(InputAction.CallbackContext context);
-        void OnAbility3(InputAction.CallbackContext context);
     }
 }

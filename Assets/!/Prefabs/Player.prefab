@@ -1,66 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1883995756431047132
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1367865074660624309}
-  - component: {fileID: 8339285421226734810}
-  - component: {fileID: 8319330090714341783}
-  m_Layer: 7
-  m_Name: OccludableCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1367865074660624309
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1883995756431047132}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6530764336699020583}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &8339285421226734810
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1883995756431047132}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.031839553, y: -0.52453876}
-  m_Size: {x: 0.99626017, y: 1.2635305}
-  m_Direction: 0
---- !u!114 &8319330090714341783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1883995756431047132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fd6e6cadbb74734fbb74cc386f55c12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2953103380354660242
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +36,6 @@ Transform:
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1367865074660624309}
   - {fileID: 9059980465878767505}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -398,22 +336,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4386068080982919703}
         m_TargetAssemblyTypeName: PlayerControllerV3, Assembly-CSharp
-        m_MethodName: OnAbility1
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 1ce0de15-334f-4fd8-aa82-7d4c5fcbde89
-    m_ActionName: Player/Ability1[/Keyboard/leftShift]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4386068080982919703}
-        m_TargetAssemblyTypeName: PlayerControllerV3, Assembly-CSharp
         m_MethodName: OnAbility2
         m_Mode: 0
         m_Arguments:
@@ -426,22 +348,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 136301fa-ff88-42bf-9ac9-6126a92d0f66
     m_ActionName: Player/Ability2[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4386068080982919703}
-        m_TargetAssemblyTypeName: PlayerControllerV3, Assembly-CSharp
-        m_MethodName: OnAbility3
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: accee5aa-e7ee-498b-9608-19f5eba31332
-    m_ActionName: Player/Ability3
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -464,11 +370,9 @@ MonoBehaviour:
   coinAmountSO: {fileID: 11400000, guid: 634297763070f894ea1153d77f083a58, type: 2}
   DefaultWeapon: {fileID: 6820678582435311943, guid: c54473dbcd67c5e4e8aaae0b42bc3e16, type: 3}
   WeaponPlayerDistance: 1.5
-  _dashSpeed: 60
   _flashAmount: 10
   _moveSpeed: 10
   enemyPositionFromPlayerSO: {fileID: 11400000, guid: d64592d1909474c4ab1d2f83c0048486, type: 2}
-  cr: {fileID: 0}
   autoAimRangeSO: {fileID: 11400000, guid: d5142216f01d41648bc8a07e748c9b7a, type: 2}
 --- !u!95 &4804763064453170230
 Animator:
@@ -536,7 +440,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6530764336699020583}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &9059980465878767507
 CircleCollider2D:

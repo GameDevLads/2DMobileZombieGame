@@ -33,27 +33,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Ability1",
-                    "type": "Button",
-                    "id": "1ce0de15-334f-4fd8-aa82-7d4c5fcbde89",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Ability2",
                     "type": "Button",
                     "id": "136301fa-ff88-42bf-9ac9-6126a92d0f66",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Ability3",
-                    "type": "Button",
-                    "id": "accee5aa-e7ee-498b-9608-19f5eba31332",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -228,28 +210,6 @@
                 },
                 {
                     "name": "",
-                    "id": "f20f9189-c51c-481c-b408-6d57477422e9",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "KBM",
-                    "action": "Ability1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f2c65674-d04d-42d0-af9d-dc049eaafa25",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Ability1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "ab1e43bc-c4be-426f-9036-d2f5c42f7ea5",
                     "path": "<Keyboard>/space",
                     "interactions": "Tap",
@@ -267,28 +227,6 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Ability2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6ec3b081-f608-4f8e-925f-4aa115a7308a",
-                    "path": "<Keyboard>/leftCtrl",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "KBM",
-                    "action": "Ability3",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c8067a54-8439-4d85-affe-288cdd3f1067",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Ability3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
